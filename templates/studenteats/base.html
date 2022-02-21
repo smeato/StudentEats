@@ -1,0 +1,50 @@
+<!DOCTYPE html> 
+{% load staticfiles %} 
+
+<html> 
+    <head>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <title>
+            Student Eats 
+            {% block title_block %} 
+                Good Food on a Budget
+            {% endblock %} 
+        </title>
+    </head>
+
+    <body>
+        <div> 
+            {% block login_link %} 
+                {% if user.is_authenticated %}
+                    <!-- add user specific once user model created-->
+                    <a href="{% url 'studenteats:profile' %}">My Profile</a>"
+                {% else %} 
+                    <a href="{% url 'studenteats:login' %}">Log In or Register</a>
+                {% endif %} 
+            {% endblock %} 
+        </div>
+
+            {% block navbar_block %} 
+                <div class="navbar">
+                    <a href="{% url 'studenteats:restaurant' %}">Restaurant Home</a>
+                    <a href="{% url 'studenteats:recipe' %}">Recipe Home</a>
+                    <a href="{% url 'studenteats:forum' %}">Forum</a>
+                    <a href="{% url 'studenteats:about' %}">About</a>
+                    <a href="{% url 'studenteats:profile' %}">My Profile</a>
+                </div>
+            {% endblock %} 
+    
+            {% block hot_sidebar %} 
+                <div class="hot_container">
+
+                </div>
+            {% endblock %} 
+
+        <div>
+            {% block footer_block %} 
+                <i class="fa">&#xf059;Need Help?</i>
+            {% endblock %} 
+        </div>
+
+    </body>
+</html>
