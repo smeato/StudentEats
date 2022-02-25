@@ -45,6 +45,9 @@ class Deals(models.Model):
     Description=models.TextField(max_length=1000)
     Last_Date=models.DateTimeField(default=datetime)
 
+    class Meta:
+        verbose_name_plural = 'Deals'
+
 class Discussion(models.Model):
     Discussion_ID=models.IntegerField(default=0)
     Title=models.CharField(max_length=128)
@@ -62,6 +65,9 @@ class Discussion_Replies(models.Model):
     Post_ID=models.IntegerField(default=0,unique=True)
     Discussion_ID=models.IntegerField(default=0,unique=True)
 
+    class Meta:
+        verbose_name_plural = 'Discussion replies'
+
 
 class Restaurant_Comments(models.Model):
     Description=models.TextField(max_length=1000)
@@ -71,6 +77,9 @@ class Restaurant_Comments(models.Model):
     Comment_ID=models.IntegerField(default=0,unique=True)
     Restaurant_ID=models.ForeignKey(Restaurant,on_delete=CASCADE)
 
+    class Meta:
+        verbose_name_plural = 'Restaurant comments'
+
 
 class Recipe_Comments(models.Model):
     Description=models.TextField(max_length=1000)
@@ -79,3 +88,6 @@ class Recipe_Comments(models.Model):
     Likes=models.IntegerField(default=0)
     Comment_ID=models.IntegerField(default=0,unique=True)
     Recipe_ID=models.ForeignKey(Recipe,on_delete=CASCADE)
+
+    class Meta:
+        verbose_name_plural = 'Recipe comments'
