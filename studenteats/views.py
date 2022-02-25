@@ -28,3 +28,7 @@ def recipe(request):
 def forum(request): 
     context_dict = {}
     return render(request, 'studenteats/forum.html', context=context_dict)
+
+def help(request): 
+    context_dict = {} 
+    return render(request, 'studenteats/help.html', context=context_dict)
