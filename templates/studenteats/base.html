@@ -1,8 +1,9 @@
 <!DOCTYPE html> 
 {% load staticfiles %} 
 
-<html> 
+<html lang="en"> 
     <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
         <title>
             Student Eats 
@@ -10,6 +11,7 @@
                 Good Food on a Budget
             {% endblock %} 
         </title>
+        <meta charset="utf-8">
     </head>
 
     <body>
@@ -22,6 +24,12 @@
                     <a href="{% url 'studenteats:login' %}">Log In or Register</a>
                 {% endif %} 
             {% endblock %} 
+        </div>
+
+        <div>
+            {% block header_block %} 
+                <h1>Student Eats</h1>
+            {% endblock %}
         </div>
 
             {% block navbar_block %} 
@@ -42,7 +50,7 @@
 
         <div>
             {% block footer_block %} 
-                <i class="fa">&#xf059;Need Help?</i>
+               <a href="{% url 'studenteats:help' %}"> <i class="fa">&#xf059;</i>Need Help?</a>
             {% endblock %} 
         </div>
 
