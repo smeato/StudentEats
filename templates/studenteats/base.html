@@ -1,8 +1,9 @@
 <!DOCTYPE html> 
-{% load staticfiles %} 
+{% load staticfiles %}
 
 <html> 
-    <head>
+    <head lang="en">
+        <meta charset="UTF-8" />
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
         <title>
             Student Eats 
@@ -13,22 +14,35 @@
     </head>
 
     <body>
-        <div> 
-            {% block login_link %} 
+        <div>
+                {% block body_block %}
+                {% endblock %}
+                </div>
+        <div>
+        <hr />
+        <div>
+            <ul>
                 {% if user.is_authenticated %}
                     <!-- add user specific once user model created-->
-                    <a href="{% url 'studenteats:profile' %}">My Profile</a>"
-                {% else %} 
-                    <a href="{% url 'studenteats:login' %}">Log In or Register</a>
-                {% endif %} 
-            {% endblock %} 
+                    <li><a href="{% url 'studenteats:profile' %}">My Profile</a></li>
+                    <li><a href="{% url 'studenteats:restricted' %}">Restricted Page</a></li>
+                    <li><a href="{% url 'studenteats:logout' %}">Log out</a></li>
+                    
+                {% else %}
+                    <li><a href="{% url 'studenteats:login' %}">Log In</a></li>
+                    <li><a href="{% url 'studenteats:register' %}">Sign Up</a></li>
+                    
+                {% endif %}
+                    <li><a href="{% url 'studenteats:about' %}">About</a></li>
+                    <li><a href="{% url 'studenteats:index' %}">Index</a></li>
+                
+            </ul>
         </div>
 
-            {% block navbar_block %} 
+           <!-- {% block navbar_block %}
                 <div class="navbar">
                     <a href="{% url 'studenteats:restaurant' %}">Restaurant Home</a>
                     <a href="{% url 'studenteats:recipe' %}">Recipe Home</a>
-                    <a href="{% url 'studenteats:forum' %}">Forum</a>
                     <a href="{% url 'studenteats:about' %}">About</a>
                     <a href="{% url 'studenteats:profile' %}">My Profile</a>
                 </div>
@@ -44,7 +58,7 @@
             {% block footer_block %} 
                 <i class="fa">&#xf059;Need Help?</i>
             {% endblock %} 
-        </div>
+        </div> -->
 
     </body>
 </html>
