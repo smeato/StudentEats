@@ -1,2 +1,6 @@
 db.sqlite3
+<<<<<<< HEAD
 __pycache__/
+=======
+__pycache__
+>>>>>>> 20202505bb81c36199647cb480ff6a951053116e
