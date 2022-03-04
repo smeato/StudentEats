@@ -3,6 +3,12 @@
 
 <html lang="en"> 
     <head>
+        <style type="text/css">
+            h1 {text-align: center}
+            h2 {text-align: left  }
+            h3 {text-align: center}
+            h4 {text-align: right }
+        </style>
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
         <title>
@@ -15,43 +21,60 @@
     </head>
 
     <body>
+
+
         <div> 
-            {% block login_link %} 
-                {% if user.is_authenticated %}
-                    <!-- add user specific once user model created-->
-                    <a href="{% url 'studenteats:profile' %}">My Profile</a>"
-                {% else %} 
-                    <a href="{% url 'studenteats:login' %}">Log In or Register</a>
-                {% endif %} 
-            {% endblock %} 
+        {% block login_link %} 
+            {% if user.is_authenticated %}
+                <!-- add user specific once user model created-->
+                <a href="{% url 'studenteats:profile' %}"><h4>My Profile</h4></a>
+            {% else %} 
+                <a href="{% url 'studenteats:login' %}">Log In or Register</a>
+            {% endif %} 
+        {% endblock %} 
         </div>
+
+
 
         <div>
-            {% block header_block %} 
-                <h1>Student Eats</h1>
-            {% endblock %}
+        {% block header_block %} 
+            <h1>Student Eats</h1>
+        {% endblock %}
         </div>
 
-            {% block navbar_block %} 
-                <div class="navbar">
-                    <a href="{% url 'studenteats:restaurant' %}">Restaurant Home</a>
-                    <a href="{% url 'studenteats:recipe' %}">Recipe Home</a>
-                    <a href="{% url 'studenteats:forum' %}">Forum</a>
-                    <a href="{% url 'studenteats:about' %}">About</a>
-                    <a href="{% url 'studenteats:profile' %}">My Profile</a>
-                </div>
-            {% endblock %} 
+
+
+        <div>
+        {% block navbar_block %}
+        <h3>
+            <div class="navbar">
+                <a href="{% url 'studenteats:restaurant' %}">Restaurant Home</a>
+                <a href="{% url 'studenteats:recipe' %}">Recipe Home</a>
+                <a href="{% url 'studenteats:forum' %}">Forum</a>
+                <a href="{% url 'studenteats:about' %}">About</a>
+                <a href="{% url 'studenteats:profile' %}">My Profile</a>
+            </div>
+        </h3>
+        {% endblock %} 
+        </div>
     
-            {% block hot_sidebar %} 
-                <div class="hot_container">
-
-                </div>
-            {% endblock %} 
+        <div>
+        {% block body_block %} 
+        {% endblock %}
+        </div>
 
         <div>
-            {% block footer_block %} 
-               <a href="{% url 'studenteats:help' %}"> <i class="fa">&#xf059;</i>Need Help?</a>
-            {% endblock %} 
+        {% block hot_sidebar %} 
+            <div class="hot_container"></div>
+        {% endblock %}
+        </div>
+
+
+
+        <div>
+        {% block footer_block %} 
+            <a href="{% url 'studenteats:help' %}"> <i class="fa">&#xf059;</i>Need Help?</a>
+        {% endblock %} 
         </div>
 
     </body>
