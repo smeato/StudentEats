@@ -7,6 +7,11 @@ django.setup()
  
 from studenteats.models import User,Recipe,Restaurant,Deals,Discussion,Discussion_Replies,Restaurant_Comments,Recipe_Comments
 
+def populate():
+    User_profile=[]
+
+
+
 def add_User(User_ID,Name,Email,Password,Location,Role,Profile_Picture_Path):
     a =User.objects
     a.User_ID=User_ID
@@ -85,7 +90,7 @@ def add_Restaurant_Comments(Description,User_ID,Created_Time,Likes,Comment_ID,Re
     return g
 
 def add_Recipe_Comments(Description,User_ID,Created_Time,Likes,Comment_ID,Recipe_ID):
-    h=Restaurant_Comments.objects
+    h=Recipe_Comments.objects
     h.Description=Description
     h.User_ID=User_ID
     h.Created_Time=Created_Time
@@ -93,3 +98,7 @@ def add_Recipe_Comments(Description,User_ID,Created_Time,Likes,Comment_ID,Recipe
     h.Comment_ID=Comment_ID
     h.Recipe_ID=Recipe_ID
     return h
+
+if __name__=='__main__':
+    print('Starting Rango population script...') 
+    populate()

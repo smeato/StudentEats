@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from studenteats.models import User,Recipe,Restaurant,Deals,Discussion,Discussion_Replies,Restaurant_Comments,Recipe_Comments
 
 # Create your views here.
 def index(request): 
