@@ -3,6 +3,12 @@
 
 <html lang="en"> 
     <head>
+        <style type="text/css">
+            h1 {text-align: center}
+            h2 {text-align: left  }
+            h3 {text-align: center}
+            h4 {text-align: right }
+        </style>
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>
             Student Eats 
@@ -18,15 +24,17 @@
     <body>
         <div class="container-fluid">
         <div> 
-            {% block login_link %} 
-                {% if user.is_authenticated %}
-                    <!-- add user specific once user model created-->
-                    <a href="{% url 'studenteats:profile' %}">My Profile</a>"
-                {% else %} 
-                    <a href="{% url 'studenteats:login' %}">Log In or Register</a>
-                {% endif %} 
-            {% endblock %} 
+        {% block login_link %} 
+            {% if user.is_authenticated %}
+                <!-- add user specific once user model created-->
+                <a href="{% url 'studenteats:profile' %}"><h4>My Profile</h4></a>
+            {% else %} 
+                <a href="{% url 'studenteats:login' %}">Log In or Register</a>
+            {% endif %} 
+        {% endblock %} 
         </div>
+
+
 
         <div>
             {% block header_block %} 
@@ -54,11 +62,10 @@
                 </div>
             {% endblock %} 
     
-            {% block hot_sidebar %} 
-                <div class="hot_container">
-
-                </div>
-            {% endblock %} 
+        <div>
+        {% block body_block %} 
+        {% endblock %}
+        </div>
 
         <div>
             {% block footer_block %} 

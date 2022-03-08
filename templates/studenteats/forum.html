@@ -1,1 +1,27 @@
-this is the forum
+{% extends 'studenteats/base.html' %}
+{% load staticfiles %} 
+
+{% block title_block %}
+    Forum
+{% endblock %}
+
+{% block header_block %} 
+
+<h1>Forum</h1>
+
+{% endblock %}
+
+
+{% block body_block %} 
+<h2>
+{% if Discussions %}
+    <ul>
+    {% for Discussion in Discussions %}
+        <li>{{ Discussion.Title }}</li>
+    {% endfor %}
+    </ul>
+{% else %}
+    <strong>There is no Reply present</strong>
+{% endif %}
+</h2>
+{% endblock %}
