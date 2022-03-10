@@ -23,7 +23,11 @@ def restaurant(request):
     return render(request, 'studenteats/restaurant.html', context=context_dict)
 
 def recipe(request): 
-    context_dict = {}
+    Recipe_List=Recipt.objects.all()
+    Most_Popular_Recipe_List=Recipt.objects.order_by('Likes')[0:10]
+
+
+    context_dict = {'Recipe':Recipe_List,'Most_Popular_Recipe':Most_Popular_Recipe_List}
     return render(request, 'studenteats/recipe.html', context=context_dict)
 
 def forum(request): 
