@@ -1,0 +1,30 @@
+{% extends 'studenteats/base.html' %}
+{% load staticfiles %}
+
+{% block body_block %} 
+    <center>
+        {% if searched %}
+            <h1>You Searched For {{searched}}</h1>
+            <br/>
+            <li>
+                {% for recipt in recipts  %}
+                    <a href="{% url 'studenteats:show recipe' Recipe_ID=recipt.Recipe_ID %}">{{recipt.Title}}--{{recipt.Cuisine}}</a>
+                    <!---
+                    <h2>Title:{{recipt.Title}}-{{recipt.Cuisine}} </h2></br>
+                    <h3>Content:</h3>></br>
+                    {{recipt.Content}</br>
+                    <h4>Tags:{{recipt.Tags}</h4></br>
+
+                    <small> {{recipt.Created_Date}-{{recipt.Owner}-{{recipt.Likes}</small>
+                    -->
+                {% endfor %}
+
+            </li>
+
+        {% else %}
+            <h1>Seems You have not Searched for recipes</h1>
+        {% endif %}
+
+    </center>
+
+{% endblock %}
