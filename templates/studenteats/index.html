@@ -1,2 +1,39 @@
 {% extends 'studenteats/base.html' %} 
 {% load staticfiles %} 
+
+{% block head_Block %}
+{% endblock %} 
+
+{% block login_link %}
+{% endblock %}
+
+{% block navbar_block %} 
+<div class="row mt-4">
+  <div class="col-sm-4 px-5">
+    <div class="card text-center">
+      <div class="card-body">
+        <h1 class="card-title">Take me to...</h1><br><br>
+        <h2>affordable restaurants and takeaways</h2> 
+        <a href="{% url 'studenteats:restaurant' %}" class="btn btn-primary">Go</a>
+      </div>
+    </div>
+  </div>
+  <div class="mx-auto col-sm-4">
+    <div class="card text-center">
+      <div class="card-body">
+        <h1 class="card-title">Take me to...</h1><br><br> 
+        <h2>recipes to fit my budget</h2>
+        <a href="#" class="btn btn-primary">Go</a>
+      </div>
+    </div>
+  </div>
+  <div class="col-sm-4 px-5">
+  <div class="card text-center">
+    <div class="card-body">
+      <h1 class="card-title">Take me to...</h1><br><br>
+      <h2>the Student Eats community forum</h2>
+      <a href="#" class="btn btn-primary">Go</a>
+    </div>
+  </div>
+</div>
+{% endblock %}
