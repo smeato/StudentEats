@@ -1,38 +1,35 @@
 {% extends 'studenteats/base.html' %} 
 {% load staticfiles %} 
 
-{% block head_Block %}
-{% endblock %} 
-
-{% block login_link %}
-{% endblock %}
-
 {% block navbar_block %} 
-<div class="row mt-4">
-  <div class="col-sm-4 px-5">
-    <div class="card text-center">
+<div class="row">
+  <div class="col-sm-4 px-5 mt-3">
+    <div class="card bg-secondary text-center px-3 mt-2 h-100">
       <div class="card-body">
-        <h1 class="card-title">Take me to...</h1><br><br>
-        <h2>affordable restaurants and takeaways</h2> 
-        <a href="{% url 'studenteats:restaurant' %}" class="btn btn-primary">Go</a>
+        <h2 class="card-title">Take Me To...</h2>
+        <h5 class="text-center">affordable restaurants and takeaways</h5> 
+        <img src="{% static 'images/AliInayUnsplash.jpg' %}" alt="An image of a restaurant table" class="card-img-bottom">
+        <a href="{% url 'studenteats:restaurant' %}" class="btn button mx-2 my-2"><strong>Go</strong></a>
       </div>
     </div>
   </div>
-  <div class="mx-auto col-sm-4">
-    <div class="card text-center">
+  <div class="col-sm-4 px-5 mt-3">
+    <div class="card bg-success text-center px-3 mt-2 h-100">
       <div class="card-body">
-        <h1 class="card-title">Take me to...</h1><br><br> 
-        <h2>recipes to fit my budget</h2>
-        <a href="#" class="btn btn-primary">Go</a>
+        <h2 class="card-title">Take Me To...</h2>
+        <h5 class = "text-center">recipes to fit my budget</h5>
+        <img src="{% static 'images/socialcutUnsplashRecipe.jpg' %}" alt="An image of a recipe book" class="card-img-bottom">
+        <a href="{% url 'studenteats:recipe' %}" class="btn btn-primary"><strong>Go</strong></a>
       </div>
     </div>
   </div>
-  <div class="col-sm-4 px-5">
-  <div class="card text-center">
+  <div class="col-sm-4 px-5 mt-3">
+    <div class="card bg-danger text-center px-3 mt-2 h-100">
     <div class="card-body">
-      <h1 class="card-title">Take me to...</h1><br><br>
-      <h2>the Student Eats community forum</h2>
-      <a href="#" class="btn btn-primary">Go</a>
+      <h2 class="card-title">Take me to...</h2>
+      <h5 class="text-center">the Student Eats community forum</h5>
+      <img src="{% static 'images/christinHumeUnsplashLaptop.jpg' %}" alt="An image of a laptop" class="card-img-bottom">
+      <a href="{% url 'studenteats:forum' %}" class="btn btn-primary"><strong>Go</strong></a>
     </div>
   </div>
 </div>

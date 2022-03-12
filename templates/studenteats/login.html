@@ -1,1 +1,34 @@
-this is the login/register page
+{% extends 'studenteats/base.html' %} 
+{% load staticfiles %} 
+
+{% block login_link %} 
+{% endblock %}
+{% block navbar_block %} 
+{% endblock %}
+{% block body_block %}
+<div class="row">
+<div class="login col-sm-6">
+    <h1>Login to Student Eats</h1>
+    <form id="login_form" method="post" action="{% url 'studenteats:login' %}">
+        {% csrf_token %}
+        Username: <input type="text" name="username" value="" size="50" />
+        <br />
+        Password: <input type="password" name="password" value="" size="50" />
+        <br />
+        <input type="submit" value="submit" />
+    </form>
+</div>
+
+<div class="register col-sm-6">
+    <h1>Register For Student Eats</h1>
+    <form id="login_form" method="post" action="{% url 'studenteats:login' %}">
+        {% csrf_token %}
+        Username: <input type="text" name="username" value="" size="50" />
+        <br />
+        Password: <input type="password" name="password" value="" size="50" />
+        <br />
+        <input type="submit" value="submit" />
+    </form>
+</div>}
+</div>
+{% endblock %}

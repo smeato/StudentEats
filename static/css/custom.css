@@ -1,3 +1,27 @@
+* {
+    font-family: Georgia, 'Times New Roman', Times, serif;
+}
 .card-body {
     text-align: center;
+    color:rgb(255, 255, 255);
 }
+
+.main-background {
+    
+    background-color: #FAFAFA;
+    color: #EA5C2B
+}
+
+.button {
+    background-color: #E5890A;
+    color: white;
+}
+
+.header-footer-link {
+    color:coral;
+}
+
+.nav-link {
+    color:coral;
+}
+
