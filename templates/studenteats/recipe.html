@@ -1,5 +1,31 @@
+<<<<<<< HEAD
 {% extends 'studenteats/base.html' %} 
 {% load staticfiles %} 
 {% block body_block %}
 This is the about page
+=======
+{% extends 'studenteats/base.html' %}
+{% load staticfiles %}
+
+{% block body_block %} 
+    <div>
+        area for popular_recipes
+    </div>
+    
+    <div>
+        area for search box
+        <form class="d-flex" method="POST" action="{% url 'studenteats:search_recipes'%}">
+            {% csrf_token %}
+            <input class="form-control me-1"
+                type="search" placeholder="Search For Your Recipes" name="searched">
+            <button class="btn btn-default" type="submit">Search</button>
+    </div>
+
+    <div>
+        random recommendation media
+    </div>
+
+
+
+>>>>>>> 2c44a708c221b8a86b7e7384f8909e1dbee12002
 {% endblock %}
