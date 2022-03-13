@@ -6,29 +6,34 @@
 {% block navbar_block %} 
 {% endblock %}
 {% block body_block %}
-<div class="row">
-<div class="login col-sm-6">
-    <h1>Login to Student Eats</h1>
-    <form id="login_form" method="post" action="{% url 'studenteats:login' %}">
-        {% csrf_token %}
-        Username: <input type="text" name="username" value="" size="50" />
-        <br />
-        Password: <input type="password" name="password" value="" size="50" />
-        <br />
-        <input type="submit" value="submit" />
-    </form>
-</div>
+<section class="h-100 gradient-form">
+    <div class="container py-5 h-100">
+    <div class="row">
+        <div class="login p-5 bg-light text-black border border-warning col-sm-6">
+        <p class="h1 text-center">Login to Student Eats</p>
+        <img src="{% static 'images/studentEatsLogo.png' %}" alt="Student Eats logo" class="rounded mx-auto d-block">
+        <form id="login_form" method="post" action="{% url 'studenteats:login' %}">
+            {% csrf_token %}
+            Username: <input type="text" name="username" value="" size="50" />
+            <br />
+            Password: <input type="password" name="password" value="" size="50" />
+            <br />
+            <input type="submit" value="submit" />
+        </form>
+    </div>
 
-<div class="register col-sm-6">
-    <h1>Register For Student Eats</h1>
-    <form id="login_form" method="post" action="{% url 'studenteats:login' %}">
-        {% csrf_token %}
-        Username: <input type="text" name="username" value="" size="50" />
-        <br />
-        Password: <input type="password" name="password" value="" size="50" />
-        <br />
-        <input type="submit" value="submit" />
-    </form>
-</div>}
-</div>
+    <div class="col-lg-6 d-flex align-items-center gradient-custom-2 bg-warning text-white col-sm-6">
+        <div class="px-3 py-4 p-md-5 mx-md-4">
+        <p class="h1 p-5 text-center">Register For Student Eats</p>
+        <form id="login_form" method="post" action="{% url 'studenteats:login' %}">
+            {% csrf_token %}
+            Username: <input type="text" name="username" value="" size="50" />
+            <br />
+            Password: <input type="password" name="password" value="" size="50" />
+            <br />
+            <input type="submit" value="submit" />
+        </form>
+    </div>
+    </div>
+    </section>
 {% endblock %}
