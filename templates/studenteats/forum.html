@@ -120,6 +120,20 @@
         </div><!-- /.navbar -->
       </div>
 
+      <div>
+      <div class="container">
+      <h2>
+      {% if Discussions %}
+          <ul>
+          {% for Discussion in Discussions %}
+              <li>{{ Discussion.Title }}</li>
+          {% endfor %}
+          </ul>
+      {% else %}
+          <strong>There is no Reply present</strong>
+      {% endif %}
+      </h2>
+      </div>
       <!-- Jumbotron -->
       <div class="jumbotron">
         <h1>Marketing stuff!</h1>
