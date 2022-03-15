@@ -1,5 +1,38 @@
-{% extends 'studenteats/base.html' %} 
-{% load staticfiles %} 
-{% block body_block %}
-This is the about page
+{% extends 'studenteats/base.html' %} {% load staticfiles %} {% block body_block %}
+<link href="{% static 'styles/recipe.css' %}" rel="stylesheet">
+
+<div class="recipe-wrapper">
+    <div class='card-container'>
+        <div class="card" style="width: 18rem;">
+            <div class="card-header">
+                Popular Recipes
+            </div>
+            <ul class="list-group list-group-flush">
+                {% for r in popular_recipes %}
+                <li class="list-group-item">
+                    <a class='dec-removal' href="/">{{r.Title}}</li></a> {% endfor %}
+            </ul>
+        </div>
+    </div>
+    <div class="search-recipe-week">
+        <h5>What kind of recipe are you looking for?</h5>
+        <div class="input-group rounded">
+            <input type="search" class="form-control rounded" placeholder="Search" aria-label="Search" aria-describedby="search-addon" />
+            <span class="input-group-text border-0" id="search-addon">
+              <!-- <i class="fas fa-search"></i> -->
+              <img height=20px width=15px src="{% static 'images/search.svg' %}">
+            </span>
+        </div>
+        <div class="card text-white">
+            <div class="card-header">
+                <img src="{% static 'images/recipe-week.jpeg' %}">
+            </div>
+            <div class=" card-body ">
+                <h6>
+                    <a class='dec-removal' href="/">{{recipeWeek.Title}}</a></h6>
+            </div>
+        </div>
+    </div>
+    <iframe width="450" height="315" src="https://www.youtube.com/embed/Mw-5pQBbZvA" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+</div>
 {% endblock %}
