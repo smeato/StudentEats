@@ -1,0 +1,39 @@
+{% extends 'studenteats/base.html' %} 
+{% load staticfiles %} 
+
+{% block login_link %} 
+{% endblock %}
+{% block navbar_block %} 
+{% endblock %}
+{% block body_block %}
+<div class="row">
+<div class="login col-sm-6">
+    <h1>Login to Student Eats</h1>
+    <form id="login_form" method="post" action="{% url 'studenteats:login' %}">
+        {% csrf_token %}
+        Username: <input type="text" name="username" value="" size="50" />
+        <br />
+        Password: <input type="password" name="password" value="" size="50" />
+        <br />
+        <input type="submit" value="submit" />
+    </form>
+</div>
+
+<div class="register col-sm-6">
+    <h1>Register For Student Eats</h1>
+    {% if registered %}
+    <strong> Register successfully!</strong>
+    <a href="{% url 'studenteats:index' %}"please login!</a><br />
+    {% else %}
+    <strong> Please sign up first!</strong>
+    <form id="login_form" method="post" action="{% url 'studenteats:register' %}" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ user_form.as_p}}
+        {{profile_forms.as_p}}
+      
+        <input type="submit" name="submit"  value="Register" />
+    </form>
+</div>
+</div>
+{%endif%}
+{% endblock %}
