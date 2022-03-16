@@ -1,6 +1,7 @@
 import os
+from tokenize import Name
 
-os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'studenteats.settings')
+os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'iTECH_Group.settings')
 
 import django
 django.setup()
@@ -8,19 +9,79 @@ django.setup()
 from studenteats.models import User,Recipe,Restaurant,Deals,Discussion,Discussion_Replies,Restaurant_Comments,Recipe_Comments
 
 def populate():
-    User_profile=[]
+    users= {
+
+        'averagestudents':{'ID':1,
+                            'Name':'averagestudents',
+                            'Password':'123456',
+                            'Email': 'averagestudents@averagestudents.com',
+                            'Location': 'Glasgow',
+                            'Role': 'Student',
+                            'Profile_Picture_Path':"",},
+
+        # 'ironmansnap':{ 'ID':2,
+        #                 'Name':'ironmansnap',
+        #                 'Password': '123456',
+        #                 'Email': 'ironmansnap@ironmansnap.com',
+        #                 'Location': 'Glasgow',
+        #                 'Role': 'Student',
+        #                 'Profile_Picture_Path':"",
+        #                 },
+
+        # 'ghostfacegangsta':{'ID':3,    
+        #                     'Name':'ghostfacegangsta',
+        #                     'Password': '123456',
+        #                     'Email': 'ghostfacegangsta@ghostfacegangsta.com',
+        #                     'Location': 'Glasgow',
+        #                     'Role': 'Student',
+        #                     'Profile_Picture_Path':"",
+        #                     },
+
+        # 'MrsDracoMalfoy':{  'ID':4,    
+        #                     'Name':'MrsDracoMalfoy',
+        #                     'Password': '123456',
+        #                     'Email': 'MrsDracoMalfoy@MrsDracoMalfoy.com',
+        #                     'Location': 'Glasgow',
+        #                     'Role': 'Student',
+        #                     'Profile_Picture_Path':"",
+        #                     },
+
+        # 'emilyramo':{   'ID':5,    
+        #                 'Name':'emilyramo',
+        #                 'Password': '123456',
+        #                 'Location': 'Glasgow',
+        #                 'Role': 'Student',
+        #                 'Email': 'emilyramo@emilyramo.com',
+        #                 'Profile_Picture_Path':"",
+        #                 },
+
+        # 'RidleyRich':{'ID':6,
+        #             'Name':'RidleyRich',
+        #             'Password': '123456',
+        #             'Email': 'RidleyRich@RidleyRich.com',
+        #             'Location': 'Glasgow',
+        #             'Role': 'Student',
+        #             'Profile_Picture_Path':"",},
+
+        # 'SuperMagnificentExtreme':{
+        #                             'ID':7,
+        #                             'Name':'SuperMagnificentExtreme',
+        #                             'Password': '123456',
+        #                             'Location': 'Glasgow',
+        #                             'Role': 'Student',
+        #                             'Email': 'SuperMagnificentExtreme@SuperMagnificentExtreme.com',
+        #                             'Profile_Picture_Path':""
+        #                             }
+        }
+
+
+    for username,data in users.items():
+        add_User(data['ID'],username,data['Email'],data['Password'],data['Location'],data['Role'],data['Profile_Picture_Path'])
 
 
 
 def add_User(User_ID,Name,Email,Password,Location,Role,Profile_Picture_Path):
-    a =User.objects
-    a.User_ID=User_ID
-    a.Name=Name
-    a.Email=Email
-    a.Password=Password
-    a.Location=Location
-    a.Role=Role
-    a.Profile_Picture_Path=Profile_Picture_Path
+    a = User(User_ID=User_ID, Name=Name, Email=Email,Password=Password,Location=Location,Role=Role,Profile_Picture_Path=Profile_Picture_Path)
     a.save()
     return a
 

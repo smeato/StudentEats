@@ -9,7 +9,7 @@ class User(models.Model):
     Password = models.CharField(max_length=200)
     Location = models.TextField(max_length=200)
     Role = models.CharField(max_length=20)
-    Prfoile_Picture_Path = models.ImageField(upload_to="profile_image",blank=True)
+    Prfoile_Picture_Path = models.ImageField(upload_to="media",null=True)
     
     def __str__(self): 
         return self.Name
