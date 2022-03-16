@@ -26,6 +26,7 @@ def recipe(request):
     context_dict = {}
     context_dict['popular_recipes'] = Recipe.objects.order_by('Likes')[0:6]
     context_dict['recipeWeek'] = AdminDetails.objects.first().recipeWeek
+    context_dict['search'] = Recipe.objects.all()
     return render(request, 'studenteats/recipe.html', context=context_dict)
 
 def forum(request): 

@@ -1,5 +1,8 @@
-{% extends 'studenteats/base.html' %} {% load staticfiles %} {% block body_block %}
-<link href="{% static 'styles/recipe.css' %}" rel="stylesheet">
+{% extends 'studenteats/base.html' %}
+{% load staticfiles %} 
+{% block body_block %}
+<link href="{% static 'custom/recipe.css' %}" rel="stylesheet">
+<script src="{% static 'js/script.js' %}"></script>
 
 <div class="recipe-wrapper">
     <div class='card-container'>
@@ -33,6 +36,18 @@
             </div>
         </div>
     </div>
-    <iframe width="450" height="315" src="https://www.youtube.com/embed/Mw-5pQBbZvA" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    <iframe width="400" height="270" src="https://www.youtube.com/embed/Mw-5pQBbZvA" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+</div>
+<div class="list-wrapper">
+    {% for s in search %}
+    <div class="card" style="width: 18rem;">
+        <img class="card-img-top" src="{{ MEDIA_URL }}recipe_images/test.jpeg" alt="Card image cap">
+        <div class="card-body">
+          <h5 class="card-title">{{s.Title}}</h5>
+          <input type="hidden" id="url" data="{% url 'studenteats:forum' %}">
+          <a class="btn btn-primary" id="view-recipe" onclick="recipeClick()">View</a>
+        </div>
+      </div>
+    {% endfor %}
 </div>
 {% endblock %}
