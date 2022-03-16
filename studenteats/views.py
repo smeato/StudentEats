@@ -33,16 +33,27 @@ def recipe(request):
 def search_recipes(request):
     if request.method =="POST":
         searched=request.POST['searched']
-        recipts=Recipe.objects.filter(Cuisine__contains=searched)
-
-        return render(request, 'studenteats/events/search_recipes.html', {'searched':searched,'recipts':recipts})
+        #print(type(searched))
+        recipes=Recipe.objects.filter(Cuisine__contains=searched)
+        print(recipes)
+        context_dict={}
+        context_dict['searched']=searched
+        context_dict['recipes']=list(recipes.all())
+        print(context_dict)
+        """
+        t=list(recipes.all())[0]
+        print(t.Title,t.Cuisine)
+        """
+        return render(request, 'studenteats/events/search_recipes.html', context_dict)
 
     return render(request, 'studenteats/events/search_recipes.html', {})
 
 def show_recipes(request,Recipe_id):
-    recipe=Recipe.objects.filter(Recipe(Recipe_ID=Recipe_id))
+    print(Recipe_id)
+    recipe=Recipe.objects.filter(Recipe_ID=Recipe_id)
+    print(recipe)
     context_dict = {}
-    context_dict['Recipe']=recipe
+    context_dict['recipe']=list(recipe)[0]# only one recipe is to be displayed
     return render(request, 'studenteats/events/show_recipes.html', context_dict)
 
 

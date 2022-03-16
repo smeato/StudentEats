@@ -2,6 +2,37 @@
 {% load staticfiles %}
 
 {% block body_block %} 
+
+<style type="text/css">
+    body{
+        margin:0;
+
+        font-family: 'Quicksand',sans-serif;
+        font-weight: bold;
+        font-size: 20px;
+    }
+    .container {
+        width:100vw;
+        height:100vh;
+
+        display:grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        grid-template-rows: 1fr 1fr;
+
+        gap:10px;
+        padding: 10px;
+
+        box-sizing: border-box;
+    }
+    .container div {
+        padding: 10px;
+        border: 1px solid;
+    }
+
+</style>
+    <div class="container">
+
+    
     <div>
         area for popular_recipes
     </div>
@@ -19,6 +50,6 @@
         random recommendation media
     </div>
 
-
+</div>
 
 {% endblock %}

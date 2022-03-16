@@ -2,10 +2,61 @@
 {% load staticfiles %}
 
 {% block body_block %} 
-    <center>
-        
-        
 
+<style type="text/css">
+    body{
+        margin:0;
+
+        font-family: 'Quicksand',sans-serif;
+        font-weight: bold;
+        font-size: 20px;
+    }
+    .container {
+        width:100vw;
+        height:100vh;
+
+        display:grid;
+        grid-template-columns: 1fr;
+        grid-template-rows: 50px 50px 1fr 50px 70px;
+
+        gap:10px;
+        padding: 10px;
+
+        box-sizing: border-box;
+    }
+    .container div {
+        padding: 10px;
+        border: 1px solid;
+    }
+</style>
+
+    <center>
+    <div class="container">
+        <div> Title: 
+        {{recipe.Title}} </br>
+        </div>
+
+        <div> 
+            Cuisine:
+            {{recipe.Cuisine}}</br>
+        </div>
+
+        <div> 
+        Content:
+        {{recipe.Content}}</br>
+        </div>
+
+        <div> 
+        Tags:
+        {{recipe.Tags}}</br>
+        </div>
+
+        <div> 
+        <small> Create Date:{{recipe.Created_Date}}</br>
+                Owner:{{recipe.Owner}}
+                Likes:{{recipe.Likes}}</br></small>
+        </div>
+    </div>
     </center>
 
 {% endblock %}
