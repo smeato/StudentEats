@@ -28,23 +28,8 @@ class Recipe(models.Model):
     def __str__(self): 
         return self.Title
 
-
-class Restaurant(models.Model):
-    Restaurant_ID=models.IntegerField(default=0,unique=True)
-    Name=models.CharField(max_length=10)
-    Description=models.TextField(max_length=1000)
-    Tags=models.CharField(max_length=128)
-    Cuisine=models.CharField(max_length=20)
-    Owner=models.ForeignKey(User,on_delete=models.CASCADE)
-    Deals=models.TextField(max_length=200)
-    Likes=models.IntegerField(default=0)
-    
-    def __str__(self): 
-        return self.Name
-
-
 class Deals(models.Model):
-    Deal_ID=models.IntegerField(default=0,unique=True)
+    # Deal_ID=models.IntegerField(primary_key=True, default=0,unique=True)
     Name=models.CharField(max_length=128)
     Discount=models.FloatField(default=0)
     Original_Price=models.FloatField(default=0)
@@ -54,6 +39,19 @@ class Deals(models.Model):
     class Meta:
         verbose_name_plural = 'Deals'
         
+    def __str__(self): 
+        return self.Name
+
+class Restaurant(models.Model):
+    Restaurant_ID=models.IntegerField(default=0,unique=True)
+    Name=models.CharField(max_length=128)
+    Description=models.TextField(max_length=1000)
+    Tags=models.CharField(max_length=128)
+    Cuisine=models.CharField(max_length=20)
+    Owner=models.ForeignKey(User,on_delete=models.CASCADE)
+    Deals=models.ForeignKey(Deals, null=True, blank=True,on_delete=models.CASCADE)
+    Likes=models.IntegerField(default=0)
+    
     def __str__(self): 
         return self.Name
 
@@ -112,3 +110,11 @@ class Recipe_Comments(models.Model):
     
     def __str__(self): 
         return self.Description
+
+
+#Admindetails only has one record that stores the details constant
+#for a week to avoid same calculation again and again on each page refresh
+class AdminDetails(models.Model):
+    recipeWeek = models.ForeignKey(Recipe, on_delete=None)
+    restaurantWeek = models.ForeignKey(Restaurant, on_delete=None)
+    beginnerVideo = models.URLField(default='https://google.com')

@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from studenteats.models import User,Recipe,Restaurant,Deals,Discussion,Discussion_Replies,Restaurant_Comments,Recipe_Comments
+from studenteats.models import AdminDetails, User,Recipe,Restaurant,Deals,Discussion,Discussion_Replies,Restaurant_Comments,Recipe_Comments
 
 # Create your views here.
 def index(request): 
@@ -24,6 +24,8 @@ def restaurant(request):
 
 def recipe(request): 
     context_dict = {}
+    context_dict['popular_recipes'] = Recipe.objects.order_by('Likes')[0:6]
+    context_dict['recipeWeek'] = AdminDetails.objects.first().recipeWeek
     return render(request, 'studenteats/recipe.html', context=context_dict)
 
 def forum(request): 
