@@ -1,3 +1,4 @@
+from email.policy import default
 from django.shortcuts import render
 from studenteats.models import User,Recipe,Restaurant,Deals,Discussion,Discussion_Replies,Restaurant_Comments,Recipe_Comments
 
@@ -26,15 +27,20 @@ def recipe(request):
     context_dict = {}
     return render(request, 'studenteats/recipe.html', context=context_dict)
 
-def forum(request): 
+def forum(request,state=0): 
 
     Discussion_like = Discussion.objects.order_by('-Likes')[:3]
     Discussion_view = Discussion.objects.order_by('-Views')[:3]
     Discussion_createdtime = Discussion.objects.order_by('-Created_Time')[:3]
+    
     context_dict = {}
-    context_dict['Discussionslike']=Discussion_like
-    context_dict['Discussionsview']=Discussion_view
-    context_dict['Discussionscreatetime']=Discussion_createdtime
+    
+    if (state==0):
+        context_dict['Discussions']=Discussion_like
+    elif(state==1):
+        context_dict['Discussions']=Discussion_view
+    else:
+        context_dict['Discussions']=Discussion_createdtime
 
     return render(request, 'studenteats/forum.html', context=context_dict)
 

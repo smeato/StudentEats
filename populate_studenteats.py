@@ -17,7 +17,8 @@ def populate():
                             'Email': 'averagestudents@averagestudents.com',
                             'Location': 'Glasgow',
                             'Role': 'Student',
-                            'Profile_Picture_Path':"",},
+                            'Profile_Picture_Path':"media/profile_image/WechatIMG101.jpeg",
+                            },
 
         # 'ironmansnap':{ 'ID':2,
         #                 'Name':'ironmansnap',

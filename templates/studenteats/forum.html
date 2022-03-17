@@ -18,9 +18,9 @@
         font-family: Georgia, 'Times New Roman', Times, serif;
         padding-top: 20px;
         padding-bottom: 60px;
+        /* background-image:url("{static 'images/place.jepg'%}"); */
         /* width: 3373px;
         height:5184px; */
-        /* background-image: url("{% static 'images/christinHumeUnsplashLaptop.jpg'%}"); */
       }
 
       h1{
@@ -124,6 +124,14 @@
       }
 
     </style>
+
+
+
+    <div>
+      <body background="{% static 'images/place.jpg' %}" alt="An image of a laptop" class="card-img-bottom">
+    </div>
+
+
     <link href="{% static 'assets/css/bootstrap-responsive.css' %}" rel="stylesheet">
 
 
@@ -181,9 +189,9 @@
             <h5>Order By</h5>
           </button>
           <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-            <li><a class="dropdown-item" href="{% url 'studenteats:forum' %}">Views</a></li>
-            <li><a class="dropdown-item" href="{% url 'studenteats:forum' %}">Likes</a></li>
-            <li><a class="dropdown-item" href="{% url 'studenteats:forum' %}">Create Time</a></li>
+            <li><a class="dropdown-item" href="{% url 'studenteats:forum' 0%}">Views</a></li>
+            <li><a class="dropdown-item" href="{% url 'studenteats:forum' 1%}">Likes</a></li>
+            <li><a class="dropdown-item" href="{% url 'studenteats:forum' 2%}">Create Time</a></li>
           </ul>
         </div>
       </div>
@@ -191,10 +199,9 @@
     <hr>
 
       <div>
-      {% if Discussionslike %}
 
             <ul>
-            {% for Discussion in Discussionslike %}
+            {% for Discussion in Discussions %}
             <div class="row-fluid">
               <div class="span4">
                 <h2>{{Discussion.Title}}</h2>
@@ -206,39 +213,7 @@
             {% endfor %}
             </ul>
 
-      {% elif Discussionsview %}
 
-            <ul>
-              {% for Discussion in Discussionsview %}
-              <div class="row-fluid">
-                <div class="span4">
-                  <h2>{{Discussion.Title}}</h2>
-                  <p>{{Discussion.Description}}</p>
-                  <p><a class="btn" href="#">View details &raquo;</a></p>
-                </div>
-              </div>
-              <hr>
-              {% endfor %}
-            </ul>
-
-      {% elif Discussionscreatetime %}
-
-            <ul>
-              {% for Discussion in Discussionscreatetime %}
-              <div class="row-fluid">
-                <div class="span4">
-                  <h2>{{Discussion.Title}}</h2>
-                  <p>{{Discussion.Description}}</p>
-                  <p><a class="btn" href="#">View details &raquo;</a></p>
-                </div>
-              </div>
-              <hr>
-              {% endfor %}
-            </ul>
-
-      {% else %}
-            <strong>There is no Discussion present</strong>
-      {% endif %}
       </div>
       </div>>
 

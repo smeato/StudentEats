@@ -20,7 +20,7 @@
         </ul>
       </div>
     </div>
-  </div><!-- /.navbar -->
+  </div>
 </div>
 {% endblock %} 
 
@@ -29,6 +29,7 @@
     <h1>{{ discussion.Title }}</h1>
         {% for Discussion in reply %}
             <h1>{{ Discussion.Description}}</h1>
+            <h1></h1>
         {% endfor %}
 
 {% endblock %}

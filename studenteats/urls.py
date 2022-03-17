@@ -13,5 +13,6 @@ urlpatterns = [
     path('about', views.about, name='about'),
     path('forum/', views.forum, name='forum'),
     path('help/', views.help, name='help'),
-    path('discussion_detail/<int:discussion_ID>',views.discussion_detail,name='discussion_detail')
+    path('discussion_detail/<int:discussion_ID>',views.discussion_detail,name='discussion_detail'),
+    path('forum/<int:state>',views.forum,name='forum')
 ]
