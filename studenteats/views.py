@@ -34,7 +34,7 @@ def forum(request,state=0):
     Discussion_createdtime = Discussion.objects.order_by('-Created_Time')[:3]
     
     context_dict = {}
-    
+
     if (state==0):
         context_dict['Discussions']=Discussion_like
     elif(state==1):
@@ -45,13 +45,18 @@ def forum(request,state=0):
     return render(request, 'studenteats/forum.html', context=context_dict)
 
 def discussion_detail(request,discussion_ID):
-    try:
-        discussion=Discussion.objects.get(Discussion_ID=discussion_ID)
-        reply=Discussion_Replies.objects.filter(Discussion_ID=discussion_ID)
-    except Discussion.DoesNotExist:
-        discussion = None
-    context_dict={'discussion':discussion}
-    context_dict={'reply':reply}
+
+    discussion=Discussion.objects.filter(Discussion_ID=discussion_ID)
+    reply=Discussion_Replies.objects.filter(Discussion_ID=discussion_ID)
+    discussion=list(discussion)
+    reply=list(reply)
+
+    context_dict={}
+    context_dict={'discussion':discussion,'reply':reply}
+
+
+
+    print(context_dict)
 
 
     return render(request,'studenteats/discussion_detail.html',context=context_dict)

@@ -26,10 +26,17 @@
 
 {% block body_block %}
 
-    <h1>{{ discussion.Title }}</h1>
-        {% for Discussion in reply %}
-            <h1>{{ Discussion.Description}}</h1>
-            <h1></h1>
-        {% endfor %}
+{% for Discussion in discussion %}
+{{ Discussion.Title }}
+
+<hr>
+  {% for Discussion_Replies in reply %}
+      <h1>{{ Discussion_Replies.Description }}</h1>
+      <h4>{{ Discussion_Replies.User_ID }}</h4>
+      <h4>{{ Discussion_Replies.Created_Time }}</h4>
+      <h4>👍 {{ Discussion_Replies.Likes }}</h4>
+      <hr>
+  {% endfor %}
+{% endfor %}
 
 {% endblock %}
