@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from studenteats.models import UserProfile,Recipe,Restaurant,Deals,Discussion,Discussion_Replies,Restaurant_Comments,Recipe_Comments
 from django.contrib.auth import authenticate, login, logout
 from django.http import HttpResponse
@@ -8,8 +8,10 @@ from django.contrib.auth.models import User
 from django.views import View
 from django.utils.decorators import method_decorator
 from studenteats.forms import UserForm, UserProfileForm
+#from studenteats.forms import ProfileForm, SignupForm
 from django.shortcuts import redirect
 from django.contrib.auth import authenticate, login
+from django.http import HttpResponseRedirect
 
 # Create your views here.
 def index(request): 
@@ -56,12 +58,13 @@ def user_login(request):
                 login(request, user)
                 return redirect(reverse('studenteats:index'))
             else:
-                return HttpResponse("Your studenteats account is disabled.")
+                return HttpResponse("Your Rango account is disabled.")
         else:
             print(f"Invalid login details: {username}, {password}")
             return HttpResponse("Invalid login details supplied.")
     else:
         return render(request, 'studenteats/login.html')
+
         
 @login_required
 def user_logout(request):
@@ -75,11 +78,40 @@ def some_view(request):
     else:
         return HttpResponse("You are not logged in.")
 
-
+@login_required
 def profile(request):
-    context_dict = {} 
+    context_dict = {}
+    #user= request.user
+    #return render(request, 'studenteats/profile.html',{'user':user})
     return render(request, 'studenteats/profile.html', context=context_dict)
 
+"""
+@login_required
+def profile_update(request):
+    user = request.user
+    user_profile = get_object_or_404(UserProfile, user=user)
+
+    if request.method == "POST":
+        form = ProfileForm(request.POST)
+        
+        if form.is_valid():
+            user.first_name = form.cleaned_data['first_name']
+            user.last_name = form.cleaned_data['last_name']
+            user.save()
+            
+            user_profile.email = form.cleaned_data['email']
+            user_profile.telephone = form.cleaned_data['telephone']
+            user_profile.birthday = form.cleaned_data['birthday']
+            user_profile.university = form.cleaned_data['university']
+            user_profile.location = form.cleaned_data['location']
+            user_profile.save()
+            
+            return HttpResponseRedirect(reverse('studenteats:profile'))
+        else:
+            default_data={'first_name':user.first_name,'last_name':user.last_name,'email':user_profile.email,'telephone':user_profile.telephone,'birthday':user_profile.birthday,'university':user_profile.university,'location':user_profile.location,}
+            form = ProfileForm(default_data)
+        return render(request,'studenteats/profile_update.html',{'form':form,'user':user})
+    """
 def about(request):
     context_dict = {}
     return render(request, 'studenteats/about.html', context=context_dict)

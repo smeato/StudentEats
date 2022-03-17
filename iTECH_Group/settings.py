@@ -126,3 +126,5 @@ STATICFILES_DIRS = [STATIC_DIR, ]
 # Media
 MEDIA_ROOT = MEDIA_DIR
 MEDIA_URL = '/media/'
+
+#ACCOUNT_SIGNUP_FORM_CALSS='studenteats.forms.SignupForm'

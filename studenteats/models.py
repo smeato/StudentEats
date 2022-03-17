@@ -3,17 +3,24 @@ from django.db import models
 from django.contrib.auth.models import User
 
 class UserProfile(models.Model):
-    user = models.OneToOneField(User,on_delete=models.CASCADE)
-    
+    user = models.OneToOneField(User,on_delete=models.CASCADE,related_name='profile')
     User_ID = models.IntegerField(default=0, unique=True)    
-    Name = models.CharField(max_length=128)
-    Email = models.TextField(max_length=1000)
-    Password = models.CharField(max_length=200)
-    Location = models.TextField(max_length=200)
-    Role = models.CharField(max_length=20)
+    name = models.CharField(max_length=128)
+    telephone = models.CharField('Telephone',max_length=50,blank=True)
+    birthday = models.DateTimeField('Last modified', auto_now=True)
+    email = models.TextField(max_length=1000)
+    university = models.TextField(max_length=1000)
+    password = models.CharField(max_length=200)
+    location = models.TextField(max_length=200)
+    role = models.CharField(max_length=20)
     picture= models.ImageField(upload_to="profile_image",blank=True)
-    
+    website= models.URLField(blank=True)
+    """
+    class Meta:
+        verbose_name='User Profile'
+        """
     def __str__(self): 
+        #return "{}'s profile".format(self,user.__str__())
         return self.user.username
         
 
