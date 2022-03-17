@@ -1,20 +1,20 @@
-{% extends 'studenteats/base.html' %} 
-{% load staticfiles %} 
+{% extends 'studenteats/base.html' %}
+{% load staticfiles %}
 
 
 {% block title_block %}
-    Discussion Detail
+Discussion Detail
 {% endblock %}
 
-{% block navbar_block %} 
+{% block navbar_block %}
 <div class="masthead">
   <div class="navbar">
     <div class="navbar-inner">
       <div class="container">
         <ul class="nav">
-          <li><a href="{% url 'studenteats:restaurant' %}" >Restaurant Home</a></li>
+          <li><a href="{% url 'studenteats:restaurant' %}">Restaurant Home</a></li>
           <li><a href="{% url 'studenteats:recipe' %}">Recipe Home</a></li>
-          <li class="active" ><a href="{% url 'studenteats:forum' %}">Forum</a></li>
+          <li class="active"><a href="{% url 'studenteats:forum' %}">Forum</a></li>
           <li><a href="{% url 'studenteats:about' %}">About</a></li>
           <li><a href="{% url 'studenteats:profile' %}">My Profile</a></li>
         </ul>
@@ -22,21 +22,29 @@
     </div>
   </div>
 </div>
-{% endblock %} 
+{% endblock %}
 
 {% block body_block %}
 
 {% for Discussion in discussion %}
 {{ Discussion.Title }}
 
+<!--
+{% if user.is_authenticated %} -->
+<form class="d-flex" method="POST" action="{% url 'studenteats:add_comments '%}">
+  {% csrf_token %}
+
+  <button class="btn btn-default" type="submit">Add Comments</button>
+<!--{% endif %}-->
+
 <hr>
-  {% for Discussion_Replies in reply %}
-      <h1>{{ Discussion_Replies.Description }}</h1>
-      <h4>{{ Discussion_Replies.User_ID }}</h4>
-      <h4>{{ Discussion_Replies.Created_Time }}</h4>
-      <h4>👍 {{ Discussion_Replies.Likes }}</h4>
-      <hr>
-  {% endfor %}
+{% for Discussion_Replies in reply %}
+<h1>{{ Discussion_Replies.Description }}</h1>
+<h4>{{ Discussion_Replies.User_ID }}</h4>
+<h4>{{ Discussion_Replies.Created_Time }}</h4>
+<h4>👍 {{ Discussion_Replies.Likes }}</h4>
+<hr>
+{% endfor %}
 {% endfor %}
 
 {% endblock %}

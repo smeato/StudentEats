@@ -14,5 +14,7 @@ urlpatterns = [
     path('forum/', views.forum, name='forum'),
     path('help/', views.help, name='help'),
     path('discussion_detail/<int:discussion_ID>',views.discussion_detail,name='discussion_detail'),
-    path('forum/<int:state>',views.forum,name='forum')
+    path('forum/<int:state>',views.forum,name='forum'),
+    path('add_comments/',views.add_comments,name='add_comments'),
+    path('save_comments/',views.save_comments,name='save_comments')
 ]
