@@ -4,7 +4,7 @@ from django.contrib.auth.models import User
 
 class UserProfile(models.Model):
     user = models.OneToOneField(User,on_delete=models.CASCADE,related_name='profile')
-    User_ID = models.IntegerField(default=0, unique=True)    
+    #User_ID = models.IntegerField(default=0, unique=True)    
     name = models.CharField(max_length=128)
     telephone = models.CharField('Telephone',max_length=50,blank=True)
     birthday = models.DateTimeField('Last modified', auto_now=True)
