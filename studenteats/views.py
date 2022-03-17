@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from studenteats.models import User,Recipe,Restaurant,Deals,Discussion,Discussion_Replies,Restaurant_Comments,Recipe_Comments
+from studenteats.models import AdminDetails, User,Recipe,Restaurant,Deals,Discussion,Discussion_Replies,Restaurant_Comments,Recipe_Comments
 
 # Create your views here.
 def index(request): 
@@ -25,10 +25,15 @@ def restaurant(request):
 def recipe(request): 
     Recipe_List=Recipe.objects.all()
     Most_Popular_Recipe_List=Recipe.objects.order_by('Likes')[0:10]
-
-
     context_dict = {'Recipe':Recipe_List,'Most_Popular_Recipe':Most_Popular_Recipe_List}
     return render(request, 'studenteats/recipe.html', context=context_dict)
+
+def recipeHome(request): 
+    context_dict = {}
+    context_dict['popular_recipes'] = Recipe.objects.order_by('Likes')[0:6]
+    context_dict['recipeWeek'] = AdminDetails.objects.first().recipeWeek
+    context_dict['search'] = Recipe.objects.all()
+    return render(request, 'studenteats/recipeHome.html', context=context_dict)
 
 def search_recipes(request):
     if request.method =="POST":
@@ -58,7 +63,6 @@ def show_recipes(request,Recipe_id):
 
 
 def forum(request): 
-
     Discussion_like = Discussion.objects.order_by('-Likes')[:3]
     Discussion_view = Discussion.objects.order_by('-Views')[:3]
     Discussion_createdtime = Discussion.objects.order_by('-Created_Time')[:3]
@@ -66,7 +70,6 @@ def forum(request):
     context_dict['Discussionslike']=Discussion_like
     context_dict['Discussionsview']=Discussion_view
     context_dict['Discussionscreatetime']=Discussion_createdtime
-
     return render(request, 'studenteats/forum.html', context=context_dict)
 
 def help(request): 
