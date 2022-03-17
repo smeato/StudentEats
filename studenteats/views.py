@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from django.db.models import Q
 from studenteats.models import AdminDetails, User,Recipe,Restaurant,Deals,Discussion,Discussion_Replies,Restaurant_Comments,Recipe_Comments
 
 # Create your views here.
@@ -37,21 +38,16 @@ def recipeHome(request):
 
 def search_recipes(request):
     if request.method =="POST":
-        searched=request.POST['searched']
-        #print(type(searched))
-        recipes=Recipe.objects.filter(Cuisine__contains=searched)
-        print(recipes)
-        context_dict={}
-        context_dict['searched']=searched
-        context_dict['recipes']=list(recipes.all())
-        print(context_dict)
-        """
-        t=list(recipes.all())[0]
-        print(t.Title,t.Cuisine)
-        """
-        return render(request, 'studenteats/events/search_recipes.html', context_dict)
-
-    return render(request, 'studenteats/events/search_recipes.html', {})
+        if request.POST['searched'] != '':
+            searched=request.POST['searched']
+            recipes=Recipe.objects.filter(Q(Title__icontains=searched) |
+            Q(Cuisine__icontains=searched) |
+            Q(Tags__icontains=searched))
+            context_dict={}
+            context_dict['searched']=searched
+            context_dict['recipes']=list(recipes.all())
+            return render(request, 'studenteats/search_recipes.html', context_dict)
+    return recipeHome(request)
 
 def show_recipes(request,Recipe_id):
     print(Recipe_id)
