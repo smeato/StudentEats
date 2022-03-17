@@ -13,7 +13,7 @@ class UserProfileForm(forms.ModelForm):
     class Meta:
         model = UserProfile
         fields = ('website', 'picture',)
-"""
+
 class ProfileForm(forms.Form):
     first_name = forms.CharField(label="First Name", max_length=50, required=False)
     last_name = forms.CharField(label="Last Name", max_length=50, required=False)
@@ -22,7 +22,7 @@ class ProfileForm(forms.Form):
     birthday = forms.CharField(label="Birthday", max_length=50, required=False)
     university = forms.CharField(label="University", max_length=50, required=False)
     location = forms.CharField(label="Location", max_length=50, required=False)
-
+"""
 class SignupForm(forms.Form):
 
     def signup(self, request, user):
@@ -30,5 +30,5 @@ class SignupForm(forms.Form):
         user_profile.user=user
         user.save()
         user_profile.save()
-
 """
+

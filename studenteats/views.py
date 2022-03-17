@@ -8,7 +8,7 @@ from django.contrib.auth.models import User
 from django.views import View
 from django.utils.decorators import method_decorator
 from studenteats.forms import UserForm, UserProfileForm
-#from studenteats.forms import ProfileForm, SignupForm
+from studenteats.forms import ProfileForm
 from django.shortcuts import redirect
 from django.contrib.auth import authenticate, login
 from django.http import HttpResponseRedirect
@@ -80,15 +80,17 @@ def some_view(request):
 
 @login_required
 def profile(request):
-    context_dict = {}
-    #user= request.user
-    #return render(request, 'studenteats/profile.html',{'user':user})
-    return render(request, 'studenteats/profile.html', context=context_dict)
+    #context_dict = {}
+    #user=get_object_or_404(User)
+    user= request.user
+    return render(request, 'studenteats/profile.html',{'user':user})
+    #return render(request, 'studenteats/profile.html', context=context_dict)
 
-"""
+
 @login_required
 def profile_update(request):
-    user = request.user
+    user= request.user
+    #user = get_object_or_404(User)
     user_profile = get_object_or_404(UserProfile, user=user)
 
     if request.method == "POST":
@@ -105,13 +107,13 @@ def profile_update(request):
             user_profile.university = form.cleaned_data['university']
             user_profile.location = form.cleaned_data['location']
             user_profile.save()
-            
-            return HttpResponseRedirect(reverse('studenteats:profile'))
+            return HttpResponseRedirect(reverse('users:profile',args=[user.id]))
+            #return HttpResponseRedirect(reverse('studenteats:profile'))
         else:
             default_data={'first_name':user.first_name,'last_name':user.last_name,'email':user_profile.email,'telephone':user_profile.telephone,'birthday':user_profile.birthday,'university':user_profile.university,'location':user_profile.location,}
             form = ProfileForm(default_data)
         return render(request,'studenteats/profile_update.html',{'form':form,'user':user})
-    """
+    
 def about(request):
     context_dict = {}
     return render(request, 'studenteats/about.html', context=context_dict)

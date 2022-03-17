@@ -1,9 +1,10 @@
 {% extends 'studenteats/base.html' %} 
 {% load staticfiles %} 
 {% block body_block %}
+
 <div class="jumbotron p-4">
     <div class="container">
-        <h1 class="jumbotron-heading">{{ selected_user.username }}'s Profile</h1>
+        <h1 class="jumbotron-heading">{{user.username }}'s Profile</h1>
         
     </div>
 </div>
@@ -13,70 +14,80 @@
 </div>
 <div class="container">
     <div class="row">
-        <div class="col-sm-4 px-5 mt-3">
+        <div class="col-sm-4 px-4 mt-3">
         <div class="card bg-secondary text-center px-3 mt-2 h-100">
             <div class="card-body">
+            <h1>Account Information</h1>
+            <ul>
+                Username:{{user.username}}
+                Email:{{user.email}}
             <img src="{{ MEDIA_URL }}{{ user_profile.picture }}"
             width="300"
             height="300"
-            alt="{{ selected_user.username }}'s profile image" />
+            alt="{{ user_profile.picture }}'s profile image" />
             {% csrf_token %}
             
             <br />
             </div>
         </div>
         </div>
-        
-        <div class="information col-sm-4 px-5 mt-3">
+
+        <div class="information col-sm-4 px-4 mt-3">
             <div class="card bg-success text-center px-3 mt-2 h-100">
               <div class="card-body">
               <h1>Personal Information</h1>
     
                   {% csrf_token %}
-              <label for="inputFirstName" class="se-only">FirstName</label>
-              <input type="text" name="firstname" id="id_firstname" class="form-control" placeholder="Firstname" required autofocus>
-              <!--<li>First Name:{{ user.first_name }}</li>-->
+              <!--<label for="inputFirstName" class="se-only">FirstName</label>-->
+              <!--<input type="text" name="firstname" id="id_firstname" class="form-control" placeholder="Firstname" required autofocus>-->
+              <ul>
+              <li>First Name:{{ user.first_name }}</li>
               
-              <label for="inputLastName" class="se-only">LastName</label>
-              <input type="lastname" name="lastname" id="id_lastname" class="form-control" placeholder="Lastname" required>
-              <!--<li>Last Name:{{ user.last_name }}</li>-->
+              <!--<label for="inputLastName" class="se-only">LastName</label>-->
+              <!--<input type="lastname" name="lastname" id="id_lastname" class="form-control" placeholder="Lastname" required>-->
+              <li>Last Name:{{ user.last_name }}</li>
               
-              <label for="inputUniversity" class="se-only">University</label>
-              <!--<li>University:{{ user.profile.university }}</li>-->
-              <input type="unuiversity" name="university" id="id_university" class="form-control" placeholder="University" required>
+              <!--<label for="inputUniversity" class="se-only">University</label>-->
+              <li>University:{{ user.profile.university }}</li>
+              <!--<input type="unuiversity" name="university" id="id_university" class="form-control" placeholder="University" required>-->
                   
-              <label for="inputEmail" class="se-only">Email</label>
-              <!--<li>Email:{{ user.profile.email }}</li>-->
-              <input type="email" name="email" id="id_email" class="form-control" placeholder="Email" required>
-                  
-              <button class =="btn btn-lg btn-primary btn-block" type="submit" value="Update">Save</botton>
+              <!--<label for="inputEmail" class="se-only">Email</label>-->
+              <li>Email:{{ user.profile.email }}</li>
+              <!--<input type="email" name="email" id="id_email" class="form-control" placeholder="Email" required>-->
+              <li>Telephone:{{ user.profile.telephone }}</li>
+              
+              <!--<label for="inputLocation" class="se-only">Location</label>-->
+              <li>Location:{{ user.profile.location }}</li>
+              
+              <!--<label for="inputBirthday" class="se-only">Birthday</label>-->
+              <li>updatetime:{{ user.profile.birthday }}</li>
+              </ul>
+              
+              
+              
+              <!--<button class =="btn btn-lg btn-primary btn-block" type="submit" value="Update">Edit</botton>-->
               
            </div>
         </div>
      
         </div>
-    <div class="col-sm-4 px-5 mt-3">
+    <div class="col-sm-4 px-4 mt-3">
         <div class="card bg-danger px-3 mt-2 h-100">
             <div class="card-body">
             {% if selected_user == user %}
             <form method="post" action="." enctype="multipart/form-data">
                 {% csrf_token %}
-                {{ form.as_p }}
-                <label for="inputTelephone" class="se-only">Telephone</label>
-                <li>Telephone:{{ user.profile.telephone }}</li>
-                
-                <label for="inputLocation" class="se-only">Location</label>
-                <li>Location:{{ user.profile.location }}</li>
-                
-                <label for="inputBirthday" class="se-only">Birthday</label>
-                <li>Birthday:{{ user.profile.birthday }}</li>
-                
-                <input type="submit" value="Update" />
+    
             </form>
             {% else %}
             <p>
                 <strong>Website:</strong>
                 <a href="{{ user_profile.website }}">{{ user_profile.website }}</a>
+                <!--<label for="inputTelephone" class="se-only">Telephone</label>-->
+                
+                
+                
+                <!--<input type="submit" value="Update" />-->
             </p>
             {% endif %}
         </div>
