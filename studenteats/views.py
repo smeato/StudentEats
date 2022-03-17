@@ -59,9 +59,13 @@ def show_recipes(request,Recipe_id):
 
 def forum(request): 
 
-    Discussion_List = Discussion.objects.all()
+    Discussion_like = Discussion.objects.order_by('-Likes')[:3]
+    Discussion_view = Discussion.objects.order_by('-Views')[:3]
+    Discussion_createdtime = Discussion.objects.order_by('-Created_Time')[:3]
     context_dict = {}
-    context_dict['Discussions']=Discussion_List
+    context_dict['Discussionslike']=Discussion_like
+    context_dict['Discussionsview']=Discussion_view
+    context_dict['Discussionscreatetime']=Discussion_createdtime
 
     return render(request, 'studenteats/forum.html', context=context_dict)
 

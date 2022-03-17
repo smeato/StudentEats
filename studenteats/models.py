@@ -1,3 +1,4 @@
+from pickle import TRUE
 from tkinter import CASCADE
 from django.db import models
 
@@ -9,7 +10,7 @@ class User(models.Model):
     Password = models.CharField(max_length=200)
     Location = models.TextField(max_length=200)
     Role = models.CharField(max_length=20)
-    Prfoile_Picture_Path = models.ImageField(upload_to="profile_image",blank=True)
+    Prfoile_Picture_Path = models.ImageField(upload_to="profile_image",null=True)
     
     def __str__(self): 
         return self.Name
@@ -58,11 +59,12 @@ class Deals(models.Model):
         return self.Name
 
 class Discussion(models.Model):
-    Discussion_ID=models.IntegerField(default=0)
+    Discussion_ID=models.IntegerField(default=0,unique=True)
     Title=models.CharField(max_length=128)
     Description=models.TextField(max_length=1000)
     Created_Time=models.DateTimeField()
     User_ID=models.ForeignKey(User,on_delete=models.CASCADE)
+    Views=models.IntegerField(default=0)
     Likes=models.IntegerField(default=0)
     
     def __str__(self): 
