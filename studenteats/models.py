@@ -1,3 +1,4 @@
+from pickle import TRUE
 from tkinter import CASCADE
 from django.db import models
 
@@ -53,11 +54,12 @@ class Restaurant(models.Model):
         return self.Name
 
 class Discussion(models.Model):
-    Discussion_ID=models.IntegerField(default=0)
+    Discussion_ID=models.IntegerField(default=0,unique=True)
     Title=models.CharField(max_length=128)
     Description=models.TextField(max_length=1000)
     Created_Time=models.DateTimeField()
     User_ID=models.ForeignKey(User,on_delete=models.CASCADE)
+    Views=models.IntegerField(default=0)
     Likes=models.IntegerField(default=0)
     
     def __str__(self): 
