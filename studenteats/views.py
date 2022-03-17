@@ -68,6 +68,19 @@ def forum(request):
     context_dict['Discussionscreatetime']=Discussion_createdtime
     return render(request, 'studenteats/forum.html', context=context_dict)
 
+def discussion_detail(request,discussion_ID):
+    try:
+        discussion=Discussion.objects.get(Discussion_ID=discussion_ID)
+        reply=Discussion_Replies.objects.filter(Discussion_ID=discussion_ID)
+    except Discussion.DoesNotExist:
+        discussion = None
+    context_dict={'discussion':discussion}
+    context_dict={'reply':reply}
+
+
+    return render(request,'studenteats/discussion_detail.html',context=context_dict)
+
+
 def help(request): 
     context_dict = {} 
     return render(request, 'studenteats/help.html', context=context_dict)

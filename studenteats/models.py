@@ -75,7 +75,7 @@ class Discussion_Replies(models.Model):
     Created_Time=models.DateTimeField()
     Likes=models.IntegerField(default=0)
     Post_ID=models.IntegerField(default=0,unique=True)
-    Discussion_ID=models.IntegerField(default=0,unique=True)
+    Discussion_ID=models.IntegerField(default=0)
 
     class Meta:
         verbose_name_plural = 'Discussion replies'

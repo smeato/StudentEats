@@ -1,5 +1,6 @@
 from django.urls import path
-from studenteats import views 
+from studenteats import views
+from studenteats.models import Discussion_Replies 
 
 app_name = 'studenteats'
 

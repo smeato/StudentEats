@@ -1,0 +1,34 @@
+{% extends 'studenteats/base.html' %} 
+{% load staticfiles %} 
+
+
+{% block title_block %}
+    Discussion Detail
+{% endblock %}
+
+{% block navbar_block %} 
+<div class="masthead">
+  <div class="navbar">
+    <div class="navbar-inner">
+      <div class="container">
+        <ul class="nav">
+          <li><a href="{% url 'studenteats:restaurant' %}" >Restaurant Home</a></li>
+          <li><a href="{% url 'studenteats:recipe' %}">Recipe Home</a></li>
+          <li class="active" ><a href="{% url 'studenteats:forum' %}">Forum</a></li>
+          <li><a href="{% url 'studenteats:about' %}">About</a></li>
+          <li><a href="{% url 'studenteats:profile' %}">My Profile</a></li>
+        </ul>
+      </div>
+    </div>
+  </div><!-- /.navbar -->
+</div>
+{% endblock %} 
+
+{% block body_block %}
+
+    <h1>{{ discussion.Title }}</h1>
+        {% for Discussion in reply %}
+            <h1>{{ Discussion.Description}}</h1>
+        {% endfor %}
+
+{% endblock %}
