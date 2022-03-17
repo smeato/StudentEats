@@ -20,11 +20,8 @@
         }
         /* Custom container */
         
-        .container {
+        .container{
             color: coral;
-            height: 100% !important;
-            /* margin: 0px 0px 0px 0px; */
-            /* max-width: 1000px; */
         }
         /* .container>hr {
             margin: 20px 0;
@@ -153,12 +150,19 @@
             </div>
             <!-- /.navbar -->
         </div>
-        {% endblock %} {% block body_block %} {% endblock %} {% block footer_block %}
+        {% endblock %}
+        {% block body_block %} 
+        {% endblock %} 
+    </div>
+    <div class="out-of-container">
+        {% block outside_block %} 
+        {% endblock %} 
+    </div>
+    {% block footer_block %}
         <div class="navbar fixed-bottom pull-right">
             <a class="header-footer-link" href="{% url 'studenteats:help' %}"></i>Need Help?</a><i class="bi bi-question-circle"></i>
         </div>
-        {% endblock %}
-    </div>
+    {% endblock %}
     <script src="{% static 'js/bootstrap.min.js' %}"></script>
     <script src="{% static 'assets/js/jquery.js' %}"></script>
     <script src="{% static 'assets/js/bootstrap-transition.js' %}"></script>
