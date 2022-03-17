@@ -18,6 +18,9 @@
         font-family: Georgia, 'Times New Roman', Times, serif;
         padding-top: 20px;
         padding-bottom: 60px;
+        /* width: 3373px;
+        height:5184px; */
+        /* background-image: url("{% static 'images/christinHumeUnsplashLaptop.jpg'%}"); */
       }
 
       h1{
@@ -30,9 +33,14 @@
       }
 
 
-      h4{
+      h4 {
         text-align: center;
         color:coral;
+      }
+
+      h4 .p{
+        text-align: left;
+        color:aquamarine;
       }
 
       .span4{
@@ -132,7 +140,7 @@
     <div class="container">
       {% if user.is_authenticated %}
       <!-- add user specific once user model created-->
-      <a class="header-footer-link" href="{% url 'studenteats:profile' %}"><h5>My Profile</h5></a>
+      <a class="header-footer-link" href="{% url 'studenteats:profile' %}"><h4 ><div class="p">My Profile</div></a>
       {% else %} 
       <a class="header-footer-link" href="{% url 'studenteats:login' %}">Log In or Register</a>
       {% endif %} 
@@ -182,7 +190,6 @@
 
     <hr>
 
-
       <div>
       {% if Discussionslike %}
 
@@ -192,7 +199,7 @@
               <div class="span4">
                 <h2>{{Discussion.Title}}</h2>
                 <p style="width: 1000px;height: 50px;">{{Discussion.Description}}</p>
-                <p><a class="btn" href="#">View details &raquo;</a></p>
+                <p><a class="btn" href="{% url 'studenteats:discussion_detail' Discussion.Discussion_ID %}">View details &raquo;</a></p>
               </div>
             </div>
             <hr>
@@ -233,6 +240,7 @@
             <strong>There is no Discussion present</strong>
       {% endif %}
       </div>
+      </div>>
 
 
 
