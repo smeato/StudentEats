@@ -1,0 +1,124 @@
+.restaurant-wrapper {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 30px;
+    padding-top: 25px;
+}
+
+.card-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.dec-removal {
+    text-decoration: none!important;
+    color: black !important;
+}
+
+.list-group-item:hover {
+    background-color: #ffc3ae;
+    /* background-color: rgb(250, 199, 151); */
+}
+
+.list-group-item,
+.search-restaurant-week .card .card-body {
+    text-align: center;
+    padding: 1rem 1rem;
+}
+
+.search-recipe-week h5 {
+    color: #198753;
+}
+
+.search-recipe-week .card {
+    /* background-color: #dc3444; */
+    background-color: coral;
+}
+
+.search-restaurant-week .card .card-header {
+    padding: 0;
+}
+
+.search-restaurant-week .card,
+.search-restaurant-week .card .card-header img {
+    width: 25rem;
+}
+
+.search-restaurant-week {
+    display: flex!important;
+    flex-direction: column;
+    justify-content: space-around;
+    gap: 10px;
+
+}
+
+.list-wrapper {
+    padding-top: 3%;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap:20px;
+}
+
+.list-wrapper .card .card-header img {
+    width: 5%;
+}
+
+.restaurant-image {
+
+    float: right !important;
+    width: 20rem;
+    height: 25rem;
+    border-radius: 50%;
+}
+
+.flip-box {
+    background-color: transparent;
+    width: 20rem;
+    height: 25rem;
+    border-radius: 50%;
+    border: 1px solid #f1f1f1;
+    perspective: 1000px;
+  }
+  
+  .flip-box-inner {
+    position: relative;
+    width: 20rem;
+    height: 25rem;
+    border-radius: 50%;
+    text-align: center;
+    transition: transform 0.8s;
+    transform-style: preserve-3d;
+  }
+  
+  .flip-box:hover .flip-box-inner {
+    transform: rotateY(180deg);
+  }
+  
+  .flip-box-front, .flip-box-back {
+    position: absolute;
+    width: 20rem;
+    height: 25rem;
+    border-radius: 50%;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+  }
+  
+  .flip-box-front {
+    background-color: #bbb;
+    color: black;
+    width: 20rem;
+    height: 25rem;
+    border-radius: 50%;
+  }
+  
+  .flip-box-back {
+    background-color: rgb(53, 153, 78);
+    color: white;
+    transform: rotateY(180deg);
+    width: 20rem;
+    height: 25rem;
+    border-radius: 50%;
+  }

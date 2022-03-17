@@ -1,3 +1,4 @@
+from pdb import Restart
 from django.shortcuts import render
 from django.db.models import Q
 from studenteats.models import AdminDetails, User,Recipe,Restaurant,Deals,Discussion,Discussion_Replies,Restaurant_Comments,Recipe_Comments
@@ -21,6 +22,8 @@ def about(request):
 
 def restaurant(request): 
     context_dict = {}
+    context_dict['popular_restaurants'] = Restaurant.objects.order_by('Likes')[0:6]
+    context_dict['search'] = Restaurant.objects.all()
     return render(request, 'studenteats/restaurant.html', context=context_dict)
 
 def recipe(request): 
