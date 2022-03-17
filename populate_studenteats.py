@@ -245,6 +245,7 @@ def populate():
             'Description': 'When I was on holiday in Malaysia last year I had these noodles with an amazing sauce and I can\'t find it or remember what it was called. It is like soy but sweeter and kinda ketchupy- help!' ,
             'Created_Time': '2022-1-23',
             'Owner': 1,
+            'Views': 343,
             'Likes': 112
         },
 
@@ -253,6 +254,7 @@ def populate():
             'Description': 'I used to love the place but it looks like it changed or something. Anyone know what happened?' ,
             'Created_Time': '2022-2-8',
             'Owner': 2,
+            'Views': 212,
             'Likes': 211
         }, 
 
@@ -262,6 +264,7 @@ def populate():
             'Description': 'I swear I am actually a good cook but every time I try to boil an egg it ends up totally raw in the middle. What is wrong with me??' ,
             'Created_Time': '2022-1-18',
             'Owner': 3,
+            'Views':123,
             'Likes': 300
         },
 
@@ -271,6 +274,7 @@ def populate():
             'Description': 'My parents are coming up from down south and they say they want to see Glasgow. I want to take them for some proper Scottish food but where would be good without breaking the bank?' ,
             'Created_Time': '2022-3-20',
             'Owner': 4,
+            'Views': 112,
             'Likes': 200
         },
 
@@ -280,6 +284,7 @@ def populate():
             'Description': 'EVERY TIME I TRY TO GET THE NOODLES I LIKE THEY NEVER HAVE THEM. WHAT IS WRONG WITH THIS CITY' ,
             'Created_Time': '2022-2-12',
             'Owner': 2,
+            'Views': 335,
             'Likes': 321
         },
 
@@ -289,6 +294,7 @@ def populate():
             'Description': 'I\'m an exchange student from Italy and I am so homesick right now. I can\'t afford flights home until Summer. Anyone else homesick and want to meet up and maybe share some recipes?' ,
             'Created_Time': '2022-3-17',
             'Owner': 1,
+            'Views': 223,
             'Likes': 453
         }
     ]
@@ -479,7 +485,7 @@ def populate():
         print(f'{res}')
 
     for discuss in Discussion_Posts:
-        dis = add_Discussion(discuss['Discussion_ID'], discuss['Title'], discuss['Description'], discuss['Created_Time'], discuss['Owner'], discuss['Likes'])
+        dis = add_Discussion(discuss['Discussion_ID'], discuss['Title'], discuss['Description'], discuss['Created_Time'], discuss['Owner'], discuss['Views'], discuss['Likes'])
         print(f'{dis}')
 
     for reply in Replies:
@@ -515,8 +521,8 @@ def add_Deals(Deal_ID,Name,Description,Last_Date):
     d.save()
     return d
 
-def add_Discussion(Discussion_ID,Title,Description,Created_Time,Owner,Likes):
-    e=Discussion.objects.get_or_create(Discussion_ID=Discussion_ID,Title=Title,Description=Description,Created_Time=Created_Time,User_ID=User.objects.get(User_ID=Owner),Likes=Likes)[0]
+def add_Discussion(Discussion_ID,Title,Description,Created_Time,Owner,Views, Likes):
+    e=Discussion.objects.get_or_create(Discussion_ID=Discussion_ID,Title=Title,Description=Description,Created_Time=Created_Time,User_ID=User.objects.get(User_ID=Owner),Views=Views, Likes=Likes)[0]
     e.save()
     return e
 
