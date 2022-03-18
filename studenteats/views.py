@@ -1,5 +1,6 @@
 import datetime
 from email.policy import default
+from django.forms import DateField
 from django.shortcuts import redirect, render
 from django.urls import reverse
 from studenteats.models import User,Recipe,Restaurant,Deals,Discussion,Discussion_Replies,Restaurant_Comments,Recipe_Comments
@@ -56,15 +57,20 @@ def discussion_detail(request,discussion_ID):
     context_dict={}
     context_dict={'discussion':discussion,'reply':reply}
     current_discussion=discussion[0].Discussion_ID 
-    request.cookies.add('diss_id',current_discussion)#设置diss_id 存到session里
+    request.session['diss_id'] = current_discussion #设置diss_id 存到session里
 
     print(context_dict)
-
 
     return render(request,'studenteats/discussion_detail.html',context=context_dict)
 
 def add_comments(request):
-    diss_id=request.cookies.get('diss_id')
+    # dission=Discussion.objects.get(Discussion_ID = discussion_ID)
+    # diss_id = dission.Discussion_ID
+    # user_id = dission.User_ID
+    # context_dict={}
+    # context_dict={'diss_id':diss_id,'user_id':user_id}
+    # return render(request,'studenteats/add_comments.html',context=context_dict)
+    diss_id=request.session.get('diss_id')
     user_id=request.user.id
     context_dict={}
     context_dict={'diss_id':diss_id,'user_id':user_id}
@@ -72,15 +78,15 @@ def add_comments(request):
 
 def save_comments(request):
     if request.method =="POST":
-        diss_id=request.cookies.get('diss_id')
+        diss_id=request.session.get('diss_id')
         user_id=request.user.id
         rep_id=request.POST.get('rep_id')
         #title=request.POST.get('title')
-        discription=request.POST.get('discription')
-        create_time=datetime.now()
+        description=request.POST.get('description')
+        create_time=DateField()
         likes=0.0
         #必须登录才能获取到user_id
-        reply=Discussion_Replies(Description=discription,User_ID=user_id,Created_Time=create_time,Likes=likes,Post_ID=rep_id,Discussion_ID=diss_id)
+        reply=Discussion_Replies(Description=description,User_ID=user_id,Created_Time=create_time,Likes=likes,Post_ID=rep_id,Discussion_ID=diss_id)
 
         return redirect(reverse('studenteats:forum'))
     else:
