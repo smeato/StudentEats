@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'studenteats',
+    
 ]
 
 MIDDLEWARE = [
@@ -128,4 +129,4 @@ STATICFILES_DIRS = [STATIC_DIR, ]
 MEDIA_ROOT = MEDIA_DIR
 MEDIA_URL = '/media/'
 
-ACCOUNT_SIGNUP_FORM_CALSS='studenteats.forms.SignupForm'
+

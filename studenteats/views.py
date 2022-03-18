@@ -8,7 +8,6 @@ from django.contrib.auth.models import User
 from django.views import View
 from django.utils.decorators import method_decorator
 from studenteats.forms import UserForm, UserProfileForm
-from studenteats.forms import ProfileForm
 from django.shortcuts import redirect
 from django.contrib.auth import authenticate, login
 from django.http import HttpResponseRedirect

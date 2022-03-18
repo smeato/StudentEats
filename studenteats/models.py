@@ -4,13 +4,13 @@ from django.contrib.auth.models import User
 
 class UserProfile(models.Model):
     user = models.OneToOneField(User,on_delete=models.CASCADE,related_name='profile')
-    name = models.CharField(max_length=128)
+    name = models.CharField(max_length=128,blank=True)
     telephone = models.CharField('Telephone',max_length=50,blank=True)
     birthday = models.DateTimeField('Last modified', auto_now=True)
     email = models.TextField(max_length=1000)
-    university = models.TextField(max_length=1000)
+    university = models.CharField('university',max_length=50,blank=True)
     password = models.CharField(max_length=200)
-    location = models.TextField(max_length=200)
+    location = models.CharField('location',max_length=50,blank=True)
     role = models.CharField(max_length=20)
     picture= models.ImageField(upload_to="profile_image",blank=True)
     website= models.URLField(blank=True)
