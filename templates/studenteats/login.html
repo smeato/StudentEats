@@ -1,0 +1,66 @@
+{% extends 'studenteats/base.html' %} 
+{% load staticfiles %} 
+
+{% block login_link %} 
+{% endblock %}
+{% block navbar_block %} 
+{% endblock %}
+{% block body_block %}
+<link rel="stylesheet" type="text/css" href="{% static 'custom/login.css' %}">
+<div>
+    <body background="{% static 'images/place.jpg' %}" alt="An image of a laptop" class="card-img-bottom">
+</div>
+
+<div class="row">
+  <div class="login col-sm-5 px-4 mt-3">
+      <div class="card bg-success text-center px-3 mt-2 h-100">
+        <div class="card-body">
+        <h1>Login to Student Eats</h1>
+        <strong> Welcome Back!</strong>
+        <form id="login_form" method="post" action="{% url 'studenteats:login' %}">
+            {% csrf_token %}
+        <img src="{% static 'images/breakfast.jpg' %}" alt="An image of a recipe book" class="card-img-bottom">
+            
+        <label for="inputUsername" class="se-only">Username</label>
+        <input type="text" name="username" id="id_username" class="form-control" placeholder="Username" required autofocus>
+    
+        <label for="inputPassword" class="se-only">Password</label>
+        <input type="password" name="password" id="id_password" class="form-control" placeholder="Password" required>
+            
+        <button class ="btn btn-lg btn-primary btn-block" type="submit" value="Submit">Sign in</botton>
+        
+        </form>
+        
+     </div>
+  </div>
+</div>
+  
+
+<div class="register col-sm-5 px-4 mt-3">
+  <div class="card bg-danger text-center px-3 mt-2 h-100">
+      <div class="card-body">
+      <h1>Register For Student Eats</h1>
+      {% if registered %}
+      <strong> Register successfully!</strong>
+      <a href="{% url 'studenteats:login' %}"please login!</a><br />
+      {% else %}
+      <strong> Join the Community!</strong>
+      
+      <div class="form-group">
+      <form id="user_form" method="post" action="{% url 'studenteats:register' %}" enctype="multipart/form-data">
+        {% csrf_token %}
+       
+        <img src="{% static 'images/AliInayUnsplash.jpg' %}" alt="An image of a recipe book" class="card-img-bottom">
+        {{user_form.as_p}}
+        {{profile_form.as_p}}
+            
+            
+        <input type="submit"value="Submit"/>
+        <!--<button class =="btn btn-lg btn-primary" type="submit" value="Submit">submit</botton>-->
+        </div>
+    </form>
+</div>
+</div>
+
+{%endif%}
+{% endblock %}

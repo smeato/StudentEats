@@ -1,0 +1,40 @@
+{% extends 'studenteats/base.html' %} 
+{% load staticfiles %} 
+
+{% block navbar_block %}
+<div>
+    <body background="{% static 'images/place.jpg' %}" alt="An image of a laptop" class="card-img-bottom">
+</div>
+
+<div class="row">
+  <div class="col-sm-4 px-5 mt-3">
+    <div class="card bg-secondary text-center px-3 mt-2 h-100">
+      <div class="card-body">
+        <h2 class="card-title">Take Me To...</h2>
+        <h5 class="text-center">affordable restaurants and takeaways</h5> 
+        <img src="{% static 'images/AliInayUnsplash.jpg' %}" alt="An image of a restaurant table" class="card-img-bottom">
+        <a href="{% url 'studenteats:restaurant' %}" class="btn button mx-2 my-2"><strong>Go</strong></a>
+      </div>
+    </div>
+  </div>
+  <div class="col-sm-4 px-5 mt-3">
+    <div class="card bg-success text-center px-3 mt-2 h-100">
+      <div class="card-body">
+        <h2 class="card-title">Take Me To...</h2>
+        <h5 class = "text-center">recipes to fit my budget</h5>
+        <img src="{% static 'images/socialcutUnsplashRecipe.jpg' %}" alt="An image of a recipe book" class="card-img-bottom">
+        <a href="{% url 'studenteats:recipe' %}" class="btn btn-primary"><strong>Go</strong></a>
+      </div>
+    </div>
+  </div>
+  <div class="col-sm-4 px-5 mt-3">
+    <div class="card bg-danger text-center px-3 mt-2 h-100">
+    <div class="card-body">
+      <h2 class="card-title">Take me to...</h2>
+      <h5 class="text-center">the Student Eats community forum</h5>
+      <img src="{% static 'images/christinHumeUnsplashLaptop.jpg' %}" alt="An image of a laptop" class="card-img-bottom">
+      <a href="{% url 'studenteats:forum' %}" class="btn btn-primary"><strong>Go</strong></a>
+    </div>
+  </div>
+</div>
+{% endblock %}
