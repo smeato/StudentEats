@@ -1,5 +1,55 @@
 {% extends 'studenteats/base.html' %} 
 {% load staticfiles %} 
+<link href="{% static 'custom/about.css' %}" rel="stylesheet">
+
 {% block body_block %}
-This is the about page
+<p class="h2 heading text-center mt-3 mb-0">Meet the Team</p>
+<div class="row">
+    <div class="col-sm-2 py-5 mx-auto my-auto">
+      <div class="card bg-success text-center">
+        <div class="card-body d-flex flex-column">
+          <h2 class="card-title">
+            Sharon Baby</h2>
+          <h5 class="text-center">MSc <br>Computing Science</h5> 
+          <img class="index-image img-fluid rounded mx-auto d-block" src="{% static 'images/logo.jpg' %}" alt="An image of a restaurant table" class="card-img-bottom">  
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-2 py-5 mx-auto my-auto">
+      <div class="card bg-warning text-center">
+        <div class="card-body d-flex flex-column">
+          <h2 class="card-title">Wen Han Chan</h2>
+          <h5 class = "text-center">MSc Computer Systems Engineering</h5>
+          <img class="index-image img-fluid rounded mx-auto d-block" src="{% static 'images/logo.jpg' %}" alt="An image of a recipe book" class="card-img-bottom">
+          
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-2 py-5 mx-auto my-auto">
+      <div class="card bg-info text-center ">
+      <div class="card-body d-flex flex-column">
+        <h2 class="card-title">Yuheng Ouyang</h2>
+        <h5 class="text-center">MSc <br>Computing Science</h5>
+        <img class="index-image img-fluid rounded mx-auto d-block" src="{% static 'images/logo.jpg' %}" alt="An image of a laptop" class="card-img-bottom">
+      </div>
+    </div>
+    </div>
+    <div class="col-sm-2 py-5 mx-auto my-auto">
+        <div class="card bg-danger text-center ">
+        <div class="card-body d-flex flex-column">
+          <h2 class="card-title">Anna Smeaton</h2>
+          <h5 class="text-center">MSc <br>Software Development</h5>
+          <img class="index-image img-fluid rounded mx-auto d-block" src="{% static 'images/logo.jpg' %}" alt="An image of a laptop" class="card-img-bottom">
+        </div>
+      </div>
+    </div>
+      <div class="col-sm-2 py-5 mx-auto my-auto">
+        <div class="card bg-secondary text-center ">
+        <div class="card-body d-flex flex-column">
+          <h2 class="card-title">Renjie Zhou</h2>
+          <h5 class="text-center">MSc <br>Information Technology</h5>
+          <img class="index-image img-fluid rounded mx-auto d-block" src="{% static 'images/logo.jpg' %}" alt="An image of a laptop" class="card-img-bottom">
+        </div>
+      </div>
+</div>
 {% endblock %}
