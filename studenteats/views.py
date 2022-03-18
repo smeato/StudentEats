@@ -58,7 +58,7 @@ def user_login(request):
                 login(request, user)
                 return redirect(reverse('studenteats:index'))
             else:
-                return HttpResponse("Your Rango account is disabled.")
+                return HttpResponse("Your Account account is disabled.")
         else:
             print(f"Invalid login details: {username}, {password}")
             return HttpResponse("Invalid login details supplied.")
@@ -126,40 +126,24 @@ class ProfileView(View):
 
 @login_required
 def profile(request):
-    context_dict = {}
+    if request.method=="POST":
+        form=UserProfileForm(request.POST, request.FILES,instance=request.user.profile)
+        if form.is_valid():
+            form.save()
+            username=request.user.username
+            #message.success(request,f'{username},Your Profile is update.')
+            return redirect('/')
+        else:
+            form=UserProfileForm(instance=request.user.profile)
+        context={'form':form}
+        return render(request,'studenteats/profile.html',context)
+    #context_dict = {}
     #user=get_object_or_404(User)
     #user= request.user
     #return render(request, 'studenteats/profile.html',{'user':user})
-    return render(request, 'studenteats/profile.html', context=context_dict)
+    #return render(request, 'studenteats/profile.html', context=context_dict)
 
-"""
-@login_required
-def profile_update(request):
-    user= request.user
-    #user = get_object_or_404(User)
-    user_profile = get_object_or_404(UserProfile, user=user)
 
-    if request.method == "POST":
-        form = ProfileForm(request.POST)
-        
-        if form.is_valid():
-            user.first_name = form.cleaned_data['first_name']
-            user.last_name = form.cleaned_data['last_name']
-            user.save()
-            
-            user_profile.email = form.cleaned_data['email']
-            user_profile.telephone = form.cleaned_data['telephone']
-            user_profile.birthday = form.cleaned_data['birthday']
-            user_profile.university = form.cleaned_data['university']
-            user_profile.location = form.cleaned_data['location']
-            user_profile.save()
-            return HttpResponseRedirect(reverse('studenteats:profile',args=[user.id]))
-            #return HttpResponseRedirect(reverse('studenteats:profile'))
-        else:
-            default_data={'first_name':user.first_name,'last_name':user.last_name,'email':user_profile.email,'telephone':user_profile.telephone,'birthday':user_profile.birthday,'university':user_profile.university,'location':user_profile.location,}
-            form = ProfileForm(default_data)
-        return render(request,'studenteats/profile_update.html',{'form':form,'user':user})
-"""
 def about(request):
     context_dict = {}
     return render(request, 'studenteats/about.html', context=context_dict)
