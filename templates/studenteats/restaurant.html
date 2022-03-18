@@ -38,11 +38,18 @@
     <div class="flip-box col-sm mh-100">
         <div class="flip-box-inner">
           <div class="flip-box-front">
-            <img class="restaurant-image" src="{% static 'images/restaurant-week.jpeg' %}" alt="Recipe of the week"> 
+            <img class="restaurant-image img-fluid" src="{% static 'images/restaurant-week.jpeg' %}" alt="Recipe of the week"> 
           </div>
           <div class="flip-box-back">
-            <h2><br>It's this!</h2>
-            <p>Well done</p>
+            <p class="h3"><br><br>This week <br>our top pick is...</p>
+            <p> 
+              {% if restaurantWeek %}
+                {{restaurantWeek.Name}}
+              {% else %} 
+                Come back soon to find out!
+              {% endif %} 
+              <br><br></p> 
+            <p><em>"This is just one of the amazing restaurants on our site. Browse below to see some more!"</em></p>
           </div>
         </div>
       </div>

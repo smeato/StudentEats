@@ -115,7 +115,7 @@
   }
   
   .flip-box-back {
-    background-color: rgb(53, 153, 78);
+    background-color: rgb(113, 53, 153);
     color: white;
     transform: rotateY(180deg);
     width: 20rem;
