@@ -40,36 +40,33 @@
               <h1>Personal Information</h1>
     
                   {% csrf_token %}
-              <!--<label for="inputFirstName" class="se-only">FirstName</label>-->
-              <!--<input type="text" name="firstname" id="id_firstname" class="form-control" placeholder="Firstname" required autofocus>-->
+              
               <ul>
-              <li>First Name:{{ user.first_name }}</li>
+              <label for="inputFirstName" class="se-only">FirstName</label>
+              <input type="text" name="firstname" id="id_firstname" class="form-control" placeholder="Firstname" required autofocus>
+              <!--<li>First Name:{{ user.first_name }}</li>-->
               
-              <!--<label for="inputLastName" class="se-only">LastName</label>-->
-              <!--<input type="lastname" name="lastname" id="id_lastname" class="form-control" placeholder="Lastname" required>-->
-              <li>Last Name:{{ user.last_name }}</li>
+              <label for="inputLastName" class="se-only">LastName</label>
+              <input type="lastname" name="lastname" id="id_lastname" class="form-control" placeholder="Lastname" required>
+              <!--<li>Last Name:{{ user.last_name }}</li>-->
               
-              <!--<label for="inputUniversity" class="se-only">University</label>-->
-              <li>University:{{ user.profile.university }}</li>
-              <!--<input type="unuiversity" name="university" id="id_university" class="form-control" placeholder="University" required>-->
+              <label for="inputUniversity" class="se-only">University</label>
+              <!--<li>University:{{ user.profile.university }}</li>-->
+              <input type="unuiversity" name="university" id="id_university" class="form-control" placeholder="University" required>
                   
-              <!--<label for="inputEmail" class="se-only">Email</label>-->
-              <li>Email:{{ user.profile.email }}</li>
-              <!--<input type="email" name="email" id="id_email" class="form-control" placeholder="Email" required>-->
-              <li>Telephone:{{ user.profile.telephone }}</li>
+              <label for="inputtelephone" class="se-only">telephone</label>
+              <!--<li>Email:{{ user.profile.email }}</li>-->
+              <input type="telephone" name="telephone" id="id_telephone" class="form-control" placeholder="Telephone" required>
+              <!--<li>Telephone:{{ user.profile.telephone }}</li>-->
               
-              <!--<label for="inputLocation" class="se-only">Location</label>-->
-              <li>Location:{{ user.profile.location }}</li>
+              <label for="inputLocation" class="se-only">Location</label>
+              <input type="location" name="location" id="id_location" class="form-control" placeholder="Location" required>
+              <!--<li>Location:{{ user.profile.location }}</li>-->
               
-              <!--<label for="inputBirthday" class="se-only">Birthday</label>-->
               <li>updatetime:{{ user.profile.birthday }}</li>
               </ul>
               
-              
-              
-              
-              <!--<button class =="btn btn-lg btn-primary btn-block" type="submit" value="Update">Edit</botton>-->
-              
+              <input type="submit"value="Submit"/>
            </div>
         </div>
      
@@ -88,13 +85,7 @@
                   <strong>Website:</strong>
                   <a href="{{ user_profile.website }}">{{ user_profile.website }}</a>
               </p>
-                <!--<label for="inputTelephone" class="se-only">Telephone</label>-->
-              {% if user.is_authenticated %}
-               <a href="{% url 'users:profile_update' user.id %}">Edit</a>
-                
-                <!--<input type="submit" value="Update" />-->
-              {% else %}
-            {% endif %}
+               
             {% endif %}
         </div>
     </div>

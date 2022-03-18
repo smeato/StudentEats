@@ -127,13 +127,13 @@ class ProfileView(View):
 
 @login_required
 def profile(request):
-    #context_dict = {}
+    context_dict = {}
     #user=get_object_or_404(User)
-    user= request.user
-    return render(request, 'studenteats/profile.html',{'user':user})
-    #return render(request, 'studenteats/profile.html', context=context_dict)
+    #user= request.user
+    #return render(request, 'studenteats/profile.html',{'user':user})
+    return render(request, 'studenteats/profile.html', context=context_dict)
 
-
+"""
 @login_required
 def profile_update(request):
     user= request.user
@@ -154,13 +154,13 @@ def profile_update(request):
             user_profile.university = form.cleaned_data['university']
             user_profile.location = form.cleaned_data['location']
             user_profile.save()
-            return HttpResponseRedirect(reverse('users:profile',args=[user.id]))
+            return HttpResponseRedirect(reverse('studenteats:profile',args=[user.id]))
             #return HttpResponseRedirect(reverse('studenteats:profile'))
         else:
             default_data={'first_name':user.first_name,'last_name':user.last_name,'email':user_profile.email,'telephone':user_profile.telephone,'birthday':user_profile.birthday,'university':user_profile.university,'location':user_profile.location,}
             form = ProfileForm(default_data)
         return render(request,'studenteats/profile_update.html',{'form':form,'user':user})
-    
+"""
 def about(request):
     context_dict = {}
     return render(request, 'studenteats/about.html', context=context_dict)

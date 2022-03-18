@@ -14,13 +14,13 @@ class UserProfile(models.Model):
     role = models.CharField(max_length=20)
     picture= models.ImageField(upload_to="profile_image",blank=True)
     website= models.URLField(blank=True)
-    
+    """
     class Meta:
         verbose_name='User Profile'
-        
+    """
     def __str__(self): 
-        return "{}".format(self,user.__str__())
-        #return self.user.username
+        #return "{}".format(self,user.__str__())
+        return self.user.username
         
 
 class Recipe(models.Model):
