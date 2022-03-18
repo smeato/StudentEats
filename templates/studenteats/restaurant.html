@@ -1,5 +1,100 @@
-{% extends 'studenteats/base.html' %} 
+{% extends 'studenteats/base.html' %}
 {% load staticfiles %} 
-{% block body_block %}
-This is the restaurant page
+{% block outside_block %}
+<link href="{% static 'custom/restaurantHome.css' %}" rel="stylesheet">
+<script src="{% static 'js/script.js' %}"></script>
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">New message</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form>
+          <div class="mb-3">
+            <label for="recipient-name" class="col-form-label">Recipient:</label>
+            <input type="text" class="form-control" id="recipient-name">
+          </div>
+          <div class="mb-3">
+            <label for="message-text" class="col-form-label">Message:</label>
+            <textarea class="form-control" id="message-text"></textarea>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Send message</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="restaurant-wrapper">
+    <div class="row">
+    <div class='col-sm card-container'>
+        <div class="card" style="width: 18rem;">
+            <div class="card-header">
+                Popular Restaurants
+            </div>
+            <ul class="list-group list-group-flush">
+                {% for rest in popular_restaurants %}
+                <li class="list-group-item">
+                    <a class='dec-removal' href="/">{{rest.Name}} </li></a> {% endfor %}
+            </ul>
+        </div>
+    </div>
+    
+    <div class="col-sm mt-0 search-restaurant-week">
+        <h5>What kind of restaurant are you looking for?</h5>
+        <form method="post" action="">
+            {% csrf_token %}
+            <div class="input-group rounded">
+                <input  type="text" name="searched" class="form-control rounded" placeholder="Search" aria-label="Search" aria-describedby="search-addon" />
+                <span class="input-group-text border-0" id="search-addon">
+                  <!-- <i class="fas fa-search"></i> -->
+                  <button type="submit" id="search-button">
+                    <img height=20px width=15px src="{% static 'images/search.svg' %}">
+                </button>
+                </span>
+            </div>
+        </form>
+    </div>
+    
+    <div class="flip-box col-sm mh-100">
+        <div class="flip-box-inner">
+          <div class="flip-box-front">
+            <img class="restaurant-image img-fluid" src="{% static 'images/restaurant-week.jpeg' %}" alt="Recipe of the week"> 
+          </div>
+          <div class="flip-box-back">
+            <p class="h3"><br><br>This week <br>our top pick is...</p>
+            <p> 
+              {% if restaurantWeek %}
+                {{restaurantWeek.Name}}
+              {% else %} 
+                Come back soon to find out!
+              {% endif %} 
+              <br><br></p> 
+            <p><em>"This is just one of the amazing restaurants on our site. Browse below to see some more!"</em></p>
+          </div>
+        </div>
+      </div>
+
+      <div class="list-wrapper">
+        {% for s in search %}
+        <div class="card" style="width: 18rem;">
+            <img class="card-img-top" src="{{ MEDIA_URL }}recipe_images/test.jpeg" alt="Card image cap">
+            <div class="card-body">
+              <h5 class="card-title text-success"><strong>{{s.Name}}</strong></h5>
+              <input type="hidden" id="url" data="{% url 'studenteats:forum' %}">
+              <a class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#myModal" data-bs-whatever="rest" id="view-recipe" onclick="recipeClick()">View</a>
+            </div>
+          </div>
+        {% endfor %}
+    </div>
+    </div>
+    </div>
+</div>
+</div>
+
 {% endblock %}

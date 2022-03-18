@@ -46,10 +46,10 @@
 </div>
 <div class="list-wrapper">
     {% for s in search %}
-    <div class="card" style="width: 18rem;">
+    <div class="card text-black" style="width: 18rem;">
         <img class="card-img-top" src="{{ MEDIA_URL }}recipe_images/test.jpeg" alt="Card image cap">
         <div class="card-body">
-          <h5 class="card-title">{{s.Title}}</h5>
+          <h5 class="card-title text-success"><strong>{{s.Title}}</strong></h5>
           <input type="hidden" id="url" data="{% url 'studenteats:forum' %}">
           <a class="btn btn-primary" id="view-recipe" onclick="recipeClick()">View</a>
         </div>

@@ -1,3 +1,5 @@
+from pdb import Restart
+from django.shortcuts import render
 from django.db.models import Q
 from studenteats.models import AdminDetails, User,Recipe,Restaurant,Deals,Discussion,Discussion_Replies,Restaurant_Comments,Recipe_Comments
 import datetime
@@ -25,6 +27,9 @@ def about(request):
 
 def restaurant(request): 
     context_dict = {}
+    context_dict['popular_restaurants'] = Restaurant.objects.order_by('Likes')[0:6]
+     # context_dict['restaurantWeek'] = AdminDetails.objects.first().restaurantWeek
+    context_dict['search'] = Restaurant.objects.all()
     return render(request, 'studenteats/restaurant.html', context=context_dict)
 
 def recipe(request): 
@@ -36,7 +41,7 @@ def recipe(request):
 def recipeHome(request): 
     context_dict = {}
     context_dict['popular_recipes'] = Recipe.objects.order_by('Likes')[0:6]
-    #context_dict['recipeWeek'] = AdminDetails.objects.first().recipeWeek
+   # context_dict['recipeWeek'] = AdminDetails.objects.first().recipeWeek
     context_dict['search'] = Recipe.objects.all()
     return render(request, 'studenteats/recipeHome.html', context=context_dict)
 
