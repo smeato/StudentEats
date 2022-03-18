@@ -50,6 +50,8 @@ class Restaurant(models.Model):
     Res_Deals=models.ForeignKey(Deals, null=True, blank=True,on_delete=models.CASCADE)
     Likes=models.IntegerField(default=0)
     
+    class Meta:
+        verbose_name_plural = 'restaurants'
     def __str__(self): 
         return self.Name
 
