@@ -119,4 +119,4 @@ class Recipe_Comments(models.Model):
 class AdminDetails(models.Model):
     recipeWeek = models.ForeignKey(Recipe, on_delete=None)
     restaurantWeek = models.ForeignKey(Restaurant, on_delete=None)
-    beginnerVideo = models.URLField(default='https://google.com')
+    beginnerVideo = models.URLField(default='https://www.youtube.com/watch?v=Mw-5pQBbZvA')

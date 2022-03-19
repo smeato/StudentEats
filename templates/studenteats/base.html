@@ -64,23 +64,20 @@
 
     {% block body_block %}
     {% endblock %}
+
     {% block outside_block %}
     {% endblock %}
-
     {% block footer_block %}
     <div class="navbar fixed-bottom pull-right">
         <a class="header-footer-link" href="{% url 'studenteats:help' %}"></i>Need Help?</a><i
             class="bi bi-question-circle"></i>
     </div>
     {% endblock %}
-
     <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
     <script async defer
         src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBRsiOKNB6sDvJz3e-WdW3B4e9OnGJjkMM&callback=initMap">
         </script>
-    <!-- <script async defer
-        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBRsiOKNB6sDvJz3e-WdW3B4e9OnGJjkMM&callback=inputMap">
-        </script> -->
+
 </body>
 
 </html>

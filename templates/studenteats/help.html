@@ -1,1 +1,37 @@
-This is the help doc
+{% extends 'studenteats/base.html' %} 
+{% load staticfiles %} 
+
+{% block body_block %} 
+
+<link href="{% static 'custom/help.css' %}" rel="stylesheet">
+
+    <p class="h2 header py-2 px-4">Need Help?</p>
+
+    <div class="container px-5 py-5">
+
+    <div class="box1 border px-3 py-3">
+    <p class="h3 header">Restaurants</p><br>
+    <p>Click on a restaurant from the popular restaurant tabs at the side to see more information or search with the map feature to find somewhere you'll love.</p><br>
+    </div>
+
+    <div class="box2 border px-3 py-3">
+    <p class="h3 header">Recipes</p><br>
+    <p>Click on a recipe from the popular restaurant tabs at the side to see more information or type in a recipe, ingredient or cuisine to see a list of recipies that match your search.</p><br>
+    </div>
+
+    <div class="box1 border px-3 py-3">
+    <p class="h3 header">Forum</p><br>
+    <p>Click on a discussion post to see comments and add your own!<br>
+        Get hints and tips from other students, make friends or just have a rant. 
+    </p>
+    </div>
+
+    <div class="box2 border px-3 py-3">
+    <p class="h3 header">Register With Student Eats</p><br>
+    <p>All you need is an email and a secure password (no "password" or "1234"!)<br>
+        Log in with your details and click "My Profile" to upload a picture. 
+    </p>
+    </div>
+
+</div>
+{% endblock %} 
