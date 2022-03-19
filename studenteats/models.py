@@ -50,6 +50,9 @@ class Restaurant(models.Model):
     Owner=models.ForeignKey(User,on_delete=models.CASCADE)
     Res_Deals=models.ForeignKey(Deals, null=True, blank=True,on_delete=models.CASCADE)
     Likes=models.IntegerField(default=0)
+    Latitude = models.FloatField(default=0.0)
+    Longitude = models.FloatField(default=0.0)
+    Place = models.CharField(max_length=128, default='')
     
     def __str__(self): 
         return self.Name
@@ -117,4 +120,4 @@ class Recipe_Comments(models.Model):
 class AdminDetails(models.Model):
     recipeWeek = models.ForeignKey(Recipe, on_delete=None)
     restaurantWeek = models.ForeignKey(Restaurant, on_delete=None)
-    beginnerVideo = models.URLField(default='https://google.com')
+    beginnerVideo = models.URLField(default='https://www.youtube.com/watch?v=Mw-5pQBbZvA')

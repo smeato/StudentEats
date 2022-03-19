@@ -1,4 +1,6 @@
 
+from django.db.models import Q
+from django.http import JsonResponse
 from django.shortcuts import render,redirect
 from django.urls import reverse
 from django.db.models import Q
@@ -25,6 +27,10 @@ def about(request):
 
 def restaurant(request): 
     context_dict = {}
+    context_dict['popular_restaurants'] = Restaurant.objects.order_by('Likes')[0:6]
+     # context_dict['restaurantWeek'] = AdminDetails.objects.first().restaurantWeek
+    context_dict['search'] = Restaurant.objects.all()
+    # context_dict['url'] = "studenteats/get-coordinates/"
     return render(request, 'studenteats/restaurant.html', context=context_dict)
 
 def recipe(request): 
@@ -37,7 +43,7 @@ def recipe(request):
 def recipeHome(request): 
     context_dict = {}
     context_dict['popular_recipes'] = Recipe.objects.order_by('Likes')[0:6]
-    context_dict['recipeWeek'] = AdminDetails.objects.first().recipeWeek
+   # context_dict['recipeWeek'] = AdminDetails.objects.first().recipeWeek
     context_dict['search'] = Recipe.objects.all()
     return render(request, 'studenteats/recipeHome.html', context=context_dict)
 
@@ -121,3 +127,10 @@ def save_comments(request):
 def help(request): 
     context_dict = {} 
     return render(request, 'studenteats/help.html', context=context_dict)
+
+def getCoordinates(request, place):
+    if not (Restaurant.objects.filter(Place__iexact=place).exists()):
+        return JsonResponse({"valid":False}, status = 200)
+    return JsonResponse({"valid":True, "restaurants":list(Restaurant.objects.filter(Place__iexact=place).values('Latitude', 'Longitude', 'Name'))
+}, status = 200)
+
