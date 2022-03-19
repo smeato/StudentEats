@@ -85,7 +85,7 @@ body {
 }
 
 hr {
-  margin: 1rem 0;
+  margin: 10rem 0;
   color: inherit;
   background-color: currentColor;
   border: 0;
@@ -524,6 +524,7 @@ progress {
   font-size: calc(1.475rem + 2.7vw);
   font-weight: 300;
   line-height: 1.2;
+  min-width: 1000px;
 }
 @media (min-width: 1200px) {
   .display-4 {
@@ -1172,6 +1173,7 @@ progress {
   .col-md-6 {
     flex: 0 0 auto;
     width: 50%;
+    line-height: 1.25;
   }
 
   .col-md-7 {
@@ -7019,6 +7021,7 @@ textarea.form-control-lg {
 
 .fs-4 {
   font-size: calc(1.275rem + 0.3vw) !important;
+  line-height: 1.5;
 }
 
 .fs-5 {
@@ -7247,7 +7250,8 @@ textarea.form-control-lg {
 
 .bg-light {
   --bs-bg-opacity: 1;
-  background-color: rgba(var(--bs-light-rgb), var(--bs-bg-opacity)) !important;
+  max-width: 1000px;
+  background-color: cornsilk !important;
 }
 
 .bg-dark {
