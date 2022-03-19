@@ -18,7 +18,7 @@ def populate():
             'Email': 'averagestudents@averagestudents.com',
             'Location': 'Glasgow',
             'Role': 'Student',
-            'Profile_Picture_Path':"static/images/place.jpg"},
+            'Profile_Picture_Path':""},
 
     {        'User_ID':2,
             'Name':'ironmansnap',
@@ -26,7 +26,8 @@ def populate():
             'Email': 'ironmansnap@ironmansnap.com',
             'Location': 'Glasgow',
             'Role': 'Student',
-            'Profile_Picture_Path':"static/images/place.jpg"},
+            'Profile_Picture_Path':""},
+
 
     {       'User_ID':3,    
             'Name':'ghostfacegangsta',
@@ -34,7 +35,8 @@ def populate():
             'Email': 'ghostfacegangsta@ghostfacegangsta.com',
             'Location': 'Glasgow',
             'Role': 'Student',
-            'Profile_Picture_Path':"static/images/place.jpg"},
+            'Profile_Picture_Path':"" },
+
 
     {       'User_ID':4,    
             'Name':'MrsDracoMalfoy',
@@ -42,7 +44,8 @@ def populate():
             'Email': 'MrsDracoMalfoy@MrsDracoMalfoy.com',
             'Location': 'Glasgow',
             'Role': 'Student',
-            'Profile_Picture_Path':"static/images/place.jpg"},
+            'Profile_Picture_Path':""},
+
 
     {       'User_ID':5,    
             'Name':'emilyramo',
@@ -50,7 +53,8 @@ def populate():
             'Location': 'Glasgow',
             'Role': 'Student',
             'Email': 'emilyramo@emilyramo.com',
-            'Profile_Picture_Path':"static/images/place.jpg"},
+            'Profile_Picture_Path':"" },
+
 
     {       'User_ID':6,
             'Name':'RidleyRich',
@@ -58,7 +62,7 @@ def populate():
             'Email': 'RidleyRich@RidleyRich.com',
             'Location': 'Glasgow',
             'Role': 'Restaurant Owner',
-            'Profile_Picture_Path':"static/images/place.jpg"},
+            'Profile_Picture_Path':""},
 
     {
             'User_ID':7,
@@ -67,7 +71,7 @@ def populate():
             'Location': 'Glasgow',
             'Role': 'Restaurant Owner',
             'Email': 'SuperMagnificentExtreme@SuperMagnificentExtreme.com',
-            'Profile_Picture_Path':"static/images/place.jpg"}
+            'Profile_Picture_Path':""}
     ]
 
     Recipes = [

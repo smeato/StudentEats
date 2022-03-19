@@ -1,12 +1,10 @@
-<!DOCTYPE html> 
-{% load staticfiles %} 
-
-{% block head_block %}
+<!DOCTYPE html> {% load staticfiles %} {% block head_block %}
+<html lang="en">
 <html lang="en"> 
  
     <head>
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title >
+        <title>
             Student Eats:  
             {% block title_block %} 
                 Good Food on a Budget
@@ -121,7 +119,7 @@
     {% endblock %}
 
     <body class="h-100 d-flex flex-column min-vh-100 pb-5  main-background">
-        <div class="container">
+        <div class="container-fluid">
         <div> 
         {% block login_link %} 
             {% if user.is_authenticated %}
@@ -135,25 +133,27 @@
 
         <div>
             {% block header_block %} 
-                <h1 class="header text-center mt-3"><strong>Student Eats</strong></h1>
+                <h1 class="header text-center mt-4"><strong>Student Eats</strong></h1>
             {% endblock %}
         </div>
 
             {% block navbar_block %} 
-                <div class="masthead">
-                  <div class="navbar">
-                    <div class="navbar-inner">
-                      <div class="container">
-                        <ul class="nav">
-                          <li class="active"><a href="{% url 'studenteats:restaurant' %}" >Restaurant Home</a></li>
-                          <li><a href="{% url 'studenteats:recipe' %}">Recipe Home</a></li>
-                          <li><a href="{% url 'studenteats:forum' %}">Forum</a></li>
-                          <li><a href="{% url 'studenteats:about' %}">About</a></li>
-                          <li><a href="{% url 'studenteats:profile' %}">My Profile</a></li>
-                        </ul>
-                      </div>
-                    </div>
-                  </div><!-- /.navbar -->
+                <ul class="nav justify-content-center">
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'studenteats:restaurant' %}">Restaurant Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'studenteats:recipe' %}">Recipe Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'studenteats:forum' %}">Forum</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'studenteats:about' %}">About</a>
+                    </li>
+                    <li>
+                        <a class="nav-link" href="{% url 'studenteats:profile' %}">My Profile</a>
+                    </li>
                 </div>
             {% endblock %} 
 
@@ -164,20 +164,6 @@
         <div class="navbar fixed-bottom pull-right" > 
                <a class="header-footer-link" href="{% url 'studenteats:help' %}"></i>Need Help?</a><i class="bi bi-question-circle"></i>
         </div>
-        {% endblock %}
-        </div>
-        <script src="{% static 'assets/js/jquery.js' %}"></script>
-        <script src="{% static 'assets/js/bootstrap-transition.js' %}"></script>
-        <script src="{% static 'assets/js/bootstrap-alert.js' %}"></script>
-        <script src="{% static 'assets/js/bootstrap-modal.js' %}"></script>
-        <script src="{% static 'assets/js/bootstrap-dropdown.js' %}"></script>
-        <script src="{% static 'assets/js/bootstrap-scrollspy.js' %}"></script>
-        <script src="{% static 'assets/js/bootstrap-tab.js' %}"></script>
-        <script src="{% static 'assets/js/bootstrap-tooltip.js' %}"></script>
-        <script src="{% static 'assets/js/bootstrap-popover.js' %}"></script>
-        <script src="{% static 'assets/js/bootstrap-button.js' %}"></script>
-        <script src="{% static 'assets/js/bootstrap-collapse.js' %}"></script>
-        <script src="{% static 'assets/js/bootstrap-carousel.js' %}"></script>
-        <script src="{% static 'assets/js/bootstrap-typeahead.js' %}"></script>
+        {% endblock %} 
     </body>
 </html>
