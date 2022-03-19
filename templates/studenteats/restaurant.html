@@ -45,14 +45,11 @@
                     </li></a> {% endfor %}
                 </ul>
             </div>
-<<<<<<< HEAD
             <ul class="list-group list-group-flush">
                 {% for rest in popular_restaurants %}
                 <li class="list-group-item">
                     <a class='dec-removal' href="/">{{rest.Name}} </li></a> {% endfor %}
             </ul>
-=======
->>>>>>> 4ac92042a607542c52727ab393a56c067d0a8f66
         </div>
 
         <div class="col-sm mt-0 search-restaurant-week">
@@ -95,9 +92,9 @@
                     <p class="h3"><br><br>This week <br>our top pick is...</p>
                     <p>
                         {% if restaurantWeek %}
-                        {{restaurantWeek.Name}}
+                            {{restaurantWeek.Name}}
                         {% else %}
-                        Come back soon to find out!
+                            Come back soon to find out!
                         {% endif %}
                         <br><br>
                     </p>
