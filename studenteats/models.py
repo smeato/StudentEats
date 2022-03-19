@@ -72,7 +72,7 @@ class Discussion(models.Model):
 
 class Discussion_Replies(models.Model):
     Description=models.TextField(max_length=1000)
-    User_ID=models.ForeignKey(User,on_delete=CASCADE)
+    User_ID=models.ForeignKey(User,on_delete=models.CASCADE)
     Created_Time=models.DateTimeField()
     Likes=models.IntegerField(default=0)
     Post_ID=models.IntegerField(default=0,unique=True)
@@ -87,11 +87,11 @@ class Discussion_Replies(models.Model):
 
 class Restaurant_Comments(models.Model):
     Description=models.TextField(max_length=1000)
-    User_ID=models.ForeignKey(User,on_delete=CASCADE)
+    User_ID=models.ForeignKey(User,on_delete=models.CASCADE)
     Created_Time=models.DateTimeField()
     Likes=models.IntegerField(default=0)
     Comment_ID=models.IntegerField(default=0,unique=True)
-    Restaurant_ID=models.ForeignKey(Restaurant,on_delete=CASCADE)
+    Restaurant_ID=models.ForeignKey(Restaurant,on_delete=models.CASCADE)
 
     class Meta:
         verbose_name_plural = 'Restaurant comments'
@@ -102,11 +102,11 @@ class Restaurant_Comments(models.Model):
 
 class Recipe_Comments(models.Model):
     Description=models.TextField(max_length=1000)
-    User_ID=models.ForeignKey(User,on_delete=CASCADE)
+    User_ID=models.ForeignKey(User,on_delete=models.CASCADE)
     Created_Time=models.DateTimeField()
     Likes=models.IntegerField(default=0)
     Comment_ID=models.IntegerField(default=0,unique=True)
-    Recipe_ID=models.ForeignKey(Recipe,on_delete=CASCADE)
+    Recipe_ID=models.ForeignKey(Recipe,on_delete=models.CASCADE)
 
     class Meta:
         verbose_name_plural = 'Recipe comments'
@@ -118,6 +118,6 @@ class Recipe_Comments(models.Model):
 #Admindetails only has one record that stores the details constant
 #for a week to avoid same calculation again and again on each page refresh
 class AdminDetails(models.Model):
-    recipeWeek = models.ForeignKey(Recipe, on_delete=None)
-    restaurantWeek = models.ForeignKey(Restaurant, on_delete=None)
+    recipeWeek = models.ForeignKey(Recipe, on_delete=models.DO_NOTHING)
+    restaurantWeek = models.ForeignKey(Restaurant, on_delete=models.DO_NOTHING)
     beginnerVideo = models.URLField(default='https://www.youtube.com/watch?v=Mw-5pQBbZvA')
