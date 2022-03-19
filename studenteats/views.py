@@ -64,12 +64,6 @@ def discussion_detail(request,discussion_ID):
     return render(request,'studenteats/discussion_detail.html',context=context_dict)
 
 def add_comments(request):
-    # dission=Discussion.objects.get(Discussion_ID = discussion_ID)
-    # diss_id = dission.Discussion_ID
-    # user_id = dission.User_ID
-    # context_dict={}
-    # context_dict={'diss_id':diss_id,'user_id':user_id}
-    # return render(request,'studenteats/add_comments.html',context=context_dict)
     diss_id=request.session.get('diss_id')
     user_id=request.user.id
     context_dict={}
@@ -81,11 +75,9 @@ def save_comments(request):
         diss_id=request.session.get('diss_id')
         user_id=request.user.id
         rep_id=request.POST.get('rep_id')
-        #title=request.POST.get('title')
         description=request.POST.get('description')
         create_time=DateField()
         likes=0.0
-        #必须登录才能获取到user_id
         reply=Discussion_Replies(Description=description,User_ID=user_id,Created_Time=create_time,Likes=likes,Post_ID=rep_id,Discussion_ID=diss_id)
 
         return redirect(reverse('studenteats:forum'))
