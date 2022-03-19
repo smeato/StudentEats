@@ -1,6 +1,8 @@
 
-from django.shortcuts import render
+from django.shortcuts import render,redirect
+from django.urls import reverse
 from django.db.models import Q
+from django.forms import DateField
 from studenteats.models import AdminDetails, User,Recipe,Restaurant,Deals,Discussion,Discussion_Replies,Restaurant_Comments,Recipe_Comments
 
 
@@ -62,7 +64,7 @@ def show_recipes(request,Recipe_id):
     return render(request, 'studenteats/events/show_recipes.html', context_dict)
 
 
-def forum(request): 
+def forum(request,state=0): 
     Discussion_like = Discussion.objects.order_by('-Likes')[:3]
     Discussion_view = Discussion.objects.order_by('-Views')[:3]
     Discussion_createdtime = Discussion.objects.order_by('-Created_Time')[:3]
