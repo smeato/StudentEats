@@ -1,5 +1,18 @@
-{% extends 'studenteats/base.html' %} 
-{% load staticfiles %} 
+{% extends 'studenteats/base.html' %}
+{% load staticfiles %}
+<link href="{% static 'custom/reestaurant.css' %}" rel="stylesheet">
+<script src="{% static 'js/script.js' %}"></script>
+
+
 {% block body_block %}
-This is the restaurant page
-{% endblock %}
+<div id="map">
+    <div class="search-map">
+        <div class="input-group rounded">
+            <input type="text" name="searched" class="form-control rounded" placeholder="Search" aria-label="Search"
+                aria-describedby="search-addon" />
+            <span class="input-group-text border-0" id="search-addon">
+                <button type="submit" id="search-button">
+        </div>
+    </div>
+
+    {% endblock %}
