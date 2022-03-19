@@ -28,6 +28,7 @@ def populate():
             'Role': 'Student',
             'Profile_Picture_Path':""},
 
+
     {       'User_ID':3,    
             'Name':'ghostfacegangsta',
             'Password': '123456',
@@ -35,6 +36,7 @@ def populate():
             'Location': 'Glasgow',
             'Role': 'Student',
             'Profile_Picture_Path':"" },
+
 
     {       'User_ID':4,    
             'Name':'MrsDracoMalfoy',
@@ -44,6 +46,7 @@ def populate():
             'Role': 'Student',
             'Profile_Picture_Path':""},
 
+
     {       'User_ID':5,    
             'Name':'emilyramo',
             'Password': '123456',
@@ -51,6 +54,7 @@ def populate():
             'Role': 'Student',
             'Email': 'emilyramo@emilyramo.com',
             'Profile_Picture_Path':"" },
+
 
     {       'User_ID':6,
             'Name':'RidleyRich',
@@ -149,7 +153,10 @@ def populate():
             'Cuisine': 'Italian',
             'Owner': 6,
             'Res_Deals': 1,
-            'Likes': 566
+            'Likes': 566,
+            'Place':'Glasgow',
+            'Latitude':55.8674822214843,
+            'Longitude':-4.29110193068944
         },
 
         {
@@ -160,7 +167,10 @@ def populate():
             'Cuisine': 'Italian',
             'Owner': 7,
             'Res_Deals': 2,
-            'Likes': 498
+            'Likes': 498,
+            'Place':'Glasgow',
+            'Latitude':55.8597956805843,
+            'Longitude':-4.25550460369966
         }, 
 
         {
@@ -171,7 +181,10 @@ def populate():
             'Cuisine': 'Asian Fusion',
             'Owner': 6,
             'Res_Deals': 3,
-            'Likes': 388
+            'Likes': 388,
+            'Place':'Glasgow',
+            'Latitude':55.8620011014798,
+            'Longitude':-4.2549319938944
         }, 
 
         {
@@ -182,7 +195,10 @@ def populate():
             'Cuisine': 'Latin American',
             'Owner': 7,
             'Res_Deals': 4,
-            'Likes': 226
+            'Likes': 226,
+            'Place':'Edinburgh',
+            'Latitude':55.9498107877072,
+            'Longitude':-3.20705758412953
         }, 
 
         {
@@ -193,7 +209,10 @@ def populate():
             'Cuisine': 'Japanese',
             'Owner': 6,
             'Res_Deals': 3,
-            'Likes': 643
+            'Likes': 643,
+            'Place':'Edinburgh',
+            'Latitude':55.93629914965932,
+            'Longitude':-3.2413821536733685
         }, 
 
         {
@@ -204,7 +223,10 @@ def populate():
             'Cuisine': 'Indian',
             'Owner': 7,
             'Res_Deals': 4,
-            'Likes': 845
+            'Likes': 845,
+            'Place':'Edinburgh',
+            'Latitude':55.95772009779098,
+            'Longitude':-3.1336121670289505
         }, 
     ]
 
@@ -481,7 +503,7 @@ def populate():
         print(f'{d}')
         
     for restaurant in Restaurants:
-        res = add_Restaurant(restaurant['Restaurant_ID'],restaurant['Name'], restaurant['Description'], restaurant['Tags'], restaurant['Cuisine'], restaurant['Owner'], restaurant['Res_Deals'], restaurant['Likes'])
+        res = add_Restaurant(restaurant['Restaurant_ID'],restaurant['Name'], restaurant['Description'], restaurant['Tags'], restaurant['Cuisine'], restaurant['Owner'], restaurant['Res_Deals'], restaurant['Likes'], restaurant['Latitude'], restaurant['Longitude'], restaurant['Place'])
         print(f'{res}')
 
     for discuss in Discussion_Posts:
@@ -511,8 +533,8 @@ def add_Recipe(Recipe_ID,Title,Content,Tags,Cuisine,Created_Date,Owner,Likes):
     b.save()
     return b
 
-def add_Restaurant(Restaurant_ID,Name,Description,Tags,Cuisine,Owner,Res_Deals,Likes):
-    c =Restaurant.objects.get_or_create(Restaurant_ID=Restaurant_ID,Name=Name,Description=Description,Tags=Tags,Cuisine=Cuisine,Owner=User.objects.get(User_ID=Owner), Res_Deals=Deals.objects.get(Deal_ID=Res_Deals),Likes=Likes)[0]
+def add_Restaurant(Restaurant_ID,Name,Description,Tags,Cuisine,Owner,Res_Deals,Likes,Latitude, Longitude, Place):
+    c =Restaurant.objects.get_or_create(Restaurant_ID=Restaurant_ID,Name=Name,Description=Description,Tags=Tags,Cuisine=Cuisine,Owner=User.objects.get(User_ID=Owner), Res_Deals=Deals.objects.get(Deal_ID=Res_Deals),Likes=Likes, Latitude=Latitude, Longitude=Longitude, Place=Place)[0]
     c.save()
     return c
 

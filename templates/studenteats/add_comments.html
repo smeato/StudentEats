@@ -94,6 +94,7 @@
           .title a{
             color:coral;
           }
+          
         </style>
         <link href="{% static 'assets/css/bootstrap-responsive.css' %}" rel="stylesheet">
     
@@ -115,6 +116,7 @@
 
 
 {% block body_block %}
+
 <body>
     <form class="d-flex" method="POST" action="{% url 'studenteats:save_comments'%}">
         {% csrf_token %}
@@ -126,8 +128,9 @@
             <label for="club_description">Add the Reply_id</label>
             <input  type="text" placeholder="Set your id" name="rep_id" style="width: 1000px;" ></br>
         </div>
-        <button class="btn" type="submit" style="font: size 60px; color:rgb(49, 138, 190);width: 100px;">Save</button>
-        <button class="btn" style="font: size 60px; width:100px;"><a href="{% url 'studenteats:forum' %}">Return</a></button>
+        <button class="btn btn-primary" type="submit" style="font: size 60px;width: 100px;">Save</button>
+        <!-- <a href="{% url 'studenteats:forum' %}" style="text-align: right;">Return</a></button> -->
+        <a class="btn btn-primary" href="{% url 'studenteats:forum' %}" style="width: 100px;">Return</a>
     </form>
 </body>
 {% endblock %}
