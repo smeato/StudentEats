@@ -1,34 +1,122 @@
-{% extends 'studenteats/base.html' %} 
+<!DOCTYPE html> 
 {% load staticfiles %} 
 
+<html lang="en"> 
+ 
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Forum</title>
+        <meta charset="utf-8">
+        <link href="{% static 'css/bootstrap.css' %}" rel="stylesheet">
+        <script src="{% static 'js/bootstrap.min.js' %}"></script> 
+        
 
-{% block title_block %}
-    Discussion Detail
-{% endblock %}
+        <link href="{% static 'assets/css/bootstrap.css' %}" rel="stylesheet">
+        <style type="text/css">
+          body {
+            font-family: Georgia, 'Times New Roman', Times, serif;
+            padding-top: 20px;
+            padding-bottom: 60px;
+          }
+    
+          /* Custom container */
+          .container {
+            color:coral;
+            margin: 0 auto;
+          }
+          .container .flu{
+            padding-left: 50px;
+          }
+          .container > hr {
+            margin: 60px 0;
+          }
 
-{% block navbar_block %} 
-<div class="masthead">
-  <div class="navbar">
-    <div class="navbar-inner">
-      <div class="container">
-        <ul class="nav">
-          <li><a href="{% url 'studenteats:restaurant' %}" >Restaurant Home</a></li>
-          <li><a href="{% url 'studenteats:recipe' %}">Recipe Home</a></li>
-          <li class="active" ><a href="{% url 'studenteats:forum' %}">Forum</a></li>
-          <li><a href="{% url 'studenteats:about' %}">About</a></li>
-          <li><a href="{% url 'studenteats:profile' %}">My Profile</a></li>
-        </ul>
+          .title a{
+            color:coral;
+          }
+
+          .BG{
+            min-width: 880px;
+            background:url("{% static 'images/place.jpg' %}")
+          }
+
+          .icon-list {
+            padding-bottom: 50px;
+            list-style: none;
+          }
+          .icon-list li {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: .25rem;
+          }
+
+
+        </style>
+        <link href="{% static 'assets/css/bootstrap-responsive.css' %}" rel="stylesheet">
+    
+    
+        <!-- Fav and touch icons -->
+        <link rel="shortcut icon" href="{% static 'assets/ico/favicon.png">
+
+    </head>
+    
+
+    <body>
+
+      <div class="col-lg-8 mx-auto p-3 py-md-5">
+        <div> 
+          {% if user.is_authenticated %}
+              <!-- add user specific once user model created-->
+              <a class="header-footer-link" href="{% url 'studenteats:profile' %}"><h4>My Profile</h4></a>
+          {% else %} 
+              <a class="header-footer-link" href="{% url 'studenteats:login' %}">Log In or Register</a>
+          {% endif %} 
       </div>
-    </div>
-  </div><!-- /.navbar -->
-</div>
-{% endblock %} 
+        <header>
+              <h1 class="header text-center mt-3" style="color:coral"><strong>Student Eats</strong></h1>
+        </header>
 
-{% block body_block %}
+        <main>
+          {% for Discussion in discussion %}
+          <div class="p-5 mb-4 BG rounded-3" style="color:red;text-align:left;margin-left: -30px;">
+            <div class="container-fluid py-5">
+              <h1 class="display-4 fst-italic">{{ Discussion.Title }}</h1>
+              <p class="col-md-11 fs-4 fst-italic">{{ Discussion.Description}}</p>
+              <div class="mb-1">
+              <!--{% if user.is_authenticated %} -->
+              <form class="d-flex" method="POST" action="{% url 'studenteats:add_comments'%}">
+                {% csrf_token %}
+                <button class="btn btn-primary btn-lg px-4" type="submit" style="color:white;width:150px">Add Reply</button></form>
+              <!--{% endif %}-->
 
-    <h1>{{ discussion.Title }}</h1>
-        {% for Discussion in reply %}
-            <h1>{{ Discussion.Description}}</h1>
-        {% endfor %}
+              <a href="{% url 'studenteats:forum' %}" class="btn btn-primary btn-lg px-4" style="width:150px">Back</a>
+              </div>
+              {% endfor %}              
+            </div>
+          </div>
+      
 
-{% endblock %}
+
+          <hr class="col-3 col-md-2 mb-5">
+          <div class="row g-5 ">
+
+          {% for Discussion_Replies in reply %}
+          <div class="bg-light">
+              <h4 style="color:coral;">{{ Discussion_Replies.Description}}</h4>
+              <ul style="color:coral;">
+                <li style="list-style: none;">{{ Discussion_Replies.User_ID}}</li>
+                <li style="list-style: none;">{{ Discussion_Replies.Created_Time }}</a></li>
+                <li style="list-style: none;"> 👍 {{ Discussion_Replies.Likes }}</li>
+              </ul>
+              </div>
+              <hr>
+            {% endfor %}
+            </div>
+          </div>
+        </main>
+      </div>
+      
+        <script src="{% static 'assets/dist/js/bootstrap.bundle.min.js' %}"></script>
+
+    </body>
+</html>

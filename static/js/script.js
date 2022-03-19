@@ -69,9 +69,9 @@ function initMap() {
 function refreshMarkers(locations) {
 
     first = locations['restaurants'][0]
-   
+
     displayMap = new google.maps.Map(document.getElementById('map'), {
-        center: {lat: first['Latitude'], lng: first['Longitude']},
+        center: { lat: first['Latitude'], lng: first['Longitude'] },
         scrollwheel: true,
         zoom: 9
     });
@@ -107,13 +107,23 @@ function refreshMarkers(locations) {
 }
 
 function handleSubmitByLocation() {
+    console.log('here');
     document.getElementById("map").style.display = 'flex';
     var place = document.getElementById('search-map-restaurants').value;
     const xhttp = new XMLHttpRequest();
     xhttp.onreadystatechange = function () {
         if (this.readyState == 4 && this.status == 200) {
             locations = JSON.parse(this.responseText);
-            refreshMarkers(locations);
+            if (locations['valid'] == true) {
+                refreshMarkers(locations);
+                document.getElementById('map-message').style.display = 'none';
+                document.getElementById('map').style.display = 'flex';
+            }
+            else {
+                document.getElementById("map-message").innerHTML = "Sorry! We don't have records of restaurants in that place."
+                document.getElementById('map').style.display = 'none';
+                document.getElementById('map-message').style.display = 'flex';
+            }
 
         }
     };

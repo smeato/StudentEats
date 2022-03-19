@@ -4,7 +4,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-    <title>Forum &middot; Bootstrap</title>
+    <title>Forum</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
     <meta name="author" content="">
@@ -12,15 +12,13 @@
     <!-- Le styles -->
     
     <link href="{% static 'assets/css/bootstrap.css' %}" rel="stylesheet">
-    <!-- <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}"> -->
+    <link rel="stylesheet" href="{% static 'assets/css/bootstrap.min.css' %}">
     <style type="text/css">
       body {
         font-family: Georgia, 'Times New Roman', Times, serif;
         padding-top: 20px;
         padding-bottom: 60px;
-        /* width: 3373px;
-        height:5184px; */
-        /* background-image: url("{% static 'images/christinHumeUnsplashLaptop.jpg'%}"); */
+        /* background-image:url("{static 'images/place.jpg'%}"); */
       }
 
       h1{
@@ -29,7 +27,8 @@
       }
 
       .p{
-        color:rgb(216, 76, 33)
+        color:red;
+        text-align:center;
       }
 
 
@@ -40,7 +39,7 @@
 
       h4 .p{
         text-align: left;
-        color:aquamarine;
+        color:rgb(67, 132, 185);
       }
 
       .span4{
@@ -54,9 +53,11 @@
       }
 
       /* Custom container */
+
       .container {
-        margin: 0 auto;
-        width: 1000px;
+      color:coral;
+      margin: 0 auto;
+      max-width: 1000px;
       }
 
       .container > hr {
@@ -123,7 +124,24 @@
         color:coral;
       }
 
+      .BG{
+        width: 1000px;
+        height: 500px;
+        background:url("{% static 'images/place.jpg' %}")
+      }
+      .rounded {
+        border-radius: 0.3rem !important;
+      }
+
     </style>
+
+
+
+    <div>
+      <!-- <div class ="card"> -->
+    </div>
+
+
     <link href="{% static 'assets/css/bootstrap-responsive.css' %}" rel="stylesheet">
 
 
@@ -135,8 +153,7 @@
     <link rel="shortcut icon" href="{% static 'assets/ico/favicon.png">
   </head>
 
-  <body>
-
+  <body class="h-100 d-flex flex-column min-vh-100 pb-5  main-background">
     <div class="container">
       {% if user.is_authenticated %}
       <!-- add user specific once user model created-->
@@ -166,7 +183,15 @@
 
 
       <!-- Jumbotron -->
-      <div class="jumbotron">
+      <div class="jumbotron BG rounded" style="color:red">
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+        <br/>
         <h1 class="p">😆Discuss it！</h1>
         <p class="lead">You could say everything here.</br>A little Question may get thousands of Replies!</p>
       </div>
@@ -178,12 +203,12 @@
       <div class = "row-fluid">
         <div class="dropdown">
           <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false" style="width: 150px;height: 50px; float:right ">
-            <h5>Order By</h5>
+            <h5 style="color:rgb(49, 138, 190)">Order By</h5>
           </button>
           <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-            <li><a class="dropdown-item" href="{% url 'studenteats:forum' %}">Views</a></li>
-            <li><a class="dropdown-item" href="{% url 'studenteats:forum' %}">Likes</a></li>
-            <li><a class="dropdown-item" href="{% url 'studenteats:forum' %}">Create Time</a></li>
+            <li><a class="dropdown-item" href="{% url 'studenteats:forum' 0%}" style="color:rgb(49, 138, 190)">Views</a></li>
+            <li><a class="dropdown-item" href="{% url 'studenteats:forum' 1%}" style="color:rgb(49, 138, 190)">Likes</a></li>
+            <li><a class="dropdown-item" href="{% url 'studenteats:forum' 2%}" style="color:rgb(49, 138, 190)">Create Time</a></li>
           </ul>
         </div>
       </div>
@@ -191,56 +216,23 @@
     <hr>
 
       <div>
-      {% if Discussionslike %}
 
             <ul>
-            {% for Discussion in Discussionslike %}
+            {% for Discussion in Discussions %}
             <div class="row-fluid">
               <div class="span4">
                 <h2>{{Discussion.Title}}</h2>
                 <p style="width: 1000px;height: 50px;">{{Discussion.Description}}</p>
-                <p><a class="btn" href="{% url 'studenteats:discussion_detail' Discussion.Discussion_ID %}">View details &raquo;</a></p>
+                <p><a class="btn" href="{% url 'studenteats:discussion_detail' Discussion.Discussion_ID %}" style="color:rgb(49, 138, 190);">View details &raquo;</a></p>
               </div>
             </div>
             <hr>
             {% endfor %}
             </ul>
 
-      {% elif Discussionsview %}
 
-            <ul>
-              {% for Discussion in Discussionsview %}
-              <div class="row-fluid">
-                <div class="span4">
-                  <h2>{{Discussion.Title}}</h2>
-                  <p>{{Discussion.Description}}</p>
-                  <p><a class="btn" href="#">View details &raquo;</a></p>
-                </div>
-              </div>
-              <hr>
-              {% endfor %}
-            </ul>
-
-      {% elif Discussionscreatetime %}
-
-            <ul>
-              {% for Discussion in Discussionscreatetime %}
-              <div class="row-fluid">
-                <div class="span4">
-                  <h2>{{Discussion.Title}}</h2>
-                  <p>{{Discussion.Description}}</p>
-                  <p><a class="btn" href="#">View details &raquo;</a></p>
-                </div>
-              </div>
-              <hr>
-              {% endfor %}
-            </ul>
-
-      {% else %}
-            <strong>There is no Discussion present</strong>
-      {% endif %}
       </div>
-      </div>>
+      </div>
 
 
 

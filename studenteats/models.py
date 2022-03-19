@@ -11,6 +11,7 @@ class User(models.Model):
     Location = models.TextField(max_length=200)
     Role = models.CharField(max_length=20)
     Profile_Picture_Path = models.ImageField(upload_to="media",null=True)
+
     
     def __str__(self): 
         return self.Name

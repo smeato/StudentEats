@@ -3,4 +3,5 @@ __pycache__
 static/.DS_Store
 .vscode/
 .DS_Store
-studenteats/migrations/
+./studenteats/migrations
+iTECH_Group/__pycache__/

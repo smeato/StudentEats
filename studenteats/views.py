@@ -1,10 +1,12 @@
-from pdb import Restart
-from time import clock_getres
-from django.shortcuts import render
+
 from django.db.models import Q
 from django.http import JsonResponse
-
+from django.shortcuts import render,redirect
+from django.urls import reverse
+from django.db.models import Q
+from django.forms import DateField
 from studenteats.models import AdminDetails, User,Recipe,Restaurant,Deals,Discussion,Discussion_Replies,Restaurant_Comments,Recipe_Comments
+
 
 # Create your views here.
 def index(request): 
@@ -37,12 +39,14 @@ def recipe(request):
     context_dict = {'Recipe':Recipe_List,'Most_Popular_Recipe':Most_Popular_Recipe_List}
     return render(request, 'studenteats/recipe.html', context=context_dict)
 
+
 def recipeHome(request): 
     context_dict = {}
     context_dict['popular_recipes'] = Recipe.objects.order_by('Likes')[0:6]
    # context_dict['recipeWeek'] = AdminDetails.objects.first().recipeWeek
     context_dict['search'] = Recipe.objects.all()
     return render(request, 'studenteats/recipeHome.html', context=context_dict)
+
 
 def search_recipes(request):
     if request.method =="POST":
@@ -66,27 +70,58 @@ def show_recipes(request,Recipe_id):
     return render(request, 'studenteats/events/show_recipes.html', context_dict)
 
 
-def forum(request): 
+def forum(request,state=0): 
     Discussion_like = Discussion.objects.order_by('-Likes')[:3]
     Discussion_view = Discussion.objects.order_by('-Views')[:3]
     Discussion_createdtime = Discussion.objects.order_by('-Created_Time')[:3]
+    
     context_dict = {}
-    context_dict['Discussionslike']=Discussion_like
-    context_dict['Discussionsview']=Discussion_view
-    context_dict['Discussionscreatetime']=Discussion_createdtime
+
+    if (state==0):
+        context_dict['Discussions']=Discussion_like
+    elif(state==1):
+        context_dict['Discussions']=Discussion_view
+    else:
+        context_dict['Discussions']=Discussion_createdtime
+
     return render(request, 'studenteats/forum.html', context=context_dict)
 
 def discussion_detail(request,discussion_ID):
-    try:
-        discussion=Discussion.objects.get(Discussion_ID=discussion_ID)
-        reply=Discussion_Replies.objects.filter(Discussion_ID=discussion_ID)
-    except Discussion.DoesNotExist:
-        discussion = None
-    context_dict={'discussion':discussion}
-    context_dict={'reply':reply}
 
+    discussion=Discussion.objects.filter(Discussion_ID=discussion_ID)
+    reply=Discussion_Replies.objects.filter(Discussion_ID=discussion_ID)
+    discussion=list(discussion)
+    reply=list(reply)
+
+    context_dict={}
+    context_dict={'discussion':discussion,'reply':reply}
+    current_discussion=discussion[0].Discussion_ID 
+    request.session['diss_id'] = current_discussion #设置diss_id 存到session里
+
+    print(context_dict)
 
     return render(request,'studenteats/discussion_detail.html',context=context_dict)
+
+def add_comments(request):
+    diss_id=request.session.get('diss_id')
+    user_id=request.user.id
+    context_dict={}
+    context_dict={'diss_id':diss_id,'user_id':user_id}
+    return render(request,'studenteats/add_comments.html',context=context_dict)
+
+def save_comments(request):
+    if request.method =="POST":
+        diss_id=request.session.get('diss_id')
+        user_id=request.user.id
+        rep_id=request.POST.get('rep_id')
+        description=request.POST.get('description')
+        create_time=DateField()
+        likes=0.0
+        reply=Discussion_Replies(Description=description,User_ID=user_id,Created_Time=create_time,Likes=likes,Post_ID=rep_id,Discussion_ID=diss_id)
+
+        return redirect(reverse('studenteats:forum'))
+    else:
+        return redirect(reverse('studenteats:forum'))
 
 
 def help(request): 
