@@ -1,62 +1,28 @@
 {% extends 'studenteats/base.html' %}
 {% load staticfiles %}
 
-{% block body_block %} 
+{% block outside_block %}
+<link href="{% static 'custom/showRecipe.css' %}" rel="stylesheet">
+<script src="{% static 'js/script.js' %}"></script>
 
-<style type="text/css">
-    body{
-        margin:0;
-
-        font-family: 'Quicksand',sans-serif;
-        font-weight: bold;
-        font-size: 20px;
-    }
-    .container {
-        width:100vw;
-        height:100vh;
-
-        display:grid;
-        grid-template-columns: 1fr;
-        grid-template-rows: 50px 50px 1fr 50px 70px;
-
-        gap:10px;
-        padding: 10px;
-
-        box-sizing: border-box;
-    }
-    .container div {
-        padding: 10px;
-        border: 1px solid;
-    }
-</style>
-
-    <center>
-    <div class="container">
-        <div> Title: 
-        {{recipe.Title}} </br>
+<div class="main-wrapper">
+    <div class="recipe-page-wrapper">
+        <div class="recipe-page-title">
+            <h2>{{ recipe.Title }}</h2>
         </div>
-
-        <div> 
-            Cuisine:
-            {{recipe.Cuisine}}</br>
-        </div>
-
-        <div> 
-        Content:
-        {{recipe.Content}}</br>
-        </div>
-
-        <div> 
-        Tags:
-        {{recipe.Tags}}</br>
-        </div>
-
-        <div> 
-        <small> Create Date:{{recipe.Created_Date}}</br>
-                Owner:{{recipe.Owner}}
-                Likes:{{recipe.Likes}}</br></small>
+        {% if recipe.Image %}
+        {{ recipe.Image }}
+        {% endif %}
+        <p>{{ recipe.Content }}</p>
+        <div id="like" onclick="likeClick()">
+            <i class="fa fa-heart-o" id="like-icon" aria-hidden="true" style="color:black"></i>
+            <p>{{ recipe.Likes}}</p>
         </div>
     </div>
-    </center>
-
+    <div class="author">
+        <img src="{% static 'images/user.png' %}">
+        <h5>{{recipe.Owner.name}}</h5>
+        <h6>No of posts: {{count}}</h6>
+    </div>
+</div>
 {% endblock %}

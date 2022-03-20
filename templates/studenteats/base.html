@@ -13,6 +13,8 @@
         {% endblock %}
     </title>
     <meta charset="utf-8">
+
+    <link rel="shortcut icon" type="image/jpg" href="{% static 'images/logo.jpg' %} "sizes="32x32" />
     <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
     <link href="{% static 'css/custom.css' %}" rel="stylesheet">
     <link href="{% static 'custom/base.css' %}" rel="stylesheet">
@@ -58,7 +60,7 @@
             padding: 14px 24px;
         }
 
-        .masthead{
+        .masthead {
             display: flex;
             justify-content: center;
         }
@@ -88,8 +90,8 @@
             border-right: 1px solid rgba(0, 0, 0, .1);
         }
 
-        .navbar .nav li a:hover{
-            color:#198753;
+        .navbar .nav li a:hover {
+            color: #198753;
         }
 
         .navbar .nav li:first-child a {
@@ -120,6 +122,8 @@
         href="{% static 'assets/ico/apple-touch-icon-72-precomposed.png' %}">
     <link rel="apple-touch-icon-precomposed" href="{% static 'assets/ico/apple-touch-icon-57-precomposed.png' %}">
     <link rel="shortcut icon" href="{% static 'assets/ico/favicon.png">
+    <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css'>            
+
 
 
 
@@ -128,18 +132,16 @@
 <body class="h-100 d-flex flex-column min-vh-100 pb-5  main-background">
     <div class="container-fluid">
         <div>
-            {% block login_link %}
+        {% block login_link %}
             {% if user.is_authenticated %}
-            <!-- add user specific once user model created-->
-            <a class="header-footer-link" href="{% url 'studenteats:profile' %}">
-                <h4>My Profile</h4>
-            </a>
+                <!-- add user specific once user model created-->
+                <a class="header-footer-link" href="{% url 'studenteats:profile' user.username %}"><h4>My Profile</h4></a>
+                <a class="header-footer-link" href="{% url 'studenteats:logout' %}"><h4>Log out</h4></a>
             {% else %}
-            <a class="header-footer-link" href="{% url 'studenteats:login' %}">Log In or Register</a>
+                <a class="header-footer-link" href="{% url 'studenteats:login' %}">Log In or Register</a>
             {% endif %}
-            {% endblock %}
+        {% endblock %}
         </div>
-
         <div>
             {% block header_block %}
             <h1 class="header text-center mt-4"><strong>Student Eats</strong></h1>
@@ -157,7 +159,7 @@
                             <li><a href="{% url 'studenteats:recipe' %}">Recipe Home</a></li>
                             <li class="active"><a href="{% url 'studenteats:forum' %}">Forum</a></li>
                             <li><a href="{% url 'studenteats:about' %}">About</a></li>
-                            <li><a href="{% url 'studenteats:profile' %}">My Profile</a></li>
+                            <!--<li><a href="{% url 'studenteats:profile' %}">My Profile</a></li>-->
                         </ul>
                     </div>
                 </div>
@@ -168,16 +170,18 @@
         {% block body_block %}
         {% endblock %}
 
-        {% block outside_block %}
-        {% endblock %}
-        {% block footer_block %}
-        <div class="navbar fixed-bottom pull-right">
-            <a class="header-footer-link" href="{% url 'studenteats:help' %}"></i>Need Help?</a><i
-                class="bi bi-question-circle"></i>
-        </div>
-        {% endblock %}
-
     </div>
+
+    {% block outside_block %}
+    {% endblock %}
+    {% block footer_block %}
+    <div class="navbar fixed-bottom pull-right">
+        <a class="header-footer-link" href="{% url 'studenteats:help' %}"></i>Need Help?</a><i
+            class="bi bi-question-circle"></i>
+    </div>
+    {% endblock %}
+
+
     <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
     <script async defer
         src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBRsiOKNB6sDvJz3e-WdW3B4e9OnGJjkMM&callback=initMap">

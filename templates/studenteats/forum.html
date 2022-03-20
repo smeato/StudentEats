@@ -157,7 +157,7 @@
     <div class="container">
       {% if user.is_authenticated %}
       <!-- add user specific once user model created-->
-      <a class="header-footer-link" href="{% url 'studenteats:profile' %}"><h4 ><div class="p">My Profile</div></a>
+      <a class="header-footer-link" href="{% url 'studenteats:profile' user.username %}"><h4 ><div class="p">My Profile</div></a>
       {% else %} 
       <a class="header-footer-link" href="{% url 'studenteats:login' %}">Log In or Register</a>
       {% endif %} 

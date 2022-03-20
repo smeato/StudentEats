@@ -13,7 +13,7 @@
             <ul class="list-group list-group-flush">
                 {% for r in popular_recipes %}
                 <li class="list-group-item">
-                    <a class='dec-removal' href="/">{{r.Title}}
+                    <a class='dec-removal' href="{% url 'studenteats:show_recipes' r.Recipe_ID %}">{{r.Title}}
                 </li></a> {% endfor %}
             </ul>
         </div>
@@ -41,7 +41,8 @@
             <div class=" card-body ">
                 <h6>
                     {% if recipeWeek %}
-                        <a class='dec-removal' href="/">{{recipeWeek.Title}}</a></h6>
+                    <a class='dec-removal' href="/">{{recipeWeek.Title}}</a>
+                </h6>
                 </h6>
                     {% else %}
                         <a class='dec-removal' href="/">Coming soon!!</a>

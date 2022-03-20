@@ -1,20 +1,22 @@
-from pickle import TRUE
-from tkinter import CASCADE
 from django.db import models
+from django.contrib.auth.models import User
 
 
-class User(models.Model):
-    User_ID = models.IntegerField(default=0, unique=True)    
-    Name = models.CharField(max_length=128)
-    Email = models.TextField(max_length=1000)
-    Password = models.CharField(max_length=200)
-    Location = models.TextField(max_length=200)
-    Role = models.CharField(max_length=20)
-    Profile_Picture_Path = models.ImageField(upload_to="media",null=True)
-
-    
-    def __str__(self): 
-        return self.Name
+class UserProfile(models.Model):
+    user = models.OneToOneField(User,on_delete=models.CASCADE,related_name='profile')
+    name = models.CharField(max_length=128,blank=True)
+    telephone = models.CharField('Telephone',max_length=50,blank=True)
+    birthday = models.DateTimeField('Last modified', auto_now=True)
+    email = models.TextField(max_length=1000)
+    university = models.CharField('university',max_length=50,blank=True)
+    password = models.CharField(max_length=200)
+    location = models.CharField('location',max_length=50,blank=True)
+    role = models.CharField(max_length=20)
+    picture= models.ImageField(upload_to="profile_image",blank=True)
+    website= models.URLField(blank=True)
+   
+    def __str__(self):
+        return self.name
 
 class Recipe(models.Model):
     Recipe_ID = models.IntegerField(default=0, unique=True) 
@@ -23,7 +25,7 @@ class Recipe(models.Model):
     Tags = models.CharField(max_length=128,null=True)
     Cuisine=models.CharField(max_length=20)
     Created_Date=models.DateTimeField(blank=True)
-    Owner=models.ForeignKey(User,on_delete=models.CASCADE)
+    Owner=models.ForeignKey(UserProfile,on_delete=models.CASCADE)
     Likes=models.IntegerField(default=0)
 
     def __str__(self): 
@@ -47,7 +49,7 @@ class Restaurant(models.Model):
     Description=models.TextField(max_length=1000)
     Tags=models.CharField(max_length=128)
     Cuisine=models.CharField(max_length=20)
-    Owner=models.ForeignKey(User,on_delete=models.CASCADE)
+    Owner=models.ForeignKey(UserProfile,on_delete=models.CASCADE)
     Res_Deals=models.ForeignKey(Deals, null=True, blank=True,on_delete=models.CASCADE)
     Likes=models.IntegerField(default=0)
     Latitude = models.FloatField(default=0.0)
@@ -64,7 +66,7 @@ class Discussion(models.Model):
     Title=models.CharField(max_length=128)
     Description=models.TextField(max_length=1000)
     Created_Time=models.DateTimeField()
-    User_ID=models.ForeignKey(User,on_delete=models.CASCADE)
+    User_ID=models.ForeignKey(UserProfile,on_delete=models.CASCADE)
     Views=models.IntegerField(default=0)
     Likes=models.IntegerField(default=0)
     
@@ -74,7 +76,7 @@ class Discussion(models.Model):
 
 class Discussion_Replies(models.Model):
     Description=models.TextField(max_length=1000)
-    User_ID=models.ForeignKey(User,on_delete=models.CASCADE)
+    User_ID=models.ForeignKey(UserProfile,on_delete=models.CASCADE)
     Created_Time=models.DateTimeField()
     Likes=models.IntegerField(default=0)
     Post_ID=models.IntegerField(default=0,unique=True)
@@ -89,7 +91,7 @@ class Discussion_Replies(models.Model):
 
 class Restaurant_Comments(models.Model):
     Description=models.TextField(max_length=1000)
-    User_ID=models.ForeignKey(User,on_delete=models.CASCADE)
+    User_ID=models.ForeignKey(UserProfile,on_delete=models.CASCADE)
     Created_Time=models.DateTimeField()
     Likes=models.IntegerField(default=0)
     Comment_ID=models.IntegerField(default=0,unique=True)
@@ -104,7 +106,7 @@ class Restaurant_Comments(models.Model):
 
 class Recipe_Comments(models.Model):
     Description=models.TextField(max_length=1000)
-    User_ID=models.ForeignKey(User,on_delete=models.CASCADE)
+    User_ID=models.ForeignKey(UserProfile,on_delete=models.CASCADE)
     Created_Time=models.DateTimeField()
     Likes=models.IntegerField(default=0)
     Comment_ID=models.IntegerField(default=0,unique=True)

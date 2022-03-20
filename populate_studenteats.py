@@ -7,7 +7,7 @@ os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'iTECH_Group.settings')
 import django
 django.setup()
  
-from studenteats.models import User,Recipe,Restaurant,Deals,Discussion,Discussion_Replies,Restaurant_Comments,Recipe_Comments
+from studenteats.models import User,Recipe,Restaurant,Deals,Discussion,Discussion_Replies,Restaurant_Comments,Recipe_Comments, UserProfile
 
 def populate():
     User_profiles = [
@@ -524,17 +524,19 @@ def populate():
 
 
 def add_User(User_ID,Name,Email,Password,Location,Role,Profile_Picture_Path):
-    a = User.objects.get_or_create(User_ID=User_ID, Name=Name, Email=Email,Password=Password,Location=Location,Role=Role,Profile_Picture_Path=Profile_Picture_Path)[0]
+    u=User.objects.create(username=User_ID)
+    u.save()
+    a = UserProfile.objects.get_or_create(user=u, name=Name,email=Email,password=Password,location=Location,role=Role,picture=Profile_Picture_Path)[0]
     a.save()
     return a
 
 def add_Recipe(Recipe_ID,Title,Content,Tags,Cuisine,Created_Date,Owner,Likes):
-    b = Recipe.objects.get_or_create(Recipe_ID=Recipe_ID, Title=Title, Content=Content, Tags=Tags, Cuisine=Cuisine, Created_Date=Created_Date, Owner=User.objects.get(User_ID=Owner), Likes=Likes)[0]
+    b = Recipe.objects.get_or_create(Recipe_ID=Recipe_ID, Title=Title, Content=Content, Tags=Tags, Cuisine=Cuisine, Created_Date=Created_Date, Owner=UserProfile.objects.get(id=Owner), Likes=Likes)[0]
     b.save()
     return b
 
 def add_Restaurant(Restaurant_ID,Name,Description,Tags,Cuisine,Owner,Res_Deals,Likes,Latitude, Longitude, Place):
-    c =Restaurant.objects.get_or_create(Restaurant_ID=Restaurant_ID,Name=Name,Description=Description,Tags=Tags,Cuisine=Cuisine,Owner=User.objects.get(User_ID=Owner), Res_Deals=Deals.objects.get(Deal_ID=Res_Deals),Likes=Likes, Latitude=Latitude, Longitude=Longitude, Place=Place)[0]
+    c =Restaurant.objects.get_or_create(Restaurant_ID=Restaurant_ID,Name=Name,Description=Description,Tags=Tags,Cuisine=Cuisine,Owner=UserProfile.objects.get(id=Owner), Res_Deals=Deals.objects.get(Deal_ID=Res_Deals),Likes=Likes, Latitude=Latitude, Longitude=Longitude, Place=Place)[0]
     c.save()
     return c
 
@@ -544,22 +546,22 @@ def add_Deals(Deal_ID,Name,Description,Last_Date):
     return d
 
 def add_Discussion(Discussion_ID,Title,Description,Created_Time,Owner,Views, Likes):
-    e=Discussion.objects.get_or_create(Discussion_ID=Discussion_ID,Title=Title,Description=Description,Created_Time=Created_Time,User_ID=User.objects.get(User_ID=Owner),Views=Views, Likes=Likes)[0]
+    e=Discussion.objects.get_or_create(Discussion_ID=Discussion_ID,Title=Title,Description=Description,Created_Time=Created_Time,User_ID=UserProfile.objects.get(id=Owner),Views=Views, Likes=Likes)[0]
     e.save()
     return e
 
 def add_Discussion_Replies(Description,Owner,Created_Time,Likes,Post_ID,Discussion_ID):
-    f = Discussion_Replies.objects.get_or_create(Description=Description,User_ID=User.objects.get(User_ID=Owner),Created_Time=Created_Time,Likes=Likes,Post_ID=Post_ID,Discussion_ID=Discussion.objects.get(Discussion_ID=Discussion_ID))[0]
+    f = Discussion_Replies.objects.get_or_create(Description=Description,User_ID=UserProfile.objects.get(id=Owner),Created_Time=Created_Time,Likes=Likes,Post_ID=Post_ID,Discussion_ID=Discussion.objects.get(Discussion_ID=Discussion_ID))[0]
     f.save()
     return f
 
 def add_Restaurant_Comments(Description,Owner,Created_Time,Likes,Comment_ID,Restaurant_ID):
-    g=Restaurant_Comments.objects.get_or_create(Description=Description,User_ID=User.objects.get(User_ID=Owner),Created_Time=Created_Time,Likes=Likes,Comment_ID=Comment_ID,Restaurant_ID=Restaurant.objects.get(Restaurant_ID=Restaurant_ID))[0]
+    g=Restaurant_Comments.objects.get_or_create(Description=Description,User_ID=UserProfile.objects.get(id=Owner),Created_Time=Created_Time,Likes=Likes,Comment_ID=Comment_ID,Restaurant_ID=Restaurant.objects.get(Restaurant_ID=Restaurant_ID))[0]
     g.save()
     return g
 
 def add_Recipe_Comments(Description,Owner,Created_Time,Likes,Comment_ID,Recipe_ID):
-    h=Recipe_Comments.objects.get_or_create(Description=Description,User_ID=User.objects.get(User_ID=Owner),Created_Time=Created_Time,Likes=Likes,Comment_ID=Comment_ID,Recipe_ID=Recipe.objects.get(Recipe_ID=Recipe_ID))[0]
+    h=Recipe_Comments.objects.get_or_create(Description=Description,User_ID=UserProfile.objects.get(id=Owner),Created_Time=Created_Time,Likes=Likes,Comment_ID=Comment_ID,Recipe_ID=Recipe.objects.get(Recipe_ID=Recipe_ID))[0]
     h.save()
     return h
 

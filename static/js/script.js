@@ -1,6 +1,9 @@
-function recipeClick() {
-    var url = document.getElementById('url').getAttribute('data');
-    window.location.assign(url)
+function likeClick() {
+    console.log(document.getElementById("like-icon").style.color);
+    if (document.getElementById("like-icon").style.color == "black")
+        document.getElementById("like-icon").style = "color:red";
+    else
+    document.getElementById("like-icon").style.color = "black"
 }
 
 function restaurantClick() {
