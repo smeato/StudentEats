@@ -132,18 +132,16 @@
 <body class="h-100 d-flex flex-column min-vh-100 pb-5  main-background">
     <div class="container-fluid">
         <div>
-            {% block login_link %}
+        {% block login_link %}
             {% if user.is_authenticated %}
-            <!-- add user specific once user model created-->
-            <a class="header-footer-link" href="{% url 'studenteats:profile' %}">
-                <h4>My Profile</h4>
-            </a>
+                <!-- add user specific once user model created-->
+                <a class="header-footer-link" href="{% url 'studenteats:profile' user.username %}"><h4>My Profile</h4></a>
+                <a class="header-footer-link" href="{% url 'studenteats:logout' %}"><h4>Log out</h4></a>
             {% else %}
-            <a class="header-footer-link" href="{% url 'studenteats:login' %}">Log In or Register</a>
+                <a class="header-footer-link" href="{% url 'studenteats:login' %}">Log In or Register</a>
             {% endif %}
-            {% endblock %}
+        {% endblock %}
         </div>
-
         <div>
             {% block header_block %}
             <h1 class="header text-center mt-4"><strong>Student Eats</strong></h1>
@@ -161,7 +159,7 @@
                             <li><a href="{% url 'studenteats:recipe' %}">Recipe Home</a></li>
                             <li class="active"><a href="{% url 'studenteats:forum' %}">Forum</a></li>
                             <li><a href="{% url 'studenteats:about' %}">About</a></li>
-                            <li><a href="{% url 'studenteats:profile' %}">My Profile</a></li>
+                            <!--<li><a href="{% url 'studenteats:profile' %}">My Profile</a></li>-->
                         </ul>
                     </div>
                 </div>
