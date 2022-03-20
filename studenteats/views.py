@@ -1,4 +1,5 @@
 from pdb import Restart
+from pyexpat.errors import messages
 from django.db.models import Q
 from studenteats.models import AdminDetails, User,Recipe,Restaurant,Deals,Discussion,Discussion_Replies,Restaurant_Comments,Recipe_Comments
 import datetime
@@ -16,6 +17,7 @@ from django.views import View
 from django.utils.decorators import method_decorator
 from studenteats.forms import UserForm, UserProfileForm
 from django.http import HttpResponseRedirect
+from django.contrib.messages import add_message
 
 
 # Create your views here.
@@ -138,8 +140,7 @@ def profile(request):
         if form.is_valid():
             form.save()
             username=request.user.username
-            #message.success(request,f'{username},Your Profile is update.')
-            return redirect('/')
+            return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
         else:
             form=UserProfileForm(instance=request.user.profile)
     

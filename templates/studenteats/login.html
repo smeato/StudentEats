@@ -7,19 +7,16 @@
 {% endblock %}
 {% block body_block %}
 <link rel="stylesheet" type="text/css" href="{% static 'custom/login.css' %}">
-<div>
-    <body background="{% static 'images/place.jpg' %}" alt="An image of a laptop" class="card-img-bottom">
-</div>
 
-<div class="row">
-  <div class="login col-sm-5 px-4 mt-3">
-      <div class="card bg-success text-center px-3 mt-2 h-100">
+<div class="row justify-content-md-center">
+  <div class="login col-sm-6 px-4 mt-3" style="width: 30rem;">
+      <div class="card bg-success text-center px-3 mt-2 mh-100">
         <div class="card-body">
-        <h1>Login to Student Eats</h1>
+        <h3>Login to Student Eats</h3>
         <strong> Welcome Back!</strong>
         <form id="login_form" method="post" action="{% url 'studenteats:login' %}">
             {% csrf_token %}
-        <img src="{% static 'images/breakfast.jpg' %}" alt="An image of a recipe book" class="card-img-bottom">
+        <img src="{% static 'images/breakfast.jpg' %}" alt="An image of a recipe book" class="card-img-bottom" style="width: 20rem;">
         <hr>
         <label for="inputUsername" class="se-only">Username</label>
         <input type="text" name="username" id="id_username" class="form-control" placeholder="Username" required autofocus>
@@ -36,30 +33,30 @@
 </div>
   
 
-<div class="register col-sm-5 px-4 mt-3">
-  <div class="card bg-danger text-center px-3 mt-2 h-100">
+<div class="register col-sm-6 px-4 mt-3">
+  <div class="card bg-danger text-center px-3 mt-2 h-100"  style="width: 35rem;">
       <div class="card-body">
-      <h1>Register For Student Eats</h1>
+      <h3>Register </h3>
       {% if registered %}
       <strong> Register successfully!</strong>
-      <a href="{% url 'studenteats:login' %}"please login!</a><br />
+      <a href="{% url 'studenteats:login' %}"please login!></a><br />
       {% else %}
       <strong> Join the Community!</strong>
       
-      <div class="form-group">
+      <div class="form-group h-100"  style="width: 30rem;">
       <form id="user_form" method="post" action="{% url 'studenteats:register' %}" enctype="multipart/form-data">
         {% csrf_token %}
        
-        <img src="{% static 'images/AliInayUnsplash.jpg' %}" alt="An image of a recipe book" class="card-img-bottom">
+        <img src="{% static 'images/AliInayUnsplash.jpg' %}" alt="An image of a recipe book" class="justify-content-md-center" style="width:20rem;">
         <hr>
         
-        <tr {{user_form.as_p}}</tr>
-        <tr {{profile_form.as_p}} </tr>
+        <tr> {{user_form.as_p}}</tr>
+        <tr></tr> {{profile_form.as_p}} </tr>
         
             
         <!--<input type="submit"value="Submit"/>-->
         
-        <button class =="btn btn-lg btn-primary" type="submit" value="Submit">submit</botton>
+        <button class ="btn btn-lg btn-primary" type="submit" value="Submit">I Want to Join</botton>
             
         </div>
     </form>

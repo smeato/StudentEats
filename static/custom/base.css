@@ -19,8 +19,10 @@
 
 .header-footer-link {
     color:coral;
+    size: 3rem !important;
 }
 
 .nav-link {
     color:coral;
 }
+
