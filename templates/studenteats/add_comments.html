@@ -33,9 +33,6 @@
     </head>
 {% endblock %}
 
-{% block navbar_block %}
-
-{% endblock %}
 
 
 
@@ -43,20 +40,17 @@
 {% block body_block %}
 
 <body>
-    <form class="d-flex" method="POST" action="{% url 'studenteats:save_comments'%}">
+  <div class="container">
+    <form method="POST" action="{% url 'studenteats:save_comments'%}">
         {% csrf_token %}
-        <div class="form-group">
             <label for="name">Add a reply for this discussion</label>
             <input  type="text" placeholder="Add your reply" name="description" style="width: 1000px; height: 300px;">
-        </div>
+            <label for="description">Add the Reply_id</label>
+            <input  type="text" placeholder="Set your id" name="rep_id" style="width: 1000px;" >
         <br/>
-        <div class="form-group">
-            <label for="club_description">Add the Reply_id</label>
-            <input  type="text" placeholder="Set your id" name="rep_id" style="width: 1000px;" ></br>
-        </div>
         <button class="btn btn-primary" type="submit" style="font: size 60px;width: 100px;">Save</button>
-        <!-- <a href="{% url 'studenteats:forum' %}" style="text-align: right;">Return</a></button> -->
         <a class="btn btn-primary" href="{% url 'studenteats:forum' %}" style="width: 100px;">Return</a>
     </form>
+  </div>
 </body>
 {% endblock %}
