@@ -1,0 +1,13 @@
+.recipe-profile{
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    align-items: center;
+    height: 50vh;
+    margin-top: 20px;
+}
+
+.jumbotron{
+    margin:0px !important;
+}
+

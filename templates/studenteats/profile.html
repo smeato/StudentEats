@@ -78,6 +78,13 @@
     </div>
 </div>
 </div>
+{% endblock %}
 
+{% block outside_block %}
+<link href="{% static 'custom/profile.css' %}" rel="stylesheet">
+<div class="recipe-profile">
+    <a class="btn btn-primary" href="{% static 'studenteats:add-recipe' %}" role="button">Add Recipe</a>
+    <a class="btn btn-primary" href="{% static 'studenteats:delete-recipe' %}" role="button">Delete Recipe</a>
+</div>
 {% endblock %}
 
