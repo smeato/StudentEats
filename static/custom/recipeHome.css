@@ -1,0 +1,74 @@
+.recipe-wrapper {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 30px;
+    padding-top: 25px;
+}
+
+.card-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.dec-removal {
+    text-decoration: none!important;
+    color: black !important;
+}
+
+.list-group-item:hover {
+    background-color: #ffc3ae;
+    /* background-color: rgb(250, 199, 151); */
+}
+
+.list-group-item,
+.search-recipe-week .card .card-body {
+    text-align: center;
+    padding: 1rem 1rem;
+}
+
+.search-recipe-week h5 {
+    color: #198753;
+}
+
+.search-recipe-week .card {
+    /* background-color: #dc3444; */
+    background-color: coral;
+}
+
+.search-recipe-week .card .card-header {
+    padding: 0;
+}
+
+.search-recipe-week .card,
+.search-recipe-week .card .card-header img {
+    width: 25rem;
+}
+
+.search-recipe-week {
+    display: flex!important;
+    flex-direction: column;
+    justify-content: space-around;
+    gap: 10px;
+}
+
+.list-wrapper {
+    padding-top: 3%;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap:20px;
+}
+
+.list-wrapper .card .card-header img {
+    width: 5%;
+}
+
+.list-wrapper .card-title{
+    color: coral !important;
+}
+
+button {
+    border: none !important;
+}
