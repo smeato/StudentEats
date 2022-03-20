@@ -34,17 +34,18 @@ def restaurant(request):
     context_dict['popular_restaurants'] = Restaurant.objects.order_by('Likes')[
         0:6]
     if AdminDetails.objects.first() != None:
-        context_dict['restaurantWeek'] = AdminDetails.objects.first().restaurantWeek
+        context_dict['restaurantWeek'] = AdminDetails.objects.first(
+        ).restaurantWeek
     context_dict['search'] = Restaurant.objects.all()
     return render(request, 'studenteats/restaurant.html', context=context_dict)
 
 
-def recipe(request):
-    Recipe_List = Recipe.objects.all()
-    Most_Popular_Recipe_List = Recipe.objects.order_by('Likes')[0:10]
-    context_dict = {'Recipe': Recipe_List,
-                    'Most_Popular_Recipe': Most_Popular_Recipe_List}
-    return render(request, 'studenteats/recipe.html', context=context_dict)
+# def recipe(request):
+#     Recipe_List = Recipe.objects.all()
+#     Most_Popular_Recipe_List = Recipe.objects.order_by('Likes')[0:10]
+#     context_dict = {'Recipe': Recipe_List,
+#                     'Most_Popular_Recipe': Most_Popular_Recipe_List}
+#     return render(request, 'studenteats/recipe.html', context=context_dict)
 
 
 def recipeHome(request):
@@ -53,6 +54,7 @@ def recipeHome(request):
     if AdminDetails.objects.first() != None:
         context_dict['recipeWeek'] = AdminDetails.objects.first().recipeWeek
     context_dict['search'] = Recipe.objects.all()
+    context_dict['link'] = "studeneats:show_recipes"
     return render(request, 'studenteats/recipeHome.html', context=context_dict)
 
 
@@ -71,13 +73,11 @@ def search_recipes(request):
 
 
 def show_recipes(request, Recipe_id):
-    print(Recipe_id)
-    recipe = Recipe.objects.filter(Recipe_ID=Recipe_id)
-    print(recipe)
     context_dict = {}
-    # only one recipe is to be displayed
-    context_dict['recipe'] = list(recipe)[0]
-    return render(request, 'studenteats/events/show_recipes.html', context_dict)
+    recipe = Recipe.objects.filter(Recipe_ID=Recipe_id)[0]
+    context_dict['recipe'] = recipe
+    context_dict['count'] = Recipe.objects.filter(Owner__User_ID=recipe.Owner.User_ID).count()
+    return render(request, 'studenteats/show_recipes.html', context=context_dict)
 
 
 def forum(request, state=0):
