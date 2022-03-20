@@ -6,6 +6,20 @@ from django.urls import reverse
 from django.db.models import Q
 from django.forms import DateField
 from studenteats.models import AdminDetails, User, Recipe, Restaurant, Deals, Discussion, Discussion_Replies, Restaurant_Comments, Recipe_Comments
+from django.shortcuts import render, redirect, get_object_or_404
+from django.urls import reverse
+from django.forms import DateField
+from studenteats.models import AdminDetails, UserProfile, Recipe, Restaurant, Deals, Discussion, Discussion_Replies, Restaurant_Comments, Recipe_Comments
+from django.contrib.auth import authenticate, login, logout
+from django.http import HttpResponse
+from django.urls import reverse
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth.models import User
+from django.views import View
+from django.utils.decorators import method_decorator
+from studenteats.forms import UserForm, UserProfileForm
+from django.http import HttpResponseRedirect
+from django.utils.decorators import method_decorator
 
 
 # Create your views here.
@@ -14,16 +28,127 @@ def index(request):
     return render(request, 'studenteats/index.html', context=context_dict)
 
 
-def login(request):
-    context_dict = {}
-    return render(request, 'studenteats/login.html', context=context_dict)
+def register(request):
+    registered = False
+
+    if request.method == 'POST':
+        user_form = UserForm(request.POST)
+        profile_form = UserProfileForm(request.POST)
+
+        if user_form.is_valid() and profile_form.is_valid():
+            user = user_form.save()
+            user.set_password(user.password)
+            user.save()
+
+            profile = profile_form.save(commit=False)
+            profile.user = user
+
+            if 'picture' in request.FILES:
+                profile.picture = request.FILES['picture']
+            
+            profile.save()
+            registered = True
+        else:
+            print(user_form.errors, profile_form.errors)
+    else:
+        user_form = UserForm()
+        profile_form = UserProfileForm()
+    
+    return render(request, 'studenteats/login.html', context={'user_form': user_form, 'profile_form': profile_form, 'registered': registered})
+    
+def user_login(request):
+    if request.method == 'POST':
+        username = request.POST.get('username')
+        password = request.POST.get('password')
+
+        user = authenticate(username=username, password=password)
+
+        if user:
+            if user.is_active:
+                login(request, user)
+                return redirect(reverse('studenteats:index'))
+            else:
+                return HttpResponse("Your Account account is disabled.")
+        else:
+            print(f"Invalid login details: {username}, {password}")
+            return HttpResponse("Invalid login details supplied.")
+    else:
+        return render(request, 'studenteats/login.html')
+
+        
+@login_required
+def user_logout(request):
+    logout(request)
+    return redirect(reverse('studenteats:index'))
+
+def some_view(request):
+    
+    if not request.user.is_authenticated():
+        return HttpResponse("You are logged in.")
+    else:
+        return HttpResponse("You are not logged in.")
+        
+class ProfileView(View):
+    def get_user_details(self,username):
+        try:
+            user=User.objects.get(username=username)
+        except User.DoesNotExist:
+           return None
+        user_profile=UserProfile.objects.get_or_create(user=user)[0]
+        form=UserProfileForm({'website':user_profile.website,'picture':user_profile.picture})
+        
+        return(user,user_profile,form)
+        
+    @method_decorator(login_required)
+    def get(self,request,username):
+        try:
+            (user,user_profile,form)=self.get_user_details(username)
+        except TypeError:
+            return redirect(reverse('studenteats:index'))
+            
+        context_dict={'user_profile':user_profile,
+                     'selected_user':user,
+                     'form':form}
+                    
+        return render(request,'studenteats/profile.html',context_dict)
+        
+    @method_decorator(login_required)
+    def post(self,request,username):
+        try:
+            (user,user_profile, form)= self.get_user_details(username)
+        except TypeError:
+            return redirect(reverse('student:index'))
+            
+        form = UserProfileForm(request.POST,request.FILES,instance=user_profile)
+        if form.is_valid():
+            form.save(commit=True)
+            return redirect('studenteats:profile',user.username)
+        else:
+            print(form.errors)
+        
+        context_dict = {'user_profile':user_profile,
+                     'selected_user':user,
+                     'form':form}
+                     
+        return render(request,'studenteats/profile.html',context_dict)
+                     
 
 
+@login_required
 def profile(request):
-    context_dict = {}
-    return render(request, 'studenteats/profile.html', context=context_dict)
-
-
+    print(request)
+    if request.method=="POST":
+        form=UserProfileForm(request.POST, request.FILES,instance=request.user.profile)
+        if form.is_valid():
+            form.save()
+            username=request.user.username
+            #message.success(request,f'{username},Your Profile is update.')
+            return redirect('/')
+        else:
+            form=UserProfileForm(instance=request.user.profile)
+    
+        return render(request,'studenteats/profile.html',{'form':form})
+    
 def about(request):
     context_dict = {}
     return render(request, 'studenteats/about.html', context=context_dict)
@@ -76,7 +201,7 @@ def show_recipes(request, Recipe_id):
     context_dict = {}
     recipe = Recipe.objects.filter(Recipe_ID=Recipe_id)[0]
     context_dict['recipe'] = recipe
-    context_dict['count'] = Recipe.objects.filter(Owner__User_ID=recipe.Owner.User_ID).count()
+    context_dict['count'] = Recipe.objects.filter(Owner__id=recipe.Owner.id).count()
     return render(request, 'studenteats/show_recipes.html', context=context_dict)
 
 

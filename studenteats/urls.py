@@ -6,8 +6,12 @@ app_name = 'studenteats'
 
 urlpatterns = [
     path('', views.index, name='index'),
-    path('login/', views.login, name='login'),
+    path('register/',views.register,name='register'),
+    path('login/', views.user_login, name='login'),
+    path('logout/', views.user_logout, name='logout'),
+    path('profile/<username>/',views.ProfileView.as_view(),name='profile'),
     path('profile/', views.profile, name='profile'),
+    
     path('restaurant/', views.restaurant, name='restaurant'), 
     path('restaurant/<place>/', views.getCoordinates, name='get-coordinates'),
     path('recipe/', views.recipeHome, name='recipe'),
