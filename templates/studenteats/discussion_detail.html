@@ -83,12 +83,10 @@
               <h1 class="display-4 fst-italic">{{ Discussion.Title }}</h1>
               <p class="col-md-11 fs-4 fst-italic">{{ Discussion.Description}}</p>
               <div class="mb-1">
-              <!--{% if user.is_authenticated %} -->
               <form class="d-flex" method="POST" action="{% url 'studenteats:add_comments'%}">
                 {% csrf_token %}
                 <button class="btn btn-primary btn-lg px-4" type="submit" style="color:white;width:150px">Add Reply</button></form>
-              <!--{% endif %}-->
-
+                <br/>
               <a href="{% url 'studenteats:forum' %}" class="btn btn-primary btn-lg px-4" style="width:150px">Back</a>
               </div>
               {% endfor %}              
