@@ -65,3 +65,10 @@
     width: 5%;
 }
 
+.list-wrapper .card-title{
+    color: coral !important;
+}
+
+button {
+    border: none !important;
+}

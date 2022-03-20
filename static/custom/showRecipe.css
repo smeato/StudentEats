@@ -1,0 +1,53 @@
+.recipe-page-wrapper{
+    display: flex;
+    flex-direction: column;
+    margin-right: 15px;
+    color: black !important;
+    width: 80%;
+
+}
+
+.recipe-page-wrapper h2{
+font-size: xxx-large !important;
+}
+
+.recipe-page-wrapper i{
+    font-size: 25px;
+}
+
+.recipe-page-wrapper i:hover{
+    font-size: 30px;
+    cursor: pointer;
+}
+
+#like{
+    display: flex;
+    flex-direction: row;
+    gap: 5px;
+}
+
+.main-wrapper{
+    display: flex;
+    padding-top: 5%;
+    margin-left: 20%;
+    justify-content: space-between;
+    height: 100%;
+    gap:25px;
+}
+
+.main-wrapper .author img{
+    border-radius: 25px;
+    height: 100px;
+    width:100px;
+    margin-top: 15px;
+}
+
+.main-wrapper .author{
+    background-color: #379683;
+    width: 25%;
+    display: flex;
+    flex-direction: column;
+    color:white;
+    align-items: center;
+    gap:5px;
+}

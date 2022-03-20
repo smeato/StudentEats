@@ -1,5 +1,5 @@
 {% extends 'studenteats/base.html' %}
-{% load staticfiles %} 
+{% load staticfiles %}
 {% block outside_block %}
 <link href="{% static 'custom/recipeHome.css' %}" rel="stylesheet">
 <script src="{% static 'js/script.js' %}"></script>
@@ -13,7 +13,8 @@
             <ul class="list-group list-group-flush">
                 {% for r in popular_recipes %}
                 <li class="list-group-item">
-                    <a class='dec-removal' href="/">{{r.Title}}</li></a> {% endfor %}
+                    <a class='dec-removal' href="{% url 'studenteats:show_recipes' r.Recipe_ID %}">{{r.Title}}
+                </li></a> {% endfor %}
             </ul>
         </div>
     </div>
@@ -22,38 +23,46 @@
         <form method="post" action="{% url 'studenteats:search_recipes'%}">
             {% csrf_token %}
             <div class="input-group rounded">
-                <input  type="text" name="searched" class="form-control rounded" placeholder="Search" aria-label="Search" aria-describedby="search-addon" />
+                <input type="text" name="searched" class="form-control rounded" placeholder="Search" aria-label="Search"
+                    aria-describedby="search-addon" />
                 <span class="input-group-text border-0" id="search-addon">
-                  <!-- <i class="fas fa-search"></i> -->
-                  <button type="submit" id="search-button">
-                    <img height=20px width=15px src="{% static 'images/search.svg' %}">
-                </button>
+                    <!-- <i class="fas fa-search"></i> -->
+                    <button type="submit" id="search-button">
+                        <img height=20px width=15px src="{% static 'images/search.svg' %}">
+                    </button>
                 </span>
             </div>
         </form>
-        
+
         <div class="card text-white">
             <div class="card-header">
                 <img src="{% static 'images/recipe-week.jpeg' %}">
             </div>
             <div class=" card-body ">
                 <h6>
-                    <a class='dec-removal' href="/">{{recipeWeek.Title}}</a></h6>
+                    {% if recipeWeek %}
+                    <a class='dec-removal' href="/">{{recipeWeek.Title}}</a>
+                </h6>
+                </h6>
+                {% else %}
+                <a class='dec-removal' href="/">Coming soon!!</a>
+                {% endif %}
             </div>
         </div>
     </div>
-    <iframe width="400" height="270" src="https://www.youtube.com/embed/Mw-5pQBbZvA" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    <iframe width="400" height="270" src="https://www.youtube.com/embed/Mw-5pQBbZvA" title="YouTube video player"
+        frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+        allowfullscreen></iframe>
 </div>
 <div class="list-wrapper">
     {% for s in search %}
     <div class="card" style="width: 18rem;">
         <img class="card-img-top" src="{{ MEDIA_URL }}recipe_images/test.jpeg" alt="Card image cap">
         <div class="card-body">
-          <h5 class="card-title">{{s.Title}}</h5>
-          <input type="hidden" id="url" data="{% url 'studenteats:forum' %}">
-          <a class="btn btn-primary" id="view-recipe" onclick="recipeClick()">View</a>
+            <h5 class="card-title">{{s.Title}}</h5>
+                <a class="btn btn-primary" id="view-recipe" href="{% url 'studenteats:show_recipes' s.Recipe_ID %}">View</a>
         </div>
-      </div>
+    </div>
     {% endfor %}
 </div>
 {% endblock %}
