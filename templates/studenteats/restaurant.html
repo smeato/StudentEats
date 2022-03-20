@@ -62,11 +62,10 @@ Restaurants
             </div>
         </div>
     </div>
-
-    <hr >
     
     <div class="row-fluid">
-        <div class="col-sm-4 mh-100 mx-4">
+        <hr >
+        <div class="col-sm-3 mh-100 mx-4">
             <h5>Search for a restaurant</h5>
                 <form method="post" action="{% url 'studenteats:search_restaurants'%}">
                     {% csrf_token %}

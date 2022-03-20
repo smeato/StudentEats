@@ -15,7 +15,7 @@
   <div class="login col-sm-5 px-4 mt-3">
       <div class="card bg-success text-center px-3 mt-2 h-100">
         <div class="card-body">
-        <h1>Login to Student Eats</h1>
+        <h2>Login to Student Eats</h2>
         <strong> Welcome Back!</strong>
         <form id="login_form" method="post" action="{% url 'studenteats:login' %}">
             {% csrf_token %}
@@ -39,10 +39,10 @@
 <div class="register col-sm-5 px-4 mt-3">
   <div class="card bg-danger text-center px-3 mt-2 h-100">
       <div class="card-body">
-      <h1>Register For Student Eats</h1>
+      <h2>Register For Student Eats</h2>
       {% if registered %}
       <strong> Register successfully!</strong>
-      <a href="{% url 'studenteats:login' %}"please login!</a><br />
+      <a href="{% url 'studenteats:login' %}"please login!><br />
       {% else %}
       <strong> Join the Community!</strong>
       
@@ -53,13 +53,13 @@
         <img src="{% static 'images/AliInayUnsplash.jpg' %}" alt="An image of a recipe book" class="card-img-bottom">
         <hr>
         
-        <tr {{user_form.as_p}}</tr>
-        <tr {{profile_form.as_p}} </tr>
+        <tr>{{user_form.as_p}}</tr>
+        <tr>{{profile_form.as_p}} </tr>
         
             
         <!--<input type="submit"value="Submit"/>-->
         
-        <button class =="btn btn-lg btn-primary" type="submit" value="Submit">submit</botton>
+        <button class ="btn btn-lg btn-primary" type="submit" value="Submit">Sign me up!</botton>
             
         </div>
     </form>

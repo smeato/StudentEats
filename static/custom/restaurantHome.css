@@ -142,3 +142,8 @@
 button {
     border: none !important;
 }
+
+hr {
+    height: 2px;
+    border: none;
+}
