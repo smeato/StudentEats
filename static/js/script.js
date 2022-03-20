@@ -3,6 +3,11 @@ function recipeClick() {
     window.location.assign(url)
 }
 
+function restaurantClick() {
+    var url = document.getElementById('url').getAttribute('data');
+    window.location.assign(url);
+}
+
 var inputMap, displayMap, locations, markers = [];
 
 function initMap() {
