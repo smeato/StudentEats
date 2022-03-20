@@ -204,6 +204,25 @@ def show_recipes(request, Recipe_id):
     context_dict['count'] = Recipe.objects.filter(Owner__id=recipe.Owner.id).count()
     return render(request, 'studenteats/show_recipes.html', context=context_dict)
 
+def search_restaurants(request):
+    if request.method == "POST":
+        if request.POST['searched'] != '':
+            searched = request.POST['searched']
+            restaurant = Restaurant.objects.filter(Q(Name__icontains=searched) |
+                                            Q(Cuisine__icontains=searched) |
+                                            Q(Tags__icontains=searched))
+            context_dict = {}
+            context_dict['searched'] = searched
+            context_dict['restaurants'] = list(restaurant.all())
+            return render(request, 'studenteats/search_restaurants.html', context_dict)
+    return restaurant(request)
+
+def show_restaurants(request, Restaurant_id):
+    context_dict = {}
+    restaurant = Restaurant.objects.filter(Restaurant_ID=Restaurant_id)[0]
+    context_dict['restaurant'] = restaurant
+    context_dict['count'] = Restaurant.objects.filter(Owner__id=restaurant.Owner.id).count()
+    return render(request, 'studenteats/show_restaurants.html', context=context_dict)
 
 def forum(request, state=0):
     Discussion_like = Discussion.objects.order_by('-Likes')[:3]

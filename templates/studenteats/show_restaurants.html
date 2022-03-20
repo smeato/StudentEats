@@ -1,0 +1,27 @@
+{% extends 'studenteats/base.html' %}
+{% load staticfiles %}
+
+{% block outside_block %}
+<link href="{% static 'custom/showRecipe.css' %}" rel="stylesheet">
+<script src="{% static 'js/script.js' %}"></script>
+
+<div class="main-wrapper">
+    <div class="recipe-page-wrapper">
+        <div class="recipe-page-title">
+            <h2>{{ restaurant.Name }}</h2>
+            <h3>{{ restaurant.Cuisine }}</h3>
+        </div>
+        <p>{{ restaurant.Description }}</p>
+        <p>Tags: {{ restaurant.Tags }}</p> 
+        <p><strong>Student Deal: {{ restaurant.Res_Deals }}</strong></p>
+        <div id="like" onclick="likeClick()">
+            <i class="fa fa-heart-o" id="like-icon" aria-hidden="true" style="color:black"></i>
+            <p>{{ restaurant.Likes}}</p>
+        </div>
+    </div>
+    <div class="author">
+        <img src="{% static 'images/user.png' %}">
+        <h5>{{restaurant.Owner.name}}</h5>
+    </div>
+</div>
+{% endblock %}

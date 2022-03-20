@@ -23,6 +23,8 @@ urlpatterns = [
     path('add_comments/',views.add_comments,name='add_comments'),
     path('save_comments/',views.save_comments,name='save_comments'),
     path('search_recipes/', views.search_recipes, name='search_recipes'),
+    path('search_restaurants/', views.search_restaurants, name='search_restaurants'),
+    path('show_restaurants/<int:Restaurant_id>/',views.show_restaurants, name='show_restaurants'),
     path('discussion_detail/<int:discussion_ID>',views.discussion_detail,name='discussion_detail'),
     path('show_recipes/<int:Recipe_id>/',views.show_recipes, name='show_recipes')
     ]
