@@ -1,72 +1,8 @@
-<!DOCTYPE html> 
+{% extends 'studenteats/base.html' %}
 {% load staticfiles %} 
 
-<html lang="en"> 
- 
-    <head>
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>Forum</title>
-        <meta charset="utf-8">
-        <link href="{% static 'css/bootstrap.css' %}" rel="stylesheet">
-        <script src="{% static 'js/bootstrap.min.js' %}"></script> 
-        
-
-        <link href="{% static 'assets/css/bootstrap.css' %}" rel="stylesheet">
-        <style type="text/css">
-          body {
-            font-family: Georgia, 'Times New Roman', Times, serif;
-            padding-top: 20px;
-            padding-bottom: 60px;
-          }
-    
-
-
-          .title a{
-            color:coral;
-          }
-
-          .BG{
-            min-width: 880px;
-            background:url("{% static 'images/place.jpg' %}")
-          }
-
-          .icon-list {
-            padding-bottom: 50px;
-            list-style: none;
-          }
-          .icon-list li {
-            display: flex;
-            align-items: flex-start;
-            margin-bottom: .25rem;
-          }
-
-
-        </style>
-        <link href="{% static 'assets/css/bootstrap-responsive.css' %}" rel="stylesheet">
-    
-    
-        <!-- Fav and touch icons -->
-        <link rel="shortcut icon" href="{% static 'assets/ico/favicon.png">
-
-    </head>
-    
-
-    <body>
-      <div> 
-        {% if user.is_authenticated %}
-            <!-- If user has login , an additional ADD REPLY Button will diaplay-->
-            <a class="header-footer-link" href="{% url 'studenteats:profile' %} " style="color:coral"><h4>My Profile</h4></a>
-        {% else %} 
-            <a class="header-footer-link" href="{% url 'studenteats:login' %}" style="color:coral">Log In or Register</a>
-        {% endif %} 
-      </div>
-
-      <div class="col-lg-8 mx-auto p-3 py-md-5">
-        <header>
-              <h1 class="header text-center mt-3" style="color:coral"><strong>Student Eats</strong></h1>
-        </header>
-
-        <main>
+{% block body_block %} 
+<link href="{% static 'custom/forum.css' %}" rel="stylesheet">
           <!-- Show the Discussion information -->
           {% for Discussion in discussion %}
           <div class="p-5 mb-4 BG rounded-3" style="color:red;text-align:left;margin-left: -30px;">
@@ -111,5 +47,5 @@
       
         <script src="{% static 'assets/dist/js/bootstrap.bundle.min.js' %}"></script>
 
-    </body>
-</html>
+{% endblock %} 
+
