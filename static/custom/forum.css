@@ -81,9 +81,10 @@
 }
 
 .BG{
+    object-fit: contain;
     margin-top: 5rem;
-    width: 500px;
-    height: 200px;
+    width: 880px;
+    height: 300px;
     opacity: 80%;
     background-image: url("{% static 'images/place.jpg' %}") !important;
 }
@@ -144,11 +145,6 @@ body {
     color:coral;
     }
 
-    .BG{
-            min-width: 880px;
-            background:url("{% static 'images/place.jpg' %}")
-          }
-
 .icon-list {
     padding-bottom: 50px;
     list-style: none;
@@ -173,10 +169,6 @@ padding-bottom: 60px;
 color:coral;
 }
 
-.BG{
-min-width: 880px;
-background:url("{% static 'images/place.jpg' %}")
-}
 
 .icon-list {
 padding-bottom: 50px;
@@ -198,3 +190,5 @@ margin-bottom: .25rem;
     height: 50px;
     color: black;
 }
+
+

@@ -6,8 +6,14 @@ Forum
 {% endblock %}
 {% block body_block %}
 <link href="{% static 'custom/forum.css' %}" rel="stylesheet">
+<style>
+  .BG{
+    background: url("{% static 'images/place.jpg' %}") !important;
+  }
+</style>
 <div class="container">
   <!-- Show the title -->
+  <div class="section">
       <div class="jumbotron BG rounded mx-auto">
         <br/>
         <h1 class="p" id="jumbo-text">😆Discuss it！</h1>
@@ -15,7 +21,7 @@ Forum
       </div>
       <hr>
       <!-- Implement the Order By buttom -->
-      
+    </div>
       <div class = "row">
         <div class="dropdown">
           <button class="btn btn button" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false" style="width: 150px;height: 50px; float:right; color:white ">
