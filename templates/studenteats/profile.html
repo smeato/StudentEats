@@ -16,9 +16,9 @@
             <img src="{{ MEDIA_URL }}{{ user_profile.picture }}"
                  width="200"
                  height="250"
-                 alt="{{ user.username}}'s profile image" />
-                 Username:{{user.username}}
-                 Email:{{user.email}}
+                 alt="{{ user.username}}'s profile image" /><br>
+                 <br><strong>Username: <br></strong>{{user.username}}<br><br>
+                 <strong>Email:<br></strong> {{user.email}}<br>
             </ul>
             {% csrf_token %}
             
@@ -36,18 +36,18 @@
               
               <ul>
               
-              <li>Name:{{ user_profile.name }}</li>
+              <li><strong>Name: </strong><br>{{ user_profile.name }}<br></li>
               
-              <li>University:{{ user.profile.university }}</li>
+              <li><strong>University: </strong><br>{{ user.profile.university }}<br></li>
              
-              <li>Telephone:{{ user.profile.telephone }}</li>
+              <li><strong>Telephone: </strong><br>{{ user.profile.telephone }}<br></li>
               
-              <li>Location:{{ user.profile.location }}</li>
+              <li<strong>Location: </strong><br>{{ user.profile.location }}<br></li>
               <p>
-              <li><strong>Website:</strong>
+              <li><strong>Website:<br></strong>{{ user.profile.website }}<br></strong>
                   <a href="{{ user_profile.website }}">{{ user_profile.website }}</a></li>
               </p>
-              <li>updatetime:{{ user.profile.birthday }}</li>
+              <li><strong>Last Updated:</strong><br>{{ user.profile.birthday }}<br></li>
               </ul>
               
               <!--<input type="submit"value="Submit"/>-->
@@ -63,7 +63,7 @@
               <h1>Update Information</h1>
                   {% csrf_token %}
                   {{form.as_p }}
-                  <input type="submit" value="Update" />
+                  <input class="button btn" type="submit" value="Update" />
               </form>
               {% else %}
             {% endif %}
