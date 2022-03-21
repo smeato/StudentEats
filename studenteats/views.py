@@ -157,7 +157,7 @@ def profile(request):
             form.save()
             username = request.user.username
             #message.success(request,f'{username},Your Profile is update.')
-            return redirect('/')
+            return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
         else:
             form = UserProfileForm(instance=request.user.profile)
 
