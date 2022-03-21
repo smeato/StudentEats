@@ -73,3 +73,39 @@
 </div>
 
 {% endblock %}
+
+{% block outside_block %}
+    <link href="{% static 'custom/profile.css' %}" rel="stylesheet">
+    <div class="recipe-profile">
+        <a class="btn btn-primary" href="{% url 'studenteats:add-recipe' %}" role="button">Add Recipe</a>
+        <div><h4>My Recipes</h4></div>
+        
+
+        <div class="list-recipes">
+            {% if recipes %}
+                {% for r in recipes %}
+                <div class="card">
+                    <div class="card-header">
+                        <div class="group1">
+                            <i class="fa fa-heart-o" id="like-icon" aria-hidden="true" style="color:black"></i>
+                            {{r.Likes}}
+                        </div>
+                        <div class="group2">
+                            <a href="{% url 'studenteats:delete-recipe' r.id %}"><i class="fa fa-solid fa-trash" ></i></a>
+
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <blockquote class="blockquote mb-0">
+                            <p>{{r.Title}}</p>
+                        </blockquote>
+                    </div>
+                </div>
+                {% endfor %}
+            {% else %}
+            <h6>No recipies to show</h6>
+            {% endif %}
+        </div>
+
+    </div>
+    {% endblock %} 

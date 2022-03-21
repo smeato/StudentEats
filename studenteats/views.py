@@ -1,6 +1,7 @@
 from pdb import Restart
 from pyexpat.errors import messages
-from django.db.models import Q
+from shutil import ReadError
+from django.db.models import Q, F
 from studenteats.models import AdminDetails, User,Recipe,Restaurant,Deals,Discussion,Discussion_Replies,Restaurant_Comments,Recipe_Comments
 import datetime
 from email.policy import default
@@ -281,13 +282,13 @@ def add_comments(request):
 def save_comments(request):
     if request.method == "POST":
         diss_id = request.session.get('diss_id')
+        discussion = Discussion.objects.filter(Discussion_ID=diss_id)[0]
         User =request.POST.get('user_id')
-        userprofile = UserProfile.get(user=User)
+        userprofile = UserProfile.objects.filter(id=request.user.id)[0]
         rep_id = request.POST.get('rep_id')
         description = request.POST.get('description')
-        create_time = DateTimeField()
-        likes = 0.0
-        reply = Discussion_Replies(Description=description, User_ID=userprofile,Created_Time=create_time, Likes=likes, Post_ID=rep_id, Discussion_ID=diss_id)
+        likes = 0
+        reply = Discussion_Replies(Description=description, User_ID=userprofile, Likes=likes, Discussion_ID=discussion)
         reply.save()
         return redirect(reverse('studenteats:forum'))
     else:
@@ -343,5 +344,13 @@ def updateLikes(request, value, id):
         return JsonResponse({"valid": True}, status=200)
     else:
         Recipe.objects.filter(id=id).update(Likes=F('Likes')-1)
+        return JsonResponse({"valid": False}, status=200)
+
+def updateLikesRestaurants(request, value, id):
+    if(value == 1):
+        Restaurant.objects.filter(id=id).update(Likes=F('Likes')+1)
+        return JsonResponse({"valid": True}, status=200)
+    else:
+        Restaurant.objects.filter(id=id).update(Likes=F('Likes')-1)
         return JsonResponse({"valid": False}, status=200)
     

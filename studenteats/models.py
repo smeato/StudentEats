@@ -78,9 +78,9 @@ class Discussion(models.Model):
 class Discussion_Replies(models.Model):
     Description=models.TextField(max_length=1000)
     User_ID=models.ForeignKey(UserProfile,on_delete=models.CASCADE)
-    Created_Time=models.DateTimeField()
+    Created_Time=models.DateTimeField(default=datetime.now)
     Likes=models.IntegerField(default=0)
-    Post_ID=models.IntegerField(default=0,unique=True)
+    # Post_ID=models.IntegerField(default=0,unique=True) use automatically generated field id instead of this
     Discussion_ID=models.ForeignKey(Discussion, on_delete=models.CASCADE)
 
     class Meta:

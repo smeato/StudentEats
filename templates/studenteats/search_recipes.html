@@ -1,28 +1,17 @@
 {% extends 'studenteats/base.html' %}
 {% load staticfiles %}
 
-<link href="{% static 'custom/recipeHome.css' %}" rel="stylesheet">
+<link href="{% static 'custom/search.css' %}" rel="stylesheet">
 <script src="{% static 'js/script.js' %}"></script>
 {% block body_block %} 
-    <!-- <center> -->
         {% if searched %}
             <h1>You Searched For {{searched}}</h1>
             <br/>
-            <!-- <li>
-
-                {% for recipe in recipes %}
-                    <a href="{% url 'studenteats:show_recipes' recipe.id %}">{{recipe.Title}}--{{recipe.Cuisine}}</a></br>
-                {% endfor %}
-
-            </li>
-
-        {% else %}
-            <h1>Seems You have not Searched for recipes</h1>
-        {% endif %} -->
-
-    <!-- </center> -->
-
-    <div class="list-wrapper">
+           
+    <div class="search" style="display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: center;">
         {% for r in recipes %}
         <div class="card" style="width: 18rem;">
             <img class="card-img-top" src="{{ MEDIA_URL }}recipe_images/test.jpeg" alt="Card image cap">
@@ -33,6 +22,7 @@
             </div>
           </div>
         {% endfor %}
+        {% endif %}
     </div>
 
 {% endblock %}

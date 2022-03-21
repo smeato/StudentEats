@@ -664,7 +664,7 @@ def add_Discussion(Discussion_ID,Title,Description,Created_Time,Owner,Views, Lik
     return e
 
 def add_Discussion_Replies(Description,Owner,Created_Time,Likes,Post_ID,Discussion_ID):
-    f = Discussion_Replies.objects.get_or_create(Description=Description,User_ID=UserProfile.objects.get(id=Owner),Created_Time=Created_Time,Likes=Likes,Post_ID=Post_ID,Discussion_ID=Discussion.objects.get(Discussion_ID=Discussion_ID))[0]
+    f = Discussion_Replies.objects.get_or_create(Description=Description,User_ID=UserProfile.objects.get(id=Owner),Created_Time=Created_Time,Likes=Likes,Discussion_ID=Discussion.objects.get(Discussion_ID=Discussion_ID))[0]
     f.save()
     return f
 

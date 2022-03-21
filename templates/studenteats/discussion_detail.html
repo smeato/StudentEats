@@ -1,87 +1,28 @@
-<!DOCTYPE html> 
+{% extends 'studenteats/base.html' %}
 {% load staticfiles %} 
 
-<html lang="en"> 
- 
-    <head>
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>Forum</title>
-        <meta charset="utf-8">
-        <link href="{% static 'css/bootstrap.css' %}" rel="stylesheet">
-        <script src="{% static 'js/bootstrap.min.js' %}"></script> 
-        
-
-        <link href="{% static 'assets/css/bootstrap.css' %}" rel="stylesheet">
-        <style type="text/css">
-          body {
-            font-family: Georgia, 'Times New Roman', Times, serif;
-            padding-top: 20px;
-            padding-bottom: 60px;
-          }
-    
-
-
-          .title a{
-            color:coral;
-          }
-
-          .BG{
-            min-width: 880px;
-            background:url("{% static 'images/place.jpg' %}")
-          }
-
-          .icon-list {
-            padding-bottom: 50px;
-            list-style: none;
-          }
-          .icon-list li {
-            display: flex;
-            align-items: flex-start;
-            margin-bottom: .25rem;
-          }
-
-
-        </style>
-        <link href="{% static 'assets/css/bootstrap-responsive.css' %}" rel="stylesheet">
-    
-    
-        <!-- Fav and touch icons -->
-        <link rel="shortcut icon" href="{% static 'assets/ico/favicon.png">
-
-    </head>
-    
-
-    <body>
-      <div> 
-        {% if user.is_authenticated %}
-            <!-- If user has login , an additional ADD REPLY Button will diaplay-->
-            <a class="header-footer-link" href="{% url 'studenteats:profile' %} " style="color:coral"><h4>My Profile</h4></a>
-        {% else %} 
-            <a class="header-footer-link" href="{% url 'studenteats:login' %}" style="color:coral">Log In or Register</a>
-        {% endif %} 
-      </div>
-
-      <div class="col-lg-8 mx-auto p-3 py-md-5">
-        <header>
-              <h1 class="header text-center mt-3" style="color:coral"><strong>Student Eats</strong></h1>
-        </header>
-
-        <main>
+{% block body_block %} 
+<link href="{% static 'custom/forum.css' %}" rel="stylesheet">
           <!-- Show the Discussion information -->
           {% for Discussion in discussion %}
-          <div class="p-5 mb-4 BG rounded-3" style="color:red;text-align:left;margin-left: -30px;">
+          <div class="p-3 ms-3 mb-4 rounded-3">
             <div class="container-fluid py-5">
-              <h1 class="display-4 fst-italic">{{ Discussion.Title }}</h1>
-              <p class="col-md-11 fs-4 fst-italic">{{ Discussion.Description}}</p>
+              <h1 class="display-4 lead fst-italic">{{ Discussion.Title }}</h1>
+              <p class="col-md- fs-4 fst-italic">{{ Discussion.Description}}</p>
               <div class="mb-1">
               <form class="d-flex" method="POST" action="{% url 'studenteats:add_comments'%}">
                 {% if user.is_authenticated %}
                 {% csrf_token %}
-                <button class="btn btn-primary btn-lg px-4" type="submit" style="color:white;width:150px">Add Reply</button></form>
+                <div class="btn-group-vertical">
+                <button class="btn button btn-sm px-4" type="submit" style="color:white;width:150px">Add Reply</button></form>
                 <br/>
-              <a href="{% url 'studenteats:forum' %}" class="btn btn-primary btn-lg px-4" style="width:150px">Back</a>
+                <a href="{% url 'studenteats:forum' %}" class="btn button  btn-sm px-4" style="width:150px">Back</a>
+              </div>
                 {% else %} 
-                <a href="{% url 'studenteats:forum' %}" class="btn btn-primary btn-lg px-4" style="width:150px">Back</a>
+                <div class="btn-group-vertical">
+                <a href="{% url 'studenteats:register' %}" class="btn button btn-sm px-4 " style="width:150px">Log In to Reply</a>
+                <a href="{% url 'studenteats:forum' %}" class="btn button btn-sm px-4 mt-2" style="width:150px">Back</a>
+                </div>
                 {% endif %} 
               </div>
               {% endfor %}              
@@ -90,12 +31,12 @@
       
 
 
-          <hr class="col-3 col-md-2 mb-5">
+          <hr class="col-9 col-md-2 mb-5">
           <div class="row g-5 ">
 <!-- Show the reply for this Discussioin -->
           {% for Discussion_Replies in reply %}
-          <div class="bg-light">
-              <h4 style="color:coral;">{{ Discussion_Replies.Description}}</h4>
+          <div class="bg-light ms-3">
+              <h4 class="lead">{{ Discussion_Replies.Description}}</h4>
               <ul style="color:coral;">
                 <li style="list-style: none;">{{ Discussion_Replies.User_ID}}</li>
                 <li style="list-style: none;">{{ Discussion_Replies.Created_Time }}</a></li>
@@ -111,5 +52,5 @@
       
         <script src="{% static 'assets/dist/js/bootstrap.bundle.min.js' %}"></script>
 
-    </body>
-</html>
+{% endblock %} 
+
