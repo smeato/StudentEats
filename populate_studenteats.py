@@ -561,7 +561,7 @@ def add_Restaurant_Comments(Description,Owner,Created_Time,Likes,Comment_ID,Rest
     return g
 
 def add_Recipe_Comments(Description,Owner,Created_Time,Likes,Comment_ID,Recipe_ID):
-    h=Recipe_Comments.objects.get_or_create(Description=Description,User_ID=UserProfile.objects.get(id=Owner),Created_Time=Created_Time,Likes=Likes,Comment_ID=Comment_ID,Recipe_ID=Recipe.objects.get(Recipe_ID=Recipe_ID))[0]
+    h=Recipe_Comments.objects.get_or_create(Description=Description,User_ID=UserProfile.objects.get(id=Owner),Created_Time=Created_Time,Likes=Likes,Comment_ID=Comment_ID,Recipe_ID=Recipe.objects.get(id=Recipe_ID))[0]
     h.save()
     return h
 

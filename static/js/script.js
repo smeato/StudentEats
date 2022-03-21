@@ -3,7 +3,26 @@ function likeClick() {
     if (document.getElementById("like-icon").style.color == "black")
         document.getElementById("like-icon").style = "color:red";
     else
-    document.getElementById("like-icon").style.color = "black"
+        document.getElementById("like-icon").style.color = "black"
+}
+
+function handleCheckBox(clickedId) {
+    const ids = ['Check1', 'Check2', 'Check3']
+    ids.forEach(elemId => {
+        if(elemId == clickedId && document.getElementById(elemId).checked==true){
+            document.getElementById(elemId).checked = true;
+        }
+            
+        else
+        {
+            document.getElementById(elemId).checked = false; 
+        }
+    })
+
+}
+
+function message(){
+    document.getElementById('alert').style="display:none";
 }
 
 var inputMap, displayMap, locations, markers = [];

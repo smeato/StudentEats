@@ -45,7 +45,7 @@ def register(request):
 
             if 'picture' in request.FILES:
                 profile.picture = request.FILES['picture']
-            
+
             profile.save()
             registered = True
         else:
@@ -53,9 +53,10 @@ def register(request):
     else:
         user_form = UserForm()
         profile_form = UserProfileForm()
-    
+
     return render(request, 'studenteats/login.html', context={'user_form': user_form, 'profile_form': profile_form, 'registered': registered})
-    
+
+
 def user_login(request):
     if request.method == 'POST':
         username = request.POST.get('username')
@@ -75,80 +76,93 @@ def user_login(request):
     else:
         return render(request, 'studenteats/login.html')
 
-        
+
 @login_required
 def user_logout(request):
     logout(request)
     return redirect(reverse('studenteats:index'))
 
+
 def some_view(request):
-    
+
     if not request.user.is_authenticated():
         return HttpResponse("You are logged in.")
     else:
         return HttpResponse("You are not logged in.")
-        
+
+
 class ProfileView(View):
-    def get_user_details(self,username):
+    def get_user_details(self, username):
         try:
-            user=User.objects.get(username=username)
+            user = User.objects.get(username=username)
         except User.DoesNotExist:
-           return None
-        user_profile=UserProfile.objects.get_or_create(user=user)[0]
-        form=UserProfileForm({'website':user_profile.website,'picture':user_profile.picture})
-        
-        return(user,user_profile,form)
-        
+            return None
+        user_profile = UserProfile.objects.get_or_create(user=user)[0]
+        form = UserProfileForm(
+            {'website': user_profile.website, 'picture': user_profile.picture})
+
+        return(user, user_profile, form)
+
     @method_decorator(login_required)
-    def get(self,request,username):
+    def get(self, request, username):
         try:
-            (user,user_profile,form)=self.get_user_details(username)
+            (user, user_profile, form) = self.get_user_details(username)
+            recipes = Recipe.objects.filter(Owner__id=request.user.id)
+
         except TypeError:
             return redirect(reverse('studenteats:index'))
-            
-        context_dict={'user_profile':user_profile,
-                     'selected_user':user,
-                     'form':form}
-                    
-        return render(request,'studenteats/profile.html',context_dict)
-        
+
+        context_dict = {'user_profile': user_profile,
+                        'selected_user': user,
+                        'form': form,
+                        'recipes': recipes}
+
+        return render(request, 'studenteats/profile.html', context_dict)
+
     @method_decorator(login_required)
-    def post(self,request,username):
+    def post(self, request, username):
         try:
-            (user,user_profile, form)= self.get_user_details(username)
+            (user, user_profile, form) = self.get_user_details(username)
         except TypeError:
             return redirect(reverse('student:index'))
-            
-        form = UserProfileForm(request.POST,request.FILES,instance=user_profile)
+
+        form = UserProfileForm(
+            request.POST, request.FILES, instance=user_profile)
+        recipes = Recipe.objects.filter(Owner__id=request.user.id)
+
         if form.is_valid():
             form.save(commit=True)
-            return redirect('studenteats:profile',user.username)
+            return redirect('studenteats:profile', user.username)
         else:
             print(form.errors)
-        
-        context_dict = {'user_profile':user_profile,
-                     'selected_user':user,
-                     'form':form}
-                     
-        return render(request,'studenteats/profile.html',context_dict)
-                     
+
+        context_dict = {'user_profile': user_profile,
+                        'selected_user': user,
+                        'form': form,
+                        'recipes': recipes}
+
+        return render(request, 'studenteats/profile.html', context_dict)
 
 
 @login_required
 def profile(request):
     print(request)
-    if request.method=="POST":
-        form=UserProfileForm(request.POST, request.FILES,instance=request.user.profile)
+    if request.method == "POST":
+        form = UserProfileForm(request.POST, request.FILES,
+                               instance=request.user.profile)
+        recipes = Recipe.objects.filter(Owner__id=request.user.id)
+
         if form.is_valid():
             form.save()
-            username=request.user.username
+            username = request.user.username
             #message.success(request,f'{username},Your Profile is update.')
             return redirect('/')
         else:
-            form=UserProfileForm(instance=request.user.profile)
-    
-        return render(request,'studenteats/profile.html',{'form':form})
-    
+            form = UserProfileForm(instance=request.user.profile)
+
+        return render(request, 'studenteats/profile.html', {'form': form, 'recipes':recipes})
+
+
 def about(request):
     context_dict = {}
     return render(request, 'studenteats/about.html', context=context_dict)
@@ -199,9 +213,10 @@ def search_recipes(request):
 
 def show_recipes(request, Recipe_id):
     context_dict = {}
-    recipe = Recipe.objects.filter(Recipe_ID=Recipe_id)[0]
+    recipe = Recipe.objects.filter(id=Recipe_id)[0]
     context_dict['recipe'] = recipe
-    context_dict['count'] = Recipe.objects.filter(Owner__id=recipe.Owner.id).count()
+    context_dict['count'] = Recipe.objects.filter(
+        Owner__id=recipe.Owner.id).count()
     return render(request, 'studenteats/show_recipes.html', context=context_dict)
 
 
@@ -273,3 +288,36 @@ def getCoordinates(request, place):
         return JsonResponse({"valid": False}, status=200)
     return JsonResponse({"valid": True, "restaurants": list(Restaurant.objects.filter(Place__iexact=place).values('Latitude', 'Longitude', 'Name'))
                          }, status=200)
+
+
+@login_required
+def addRecipe(request):
+
+    if(request.method == 'POST'):
+        try:
+            title = request.POST.get('title')
+            content = request.POST.get('content')
+            cuisine = request.POST.get('cusine')
+            check1 = request.POST.get('Value1')
+            check2 = request.POST.get('Value2')
+            check3 = request.POST.get('Value3')
+            tags = {check1: "Easy", check2: "Quick", check3: "Advanced"}
+            check = ""
+            for k in tags.keys():
+                if k != None:
+                    check = tags[k]
+            Owner = UserProfile.objects.filter(id=request.user.id)[0]
+            r = Recipe.objects.create(Title=title, Content=content, Tags=check, Cuisine=cuisine, Owner=Owner)
+            r.save()
+            message = "true"
+        except:
+            message = "false"
+        return render(request, 'studenteats/addRecipe.html', {'message': message, "add": "true", "id": request.user.id})
+
+    else:
+        return render(request, 'studenteats/addRecipe.html', {'id':request.user.id})
+
+def deleteRecipe(request, id):
+    Recipe.objects.filter(id=id).delete()
+    return redirect('studenteats:profile', request.user.id)
+
