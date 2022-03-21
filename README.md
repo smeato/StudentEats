@@ -9,6 +9,7 @@ With Student Eats a user can:
       Browse restaurants listed with student deals and view them on map. 
       Browse recipes submitted by other users and watch the latest beginner's guide to cooking video on the recipe homepage. 
       Search for both restaurants and recipes from their pages, view their listing and like/unlike. 
+	Add/remove their own recipes from their profile. 
       View hot topics being discussed in the forum, or register for the ability to reply and join the conversation. 
       Register for an account and personalise your profile. 
       Users can view our About page to see who has built the website and their degrees. 
