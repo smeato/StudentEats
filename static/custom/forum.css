@@ -181,7 +181,7 @@ margin-bottom: .25rem;
 }
 
 .lead {
-    color:coral;
+    color:#198753;
     font-weight: bold;
 }
 
@@ -192,3 +192,7 @@ margin-bottom: .25rem;
 }
 
 
+.button {
+    background-color: #E5890A;
+    color: white;
+}

@@ -5,19 +5,19 @@
 <link href="{% static 'custom/forum.css' %}" rel="stylesheet">
           <!-- Show the Discussion information -->
           {% for Discussion in discussion %}
-          <div class="p-5 mb-4 BG rounded-3" style="color:red;text-align:left;margin-left: -30px;">
+          <div class="p-3 ms-3 mb-4 rounded-3">
             <div class="container-fluid py-5">
-              <h1 class="display-4 fst-italic">{{ Discussion.Title }}</h1>
-              <p class="col-md-11 fs-4 fst-italic">{{ Discussion.Description}}</p>
+              <h1 class="display-4 lead fst-italic">{{ Discussion.Title }}</h1>
+              <p class="col-md- fs-4 fst-italic">{{ Discussion.Description}}</p>
               <div class="mb-1">
               <form class="d-flex" method="POST" action="{% url 'studenteats:add_comments'%}">
                 {% if user.is_authenticated %}
                 {% csrf_token %}
-                <button class="btn btn-primary btn-lg px-4" type="submit" style="color:white;width:150px">Add Reply</button></form>
+                <button class="btn button btn-lg px-4" type="submit" style="color:white;width:150px">Add Reply</button></form>
                 <br/>
-              <a href="{% url 'studenteats:forum' %}" class="btn btn-primary btn-lg px-4" style="width:150px">Back</a>
+              <a href="{% url 'studenteats:forum' %}" class="btn button btn-lg px-4" style="width:150px">Back</a>
                 {% else %} 
-                <a href="{% url 'studenteats:forum' %}" class="btn btn-primary btn-lg px-4" style="width:150px">Back</a>
+                <a href="{% url 'studenteats:forum' %}" class="btn button  btn-lg px-4" style="width:150px">Back</a>
                 {% endif %} 
               </div>
               {% endfor %}              
@@ -26,12 +26,12 @@
       
 
 
-          <hr class="col-3 col-md-2 mb-5">
+          <hr class="col-9 col-md-2 mb-5">
           <div class="row g-5 ">
 <!-- Show the reply for this Discussioin -->
           {% for Discussion_Replies in reply %}
-          <div class="bg-light">
-              <h4 style="color:coral;">{{ Discussion_Replies.Description}}</h4>
+          <div class="bg-light ms-3">
+              <h4 class="lead">{{ Discussion_Replies.Description}}</h4>
               <ul style="color:coral;">
                 <li style="list-style: none;">{{ Discussion_Replies.User_ID}}</li>
                 <li style="list-style: none;">{{ Discussion_Replies.Created_Time }}</a></li>
