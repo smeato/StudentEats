@@ -1,9 +1,33 @@
 function likeClick() {
     console.log(document.getElementById("like-icon").style.color);
-    if (document.getElementById("like-icon").style.color == "black")
+    if (document.getElementById("like-icon").style.color == "black"){
         document.getElementById("like-icon").style = "color:red";
-    else
-        document.getElementById("like-icon").style.color = "black"
+        updateLike(1);
+    }
+       
+    else{
+        document.getElementById("like-icon").style.color = "black";
+        updateLike(0);
+    }
+        
+}
+
+function updateLike(update){
+    const xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+            res = JSON.parse(this.responseText);
+            var doc = document.getElementById("like-count");
+            var count = parseInt(doc.innerHTML);
+            if(update == 1)
+                doc.innerHTML=count+1;
+            else
+                doc.innerHTML=count-1;
+
+        }
+    }
+    xhttp.open("GET", update + '/');
+    xhttp.send();
 }
 
 function handleCheckBox(clickedId) {
@@ -153,3 +177,5 @@ function handleSubmitByLocation() {
     console.log('"GET", place + ' / '');
     xhttp.send();
 }
+
+

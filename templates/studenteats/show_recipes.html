@@ -16,11 +16,19 @@
         <p>{{ recipe.Content }}</p>
         <div id="like" onclick="likeClick()">
             <i class="fa fa-heart-o" id="like-icon" aria-hidden="true" style="color:black"></i>
-            <p>{{ recipe.Likes}}</p>
+            <p id="like-count">{{ recipe.Likes}}</p>
+        </div>
+        <div class="cal">
+            <i class="fa fa-calendar" aria-hidden="true"></i>
+            <p>{{ recipe.Created_Date }}</p>
         </div>
     </div>
     <div class="author">
-        <img src="{% static 'images/user.png' %}">
+        {% if recipe.Owner.picture %}
+            <img src="{{MEDIA_URL}}{{recipe.Owner.picture}}">
+        {% else %}
+            <img src="{% static 'images/user.png' %}">
+        {% endif %}
         <h5>{{recipe.Owner.name}}</h5>
         <h6>No of posts: {{count}}</h6>
     </div>

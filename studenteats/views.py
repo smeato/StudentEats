@@ -4,6 +4,7 @@ from django.http import JsonResponse
 from django.shortcuts import render, redirect
 from django.urls import reverse
 from django.db.models import Q
+from django.db.models import F
 from django.forms import DateField
 from studenteats.models import AdminDetails, User, Recipe, Restaurant, Deals, Discussion, Discussion_Replies, Restaurant_Comments, Recipe_Comments
 from django.shortcuts import render, redirect, get_object_or_404
@@ -189,7 +190,7 @@ def restaurant(request):
 
 def recipeHome(request):
     context_dict = {}
-    context_dict['popular_recipes'] = Recipe.objects.order_by('Likes')[0:6]
+    context_dict['popular_recipes'] = Recipe.objects.order_by('-Likes')[0:6]
     if AdminDetails.objects.first() != None:
         context_dict['recipeWeek'] = AdminDetails.objects.first().recipeWeek
     context_dict['search'] = Recipe.objects.all()
@@ -321,3 +322,11 @@ def deleteRecipe(request, id):
     Recipe.objects.filter(id=id).delete()
     return redirect('studenteats:profile', request.user.id)
 
+def updateLikes(request, value, id):
+    if(value == 1):
+        Recipe.objects.filter(id=id).update(Likes=F('Likes')+1)
+        return JsonResponse({"valid": True}, status=200)
+    else:
+        Recipe.objects.filter(id=id).update(Likes=F('Likes')-1)
+        return JsonResponse({"valid": False}, status=200)
+    
