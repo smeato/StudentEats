@@ -13,11 +13,16 @@
               <form class="d-flex" method="POST" action="{% url 'studenteats:add_comments'%}">
                 {% if user.is_authenticated %}
                 {% csrf_token %}
-                <button class="btn button btn-lg px-4" type="submit" style="color:white;width:150px">Add Reply</button></form>
+                <div class="btn-group-vertical">
+                <button class="btn button btn-sm px-4" type="submit" style="color:white;width:150px">Add Reply</button></form>
                 <br/>
-              <a href="{% url 'studenteats:forum' %}" class="btn button btn-lg px-4" style="width:150px">Back</a>
+                <a href="{% url 'studenteats:forum' %}" class="btn button  btn-sm px-4" style="width:150px">Back</a>
+              </div>
                 {% else %} 
-                <a href="{% url 'studenteats:forum' %}" class="btn button  btn-lg px-4" style="width:150px">Back</a>
+                <div class="btn-group-vertical">
+                <a href="{% url 'studenteats:register' %}" class="btn button btn-sm px-4 " style="width:150px">Log In to Reply</a>
+                <a href="{% url 'studenteats:forum' %}" class="btn button btn-sm px-4 mt-2" style="width:150px">Back</a>
+                </div>
                 {% endif %} 
               </div>
               {% endfor %}              
