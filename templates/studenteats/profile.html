@@ -2,30 +2,19 @@
 {% load staticfiles %}
 {% block body_block %}
 
-<div class="jumbotron p-4">
-    <div class="container">
-        <h3 class="jumbotron-heading">{{user.username }}'s Profile</h3>
-        
-    </div>
-</div>
-
-<div>
-    <body background="{% static 'images/place.jpg' %}" alt="An image of a laptop" class="card-img-bottom">
-</div>
-
 <div class="container">
     <div class="row">
         <div class="col-sm-4 px-4 mt-3">
         <div class="card bg-secondary text-center px-3 mt-2 h-100">
-            <div class="card-body">
+            <div class="card-body text-center">
             <h1>Account Information</h1>
             <ul>
             <img src="{{ MEDIA_URL }}{{ user_profile.picture }}"
                  width="200"
                  height="250"
-                 alt="{{ user.username}}'s profile image" />
-                 Username:{{user.username}}
-                 Email:{{user.email}}
+                 alt="{{ user.username}}'s profile image" /><br>
+                 <br><strong>Username:</strong><br>{{user.username}}<br>
+                 <br><strong>Email:<br></Strong>{{user.email}}
             </ul>
             {% csrf_token %}
             
@@ -43,18 +32,18 @@
               
               <ul>
               
-              <li>Name:{{ user_profile.name }}</li>
+              <li><strong>Name: <br></strong>{{ user_profile.name }}<br></li>
               
-              <li>University:{{ user.profile.university }}</li>
+              <li><strong>University:<br></strong>{{ user.profile.university }}<br></li>
              
-              <li>Telephone:{{ user.profile.telephone }}</li>
+              <li><strong>Telephone:<br></strong>{{ user.profile.telephone }}<br></li>
               
-              <li>Location:{{ user.profile.location }}</li>
+              <li><strong>Location:<br></strong>{{ user.profile.location }}<br></li>
               <p>
-              <li><strong>Website:</strong>
-                  <a href="{{ user_profile.website }}">{{ user_profile.website }}</a></li>
+              <li><strong>Website:<br></strong>
+                  <a href="{{ user_profile.website }}">{{ user_profile.website }}<br></a></li>
               </p>
-              <li>updatetime:{{ user.profile.birthday }}</li>
+              <li><strong>Last Updated:<br></strong> {{ user.profile.birthday }}</li>
               </ul>
               
               <!--<input type="submit"value="Submit"/>-->
@@ -70,7 +59,7 @@
               <h1>Update Information</h1>
                   {% csrf_token %}
                   {{form.as_p }}
-                  <input type="submit" value="Update" />
+                  <input class="button btn bg-primary" type="submit" value="Update" />
               </form>
               {% else %}
             {% endif %}

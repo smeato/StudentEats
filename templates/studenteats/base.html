@@ -111,7 +111,13 @@
         .BG{
         width: 1000px;
         height: 500px;
-        background:url("{% static 'images/place.jpg' %}")
+        opacity: 50%;
+        background-image: url("{% static 'images/place.jpg' %}");
+        }
+
+        #jumbo-text {
+            opacity: 100% !important;
+            color: black !important;
         }
 
         .title a {
@@ -141,8 +147,8 @@
         {% block login_link %}
             {% if user.is_authenticated %}
                 <!-- add user specific once user model created-->
-                <a class="header-footer-link" href="{% url 'studenteats:profile' user.username %}"><h4>My Profile</h4></a>
-                <a class="header-footer-link" href="{% url 'studenteats:logout' %}"><h4>Log out</h4></a>
+                <a class="header-footer-link" href="{% url 'studenteats:profile' user.username %}"><h6>My Profile</h6></a>
+                <a class="header-footer-link" href="{% url 'studenteats:logout' %}"><h6>Log out</h6></a>
             {% else %}
                 <a class="header-footer-link" href="{% url 'studenteats:register' %}">Log In or Register</a>
             {% endif %}
