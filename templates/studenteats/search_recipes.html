@@ -29,7 +29,7 @@
             <div class="card-body">
               <h5 class="card-title" style="color:coral">{{r.Title}}</h5>
               <input type="hidden" id="url" data="{% url 'studenteats:forum' %}">
-              <a class="btn btn-primary" id="view-recipe" onclick="recipeClick()">View</a>
+              <a class="btn btn-primary" id="view-recipe" href="{% url 'studenteats:show_recipes' r.Recipe_ID %}">View</a>
             </div>
           </div>
         {% endfor %}
