@@ -140,7 +140,7 @@
         <div>
         {% block login_link %}
             {% if user.is_authenticated %}
-                <!-- add user specific once user model created-->
+                <!-- If login , it will show My Profile and Log out/If not , it will show Login or Register-->
                 <a class="header-footer-link" href="{% url 'studenteats:profile' user.username %}"><h4>My Profile</h4></a>
                 <a class="header-footer-link" href="{% url 'studenteats:logout' %}"><h4>Log out</h4></a>
             {% else %}
@@ -150,12 +150,14 @@
         </div>
         <div>
             {% block header_block %}
+            <!-- Show the header -->
             <h1 class="header text-center mt-4"><strong>Student Eats</strong></h1>
             {% endblock %}
         </div>
 
 
         {% block navbar_block %}
+        <!-- implement the navi bar -->
         <div class="masthead">
             <div class="navbar">
                 <div class="navbar-inner">
@@ -163,9 +165,8 @@
                         <ul class="nav">
                             <li><a href="{% url 'studenteats:restaurant' %}">Restaurant Home</a></li>
                             <li><a href="{% url 'studenteats:recipe' %}">Recipe Home</a></li>
-                            <li class="active"><a href="{% url 'studenteats:forum' %}">Forum</a></li>
+                            <li><a href="{% url 'studenteats:forum' %}">Forum</a></li>
                             <li><a href="{% url 'studenteats:about' %}">About</a></li>
-                            <!--<li><a href="{% url 'studenteats:profile' %}">My Profile</a></li>-->
                         </ul>
                     </div>
                 </div>

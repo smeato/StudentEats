@@ -54,7 +54,7 @@
     <body>
       <div> 
         {% if user.is_authenticated %}
-            <!-- add user specific once user model created-->
+            <!-- If user has login , an additional ADD REPLY Button will diaplay-->
             <a class="header-footer-link" href="{% url 'studenteats:profile' %} " style="color:coral"><h4>My Profile</h4></a>
         {% else %} 
             <a class="header-footer-link" href="{% url 'studenteats:login' %}" style="color:coral">Log In or Register</a>
@@ -67,6 +67,7 @@
         </header>
 
         <main>
+          <!-- Show the Discussion information -->
           {% for Discussion in discussion %}
           <div class="p-5 mb-4 BG rounded-3" style="color:red;text-align:left;margin-left: -30px;">
             <div class="container-fluid py-5">
@@ -91,7 +92,7 @@
 
           <hr class="col-3 col-md-2 mb-5">
           <div class="row g-5 ">
-
+<!-- Show the reply for this Discussioin -->
           {% for Discussion_Replies in reply %}
           <div class="bg-light">
               <h4 style="color:coral;">{{ Discussion_Replies.Description}}</h4>

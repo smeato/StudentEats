@@ -40,6 +40,7 @@
 {% block body_block %}
 
 <body>
+<!-- implement the Add reply Function -->
   <div class="container">
     <form method="POST" action="{% url 'studenteats:save_comments'%}">
         {% csrf_token %}

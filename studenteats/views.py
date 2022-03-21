@@ -232,7 +232,7 @@ def discussion_detail(request, discussion_ID):
     context_dict = {}
     context_dict = {'discussion': discussion, 'reply': reply}
     current_discussion = discussion[0].Discussion_ID
-    request.session['diss_id'] = current_discussion  # 设置diss_id 存到session里
+    request.session['diss_id'] = current_discussion
 
     print(context_dict)
 
