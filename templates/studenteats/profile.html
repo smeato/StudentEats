@@ -2,24 +2,29 @@
 {% load staticfiles %}
 {% block body_block %}
 
+<div>
+    <body background="{% static 'images/place.jpg' %}" alt="An image of a laptop" class="card-img-bottom">
+</div>
+
 <div class="container">
     <div class="row">
         <div class="col-sm-4 px-4 mt-3">
         <div class="card bg-secondary text-center px-3 mt-2 h-100">
-            <div class="card-body text-center">
+            <div class="card-body">
             <h1>Account Information</h1>
             <ul>
             <img src="{{ MEDIA_URL }}{{ user_profile.picture }}"
                  width="200"
                  height="250"
-                 alt="{{ user.username}}'s profile image" /><br>
-                 <br><strong>Username:</strong><br>{{user.username}}<br>
-                 <br><strong>Email:<br></Strong>{{user.email}}
+                 alt="{{ user.username}}'s profile image" />
+                 Username:{{user.username}}
+                 Email:{{user.email}}
             </ul>
             {% csrf_token %}
             
             <br />
             </div>
+        </div>
         </div>
 
         <div class="information col-sm-4 px-4 mt-3">
@@ -31,18 +36,18 @@
               
               <ul>
               
-              <li><strong>Name: <br></strong>{{ user_profile.name }}<br></li>
+              <li>Name:{{ user_profile.name }}</li>
               
-              <li><strong>University:<br></strong>{{ user.profile.university }}<br></li>
+              <li>University:{{ user.profile.university }}</li>
              
-              <li><strong>Telephone:<br></strong>{{ user.profile.telephone }}<br></li>
+              <li>Telephone:{{ user.profile.telephone }}</li>
               
-              <li><strong>Location:<br></strong>{{ user.profile.location }}<br></li>
+              <li>Location:{{ user.profile.location }}</li>
               <p>
-              <li><strong>Website:<br></strong>
-                  <a href="{{ user_profile.website }}">{{ user_profile.website }}<br></a></li>
+              <li><strong>Website:</strong>
+                  <a href="{{ user_profile.website }}">{{ user_profile.website }}</a></li>
               </p>
-              <li><strong>Last Updated:<br></strong> {{ user.profile.birthday }}</li>
+              <li>updatetime:{{ user.profile.birthday }}</li>
               </ul>
               
               <!--<input type="submit"value="Submit"/>-->
@@ -58,41 +63,13 @@
               <h1>Update Information</h1>
                   {% csrf_token %}
                   {{form.as_p }}
-                  <input class="button btn bg-primary" type="submit" value="Update" />
+                  <input type="submit" value="Update" />
               </form>
               {% else %}
             {% endif %}
         </div>
     </div>
-    {% endblock %}
+</div>
+</div>
 
-    {% block outside_block %}
-    <link href="{% static 'custom/profile.css' %}" rel="stylesheet">
-    <div class="recipe-profile">
-        <a class="btn btn-primary" href="{% url 'studenteats:add-recipe' %}" role="button">Add Recipe</a>
-        <h4>My Recipes</h4>
-
-        <div class="list-recipes">
-            {% for r in recipes %}
-            <div class="card">
-                <div class="card-header">
-                    <div class="group1">
-                        <i class="fa fa-heart-o" id="like-icon" aria-hidden="true" style="color:black"></i>
-                        {{r.Likes}}
-                    </div>
-                    <div class="group2">
-                        <a href="{% url 'studenteats:delete-recipe' r.id %}"><i class="fa fa-solid fa-trash" ></i></a>
-                        
-                    </div>
-                </div>
-                <div class="card-body">
-                    <blockquote class="blockquote mb-0">
-                        <p>{{r.Title}}</p>
-                    </blockquote>
-                </div>
-            </div>
-            {% endfor %}
-        </div>
-
-    </div>
-    {% endblock %}
+{% endblock %}
