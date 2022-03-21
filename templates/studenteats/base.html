@@ -144,7 +144,7 @@
                 <a class="header-footer-link" href="{% url 'studenteats:profile' user.username %}"><h4>My Profile</h4></a>
                 <a class="header-footer-link" href="{% url 'studenteats:logout' %}"><h4>Log out</h4></a>
             {% else %}
-                <a class="header-footer-link" href="{% url 'studenteats:login' %}">Log In or Register</a>
+                <a class="header-footer-link" href="{% url 'studenteats:register' %}">Log In or Register</a>
             {% endif %}
         {% endblock %}
         </div>

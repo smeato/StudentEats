@@ -14,28 +14,27 @@
 <div class="row">
   <div class="login col-sm-5 px-4 mt-3">
       <div class="card bg-success text-center px-3 mt-2 h-100">
-        <div class="card-body">
-        <h2>Login to Student Eats</h2>
-        <strong> Welcome Back!</strong>
-        <form id="login_form" method="post" action="{% url 'studenteats:login' %}">
+        <div class="card-title">
+          <h2>Login to Student Eats</h2>
+          <strong> Welcome Back!</strong>
+          <form id="login_form" method="post" action="{% url 'studenteats:login' %}">
             {% csrf_token %}
-        <img src="{% static 'images/breakfast.jpg' %}" alt="An image of a recipe book" class="card-img-bottom">
-        <hr>
-        <label for="inputUsername" class="se-only">Username</label>
-        <input type="text" name="username" id="id_username" class="form-control" placeholder="Username" required autofocus>
+            <img src="{% static 'images/breakfast.jpg' %}" alt="An image of a recipe book" class="card-img-bottom">
+            <hr>
+            <label for="inputUsername" class="se-only">Username</label>
+            <input type="text" name="username" id="id_username" class="form-control" placeholder="Username" required autofocus>
     
-        <label for="inputPassword" class="se-only">Password</label>
-        <input type="password" name="password" id="id_password" class="form-control" placeholder="Password" required>
+            <label for="inputPassword" class="se-only">Password</label>
+            <input type="password" name="password" id="id_password" class="form-control" placeholder="Password" required>
             
-        <button class ="btn btn-lg btn-primary btn-block" type="submit" value="Submit">Sign in</botton>
+            <button class ="btn btn-lg btn-primary btn-block" type="submit" value="Submit">Sign in</botton>
         
-        </form>
+          </form>
         
-     </div>
-  </div>
-</div>
-  
-
+        </div>
+      </div>
+    </div>
+ 
 <div class="register col-sm-5 px-4 mt-3">
   <div class="card bg-danger text-center px-3 mt-2 h-100">
       <div class="card-body">
