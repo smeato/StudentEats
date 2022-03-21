@@ -4,7 +4,7 @@ from django.http import JsonResponse
 from django.shortcuts import render, redirect
 from django.urls import reverse
 from django.db.models import Q
-from django.forms import DateField
+from django.forms import DateField, DateTimeField
 from studenteats.models import AdminDetails, User, Recipe, Restaurant, Deals, Discussion, Discussion_Replies, Restaurant_Comments, Recipe_Comments
 from django.shortcuts import render, redirect, get_object_or_404
 from django.urls import reverse
@@ -250,14 +250,14 @@ def add_comments(request):
 def save_comments(request):
     if request.method == "POST":
         diss_id = request.session.get('diss_id')
-        user_id = request.user.id
+        User =request.POST.get('user_id')
+        userprofile = UserProfile.get(user=User)
         rep_id = request.POST.get('rep_id')
         description = request.POST.get('description')
-        create_time = DateField()
+        create_time = DateTimeField()
         likes = 0.0
-        reply = Discussion_Replies(Description=description, User_ID=user_id,
-                                   Created_Time=create_time, Likes=likes, Post_ID=rep_id, Discussion_ID=diss_id)
-
+        reply = Discussion_Replies(Description=description, User_ID=userprofile,Created_Time=create_time, Likes=likes, Post_ID=rep_id, Discussion_ID=diss_id)
+        reply.save()
         return redirect(reverse('studenteats:forum'))
     else:
         return redirect(reverse('studenteats:forum'))
