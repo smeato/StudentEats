@@ -1,5 +1,6 @@
 from pdb import Restart
 from pyexpat.errors import messages
+from shutil import ReadError
 from django.db.models import Q, F
 from studenteats.models import AdminDetails, User,Recipe,Restaurant,Deals,Discussion,Discussion_Replies,Restaurant_Comments,Recipe_Comments
 import datetime
@@ -343,5 +344,13 @@ def updateLikes(request, value, id):
         return JsonResponse({"valid": True}, status=200)
     else:
         Recipe.objects.filter(id=id).update(Likes=F('Likes')-1)
+        return JsonResponse({"valid": False}, status=200)
+
+def updateLikesRestaurants(request, value, id):
+    if(value == 1):
+        Restaurant.objects.filter(id=id).update(Likes=F('Likes')+1)
+        return JsonResponse({"valid": True}, status=200)
+    else:
+        Restaurant.objects.filter(id=id).update(Likes=F('Likes')-1)
         return JsonResponse({"valid": False}, status=200)
     
