@@ -1,3 +1,4 @@
+from datetime import datetime
 from django.db import models
 from django.contrib.auth.models import User
 
@@ -19,12 +20,12 @@ class UserProfile(models.Model):
         return self.name
 
 class Recipe(models.Model):
-    Recipe_ID = models.IntegerField(default=0, unique=True) 
+    Recipe_ID =  models.IntegerField(default=0) 
     Title = models.CharField(max_length=128)
     Content = models.TextField(max_length=1000,blank=True)
     Tags = models.CharField(max_length=128,null=True)
     Cuisine=models.CharField(max_length=20)
-    Created_Date=models.DateTimeField(blank=True)
+    Created_Date=models.DateTimeField(blank=True, default=datetime.now)
     Owner=models.ForeignKey(UserProfile,on_delete=models.CASCADE)
     Likes=models.IntegerField(default=0)
 

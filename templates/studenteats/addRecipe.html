@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+{% load staticfiles %}
+
+<head>
+    <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
+    <link href="{% static 'custom/addRecipe.css' %}" rel="stylesheet">
+    <title>Add Recipe</title>
+    <link rel="shortcut icon" type="image/jpg" href="{% static 'images/logo.jpg' %} " sizes="32x32" />
+    <script src="{% static 'js/script.js' %}"></script>
+</head>
+
+<body>
+    <div class="heading-wrapper">
+        <div class="heading">
+            <img src="{% static 'images/salad.png' %} " alt="salad.png">
+            <h2>My Recipe</h2>
+            <img src="{% static 'images/salad.png' %} " alt="salad">
+        </div>
+        <img src="{% static 'images/chef-hat.png' %} " alt="chef-hat" class="hat">
+    </div>
+    {% if add == "true" %}
+    {% if message == "true" %}
+    <div class="alert-wrapper">
+    <div class="alert alert-success alert-dismissible" id="alert">
+        <p onclick="message()">&times;</a>
+        <strong>Recipe added.</strong>
+    </div>
+    {% else%}
+    <div class="alert alert-danger alert-dismissible" id="alert">
+        <p onclick="message()">&times;</a>
+        <strong>Recipe addition failed!</strong>
+    </div>
+    {% endif %}
+    {% with add="false"%}
+    {% endwith %}
+    {% endif %}
+</div>
+
+    <div class="form-wrapper">
+        <form method="post" action="{% url 'studenteats:add-recipe' %}">
+            {% csrf_token %}
+            <div class="form-group">
+                <label for="exampleInputEmail1">Title</label>
+                <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
+                    name="title" placeholder="Enter title">
+            </div>
+            <div class="form-group">
+                <label for="Content">Content</label>
+                <textarea class="form-control" name="content" id="exampleFormControlTextarea1" rows="15"
+                    placeholder="Your recipe goes here...."></textarea>
+            </div>
+            <br>
+            <label for="tags">Tags</label>
+            <div id="tags">
+                <div>
+                    <input type="checkbox" id="Check1" name="Value1" onclick="handleCheckBox(this.id)" />
+                    <label class="form-check-label" for="exampleCheck1">Easy</label>
+                </div>
+
+                <div>
+                    <input type="checkbox" id="Check2" name="Value2" onclick="handleCheckBox(this.id)" />
+                    <label class="form-check-label" for="exampleCheck2">Quick</label>
+                </div>
+                <div>
+                    <input type="checkbox" id="Check3" name="Value3" onclick="handleCheckBox(this.id)" />
+                    <label class="form-check-label" for="exampleCheck3">Advanced</label>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="form-check-label" for="cusine">Cusine</label>
+                <input type="text" class="form-control" id="cusine" aria-describedby="emailHelp" name="cusine">
+            </div>
+            <br>
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+        <a href="{% url 'studenteats:profile' id %}"><button  class="btn btn-primary">Back</button></a>
+    </div>
+</body>
+
+</html>

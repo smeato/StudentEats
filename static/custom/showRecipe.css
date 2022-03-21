@@ -51,3 +51,8 @@ font-size: xxx-large !important;
     align-items: center;
     gap:5px;
 }
+
+.cal{
+    display: flex;
+    gap:5px;
+}

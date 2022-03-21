@@ -14,7 +14,7 @@
     </title>
     <meta charset="utf-8">
 
-    <link rel="shortcut icon" type="image/jpg" href="{% static 'images/logo.jpg' %} "sizes="32x32" />
+    <link rel="shortcut icon" type="image/jpg" href="{% static 'images/logo.jpg' %} " sizes="32x32" />
     <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
     <link href="{% static 'css/custom.css' %}" rel="stylesheet">
     <link href="{% static 'custom/base.css' %}" rel="stylesheet">
@@ -117,6 +117,7 @@
         .title a {
             color: coral;
         }
+
     </style>
     <link href="{% static 'assets/css/bootstrap-responsive.css' %}" rel="stylesheet">
     <!-- Fav and touch icons -->
@@ -128,7 +129,7 @@
         href="{% static 'assets/ico/apple-touch-icon-72-precomposed.png' %}">
     <link rel="apple-touch-icon-precomposed" href="{% static 'assets/ico/apple-touch-icon-57-precomposed.png' %}">
     <link rel="shortcut icon" href="{% static 'assets/ico/favicon.png">
-    <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css'>            
+    <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css'>
 
 
 
@@ -137,16 +138,22 @@
 
 <body class="h-100 d-flex flex-column min-vh-100 pb-5  main-background">
     <div class="container-fluid">
-        <div>
-        {% block login_link %}
+        <div class="login-links">
+            {% block login_link %}
             {% if user.is_authenticated %}
-                <!-- If login , it will show My Profile and Log out/If not , it will show Login or Register-->
-                <a class="header-footer-link" href="{% url 'studenteats:profile' user.username %}"><h4>My Profile</h4></a>
-                <a class="header-footer-link" href="{% url 'studenteats:logout' %}"><h4>Log out</h4></a>
+            <!-- add user specific once user model created-->
+            <a class="header-footer-link" href="{% url 'studenteats:profile' user.username %}">
+                <h6>My Profile</h6>
+            </a>
+            <a class="header-footer-link" href="{% url 'studenteats:logout' %}">
+                <h6>Log out</h6>
+            </a>
             {% else %}
-                <a class="header-footer-link" href="{% url 'studenteats:login' %}">Log In or Register</a>
+            <a class="header-footer-link" href="{% url 'studenteats:login' %}">
+                <h6>Log In or Register</h6>
+            </a>
             {% endif %}
-        {% endblock %}
+            {% endblock %}
         </div>
         <div>
             {% block header_block %}
