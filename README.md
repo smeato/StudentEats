@@ -18,6 +18,7 @@ We anticipated that we may have been quite ambitious in the design of this proje
 That being said, some features which are in more of a beta stage and would ideally receive more attention in future iterations are: 
      Taking the like functionality beyond its beta stage and updating the like count. 
      Adding comment functionality to the restaurant and recipe pages. 
+     Adding admin functionality like choosing (or being sponsored) by a restaurant of the week to fill that section. 
      Conduct user experience testing and improve the ease of use of the site. 
      
      
