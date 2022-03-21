@@ -24,3 +24,13 @@
 .nav-link {
     color:coral;
 }
+
+.login-links {
+    display: flex;
+    justify-content: flex-end;
+    gap: 16px;
+}
+
+.login-links a:hover{
+    color: #198753
+}

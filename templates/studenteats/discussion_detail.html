@@ -19,17 +19,7 @@
             padding-bottom: 60px;
           }
     
-          /* Custom container */
-          .container {
-            color:coral;
-            margin: 0 auto;
-          }
-          .container .flu{
-            padding-left: 50px;
-          }
-          .container > hr {
-            margin: 60px 0;
-          }
+
 
           .title a{
             color:coral;
@@ -62,21 +52,22 @@
     
 
     <body>
+      <div> 
+        {% if user.is_authenticated %}
+            <!-- If user has login , an additional ADD REPLY Button will diaplay-->
+            <a class="header-footer-link" href="{% url 'studenteats:profile' %} " style="color:coral"><h4>My Profile</h4></a>
+        {% else %} 
+            <a class="header-footer-link" href="{% url 'studenteats:login' %}" style="color:coral">Log In or Register</a>
+        {% endif %} 
+      </div>
 
       <div class="col-lg-8 mx-auto p-3 py-md-5">
-        <div> 
-          {% if user.is_authenticated %}
-              <!-- add user specific once user model created-->
-              <a class="header-footer-link" href="{% url 'studenteats:profile' %}"><h4>My Profile</h4></a>
-          {% else %} 
-              <a class="header-footer-link" href="{% url 'studenteats:login' %}">Log In or Register</a>
-          {% endif %} 
-      </div>
         <header>
               <h1 class="header text-center mt-3" style="color:coral"><strong>Student Eats</strong></h1>
         </header>
 
         <main>
+          <!-- Show the Discussion information -->
           {% for Discussion in discussion %}
           <div class="p-5 mb-4 BG rounded-3" style="color:red;text-align:left;margin-left: -30px;">
             <div class="container-fluid py-5">
@@ -84,10 +75,14 @@
               <p class="col-md-11 fs-4 fst-italic">{{ Discussion.Description}}</p>
               <div class="mb-1">
               <form class="d-flex" method="POST" action="{% url 'studenteats:add_comments'%}">
+                {% if user.is_authenticated %}
                 {% csrf_token %}
                 <button class="btn btn-primary btn-lg px-4" type="submit" style="color:white;width:150px">Add Reply</button></form>
                 <br/>
               <a href="{% url 'studenteats:forum' %}" class="btn btn-primary btn-lg px-4" style="width:150px">Back</a>
+                {% else %} 
+                <a href="{% url 'studenteats:forum' %}" class="btn btn-primary btn-lg px-4" style="width:150px">Back</a>
+                {% endif %} 
               </div>
               {% endfor %}              
             </div>
@@ -97,7 +92,7 @@
 
           <hr class="col-3 col-md-2 mb-5">
           <div class="row g-5 ">
-
+<!-- Show the reply for this Discussioin -->
           {% for Discussion_Replies in reply %}
           <div class="bg-light">
               <h4 style="color:coral;">{{ Discussion_Replies.Description}}</h4>

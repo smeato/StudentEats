@@ -330,6 +330,16 @@ def populate():
             'Post_ID':1,
             'Discussion_ID':1
         },
+
+        {
+            'Description': 'Can\'t agree more!!!',
+            'Owner': 5,
+            'Created_Time': '2022-2-17',
+            'Likes': 42,
+            'Post_ID':12,
+            'Discussion_ID':1
+        },
+
         {
             'Description': 'I know what you mean that stuff is great',
             'Owner': 3,
@@ -349,11 +359,20 @@ def populate():
         },
 
         {
-            'Description': 'Yeah it closed down during covid. Sad times',
-            'Owner': 1,
-            'Created_Time': '2022-2-10',
-            'Likes': 31,
+            'Description': 'No way. It is my favourite one',
+            'Owner': 4,
+            'Created_Time': '2022-2-17',
+            'Likes': 13,
             'Post_ID':4,
+            'Discussion_ID':2
+        },
+
+        {
+            'Description': '07536874922 This is their phonenumber. You could call them with this',
+            'Owner': 3,
+            'Created_Time': '2022-3-12',
+            'Likes': 29,
+            'Post_ID':13,
             'Discussion_ID':2
         },
 
@@ -367,6 +386,24 @@ def populate():
         },
 
         {
+            'Description': 'Put them in the boiling water might help',
+            'Owner': 5,
+            'Created_Time': '2022-2-14',
+            'Likes': 92,
+            'Post_ID':10,
+            'Discussion_ID':3
+        },
+
+        {
+            'Description': '7 mins can be a good timing',
+            'Owner': 2,
+            'Created_Time': '2022-3-10',
+            'Likes': 22,
+            'Post_ID':11,
+            'Discussion_ID':3
+        },
+
+        {
             'Description': 'Cook for them! That is always cheapest...',
             'Owner': 4,
             'Created_Time': '2022-3-17',
@@ -376,6 +413,52 @@ def populate():
         },
 
         {
+            'Description': 'There is an restaurant at the KevinBridge, but I forget the name...',
+            'Owner': 2,
+            'Created_Time': '2022-3-19',
+            'Likes': 47,
+            'Post_ID':14,
+            'Discussion_ID':4
+        },
+
+        {
+            'Description': 'Far away from City Center !!!!',
+            'Owner': 6,
+            'Created_Time': '2022-3-22',
+            'Likes': 29,
+            'Post_ID':15,
+            'Discussion_ID':4
+        },
+
+        {
+            'Description': 'Take 10 when it appears! ',
+            'Owner': 6,
+            'Created_Time': '2022-1-17',
+            'Likes': 39,
+            'Post_ID':16,
+            'Discussion_ID':5
+        },
+
+                {
+            'Description': 'Try some rice, you will like it',
+            'Owner': 2,
+            'Created_Time': '2022-1-23',
+            'Likes': 42,
+            'Post_ID':17,
+            'Discussion_ID':5
+        },
+
+                {
+            'Description': 'It might alter the position.. just a guess',
+            'Owner': 4,
+            'Created_Time': '2022-2-12',
+            'Likes': 82,
+            'Post_ID':18,
+            'Discussion_ID':5
+        },
+
+
+        {
             'Description': 'I\'m from South Africa and I haven\'t been home in years. Let\'s definitely do something!',
             'Owner': 3,
             'Created_Time': '2022-2-10',
@@ -383,6 +466,24 @@ def populate():
             'Post_ID':7,
             'Discussion_ID':6
         },
+
+        {
+            'Description': 'What about tomorrow morning at Hillhead?',
+            'Owner': 2,
+            'Created_Time': '2022-2-13',
+            'Likes': 46,
+            'Post_ID':8,
+            'Discussion_ID':6
+        },
+
+        {
+            'Description': 'No..man... Too many dues this Saturday...',
+            'Owner': 2,
+            'Created_Time': '2022-2-13',
+            'Likes': 12,
+            'Post_ID':9,
+            'Discussion_ID':6
+        }
 
     ]
 
@@ -396,6 +497,18 @@ def populate():
             'Comment_ID': 1,
             'Restaurant_ID': 1
         },
+
+        {
+            'Description': 'OMG I like it!!',
+            'Owner': 2,
+            'Created_Time': '2022-3-22',
+            'Likes': 24,
+            'Comment_ID': 7,
+            'Restaurant_ID': 1
+        },
+
+        
+
 
         {
             'Description': 'It\'s okay. Bit expensive though',
@@ -561,7 +674,7 @@ def add_Restaurant_Comments(Description,Owner,Created_Time,Likes,Comment_ID,Rest
     return g
 
 def add_Recipe_Comments(Description,Owner,Created_Time,Likes,Comment_ID,Recipe_ID):
-    h=Recipe_Comments.objects.get_or_create(Description=Description,User_ID=UserProfile.objects.get(id=Owner),Created_Time=Created_Time,Likes=Likes,Comment_ID=Comment_ID,Recipe_ID=Recipe.objects.get(Recipe_ID=Recipe_ID))[0]
+    h=Recipe_Comments.objects.get_or_create(Description=Description,User_ID=UserProfile.objects.get(id=Owner),Created_Time=Created_Time,Likes=Likes,Comment_ID=Comment_ID,Recipe_ID=Recipe.objects.get(id=Recipe_ID))[0]
     h.save()
     return h
 

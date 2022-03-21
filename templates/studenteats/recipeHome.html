@@ -65,7 +65,7 @@ Recipes
         <img class="card-img-top" src="{{ MEDIA_URL }}recipe_images/test.jpeg" alt="Card image cap">
         <div class="card-body">
             <h5 class="card-title">{{s.Title}}</h5>
-                <a class="btn btn-primary" id="view-recipe" href="{% url 'studenteats:show_recipes' s.Recipe_ID %}">View</a>
+                <a class="btn btn-primary" id="view-recipe" href="{% url 'studenteats:show_recipes' s.id %}">View</a>
         </div>
     </div>
     {% endfor %}
