@@ -1,26 +1,23 @@
-
+from pdb import Restart
+from pyexpat.errors import messages
 from django.db.models import Q
-from django.http import JsonResponse
-from django.shortcuts import render, redirect
-from django.urls import reverse
-from django.db.models import Q
-from django.db.models import F
-from django.forms import DateField, DateTimeField
-from studenteats.models import AdminDetails, User, Recipe, Restaurant, Deals, Discussion, Discussion_Replies, Restaurant_Comments, Recipe_Comments
-from django.shortcuts import render, redirect, get_object_or_404
-from django.urls import reverse
+from studenteats.models import AdminDetails, User,Recipe,Restaurant,Deals,Discussion,Discussion_Replies,Restaurant_Comments,Recipe_Comments
+import datetime
+from email.policy import default
 from django.forms import DateField
-from studenteats.models import AdminDetails, UserProfile, Recipe, Restaurant, Deals, Discussion, Discussion_Replies, Restaurant_Comments, Recipe_Comments
+from django.urls import reverse
+from django.http import JsonResponse
+from django.shortcuts import render, redirect, get_object_or_404
+from studenteats.models import UserProfile
 from django.contrib.auth import authenticate, login, logout
 from django.http import HttpResponse
-from django.urls import reverse
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from django.views import View
 from django.utils.decorators import method_decorator
 from studenteats.forms import UserForm, UserProfileForm
 from django.http import HttpResponseRedirect
-from django.utils.decorators import method_decorator
+from django.contrib.messages import add_message
 
 
 # Create your views here.
@@ -155,8 +152,7 @@ def profile(request):
 
         if form.is_valid():
             form.save()
-            username = request.user.username
-            #message.success(request,f'{username},Your Profile is update.')
+            username=request.user.username
             return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
         else:
             form = UserProfileForm(instance=request.user.profile)

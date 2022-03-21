@@ -17,7 +17,7 @@
     <link rel="shortcut icon" type="image/jpg" href="{% static 'images/logo.jpg' %} " sizes="32x32" />
     <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
     <link href="{% static 'css/custom.css' %}" rel="stylesheet">
-    <link href="{% static 'custom/base.css' %}" rel="stylesheet">
+    
     <script src="{% static 'js/bootstrap.min.js' %}"></script>
     <script src="{% static 'js/script.js' %}"></script>
 
@@ -139,21 +139,18 @@
 
 
 
-
+   
 </head>
 
 <body class="h-100 d-flex flex-column min-vh-100 pb-5  main-background">
+    <link href="{% static 'custom/base.css' %}" rel="stylesheet">
     <div class="container-fluid">
         <div class="login-links">
             {% block login_link %}
             {% if user.is_authenticated %}
-            <!-- add user specific once user model created-->
-            <a class="header-footer-link" href="{% url 'studenteats:profile' user.username %}">
-                <h6>My Profile</h6>
-            </a>
-            <a class="header-footer-link" href="{% url 'studenteats:logout' %}">
-                <h6>Log out</h6>
-            </a>
+                <!-- add user specific once user model created-->
+                <a class="header-footer-link" href="{% url 'studenteats:profile' user.username %}">My Profile</a><br>
+                <a class="header-footer-link" href="{% url 'studenteats:logout' %}">Log out</a>
             {% else %}
             <a class="header-footer-link" href="{% url 'studenteats:register' %}">
                 <h6>Log In or Register</h6>

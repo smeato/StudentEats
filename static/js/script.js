@@ -49,6 +49,11 @@ function message(){
     document.getElementById('alert').style="display:none";
 }
 
+function restaurantClick() {
+    var url = document.getElementById('url').getAttribute('data');
+    window.location.assign(url);
+}
+
 var inputMap, displayMap, locations, markers = [];
 
 function initMap() {

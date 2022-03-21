@@ -57,6 +57,8 @@ class Restaurant(models.Model):
     Longitude = models.FloatField(default=0.0)
     Place = models.CharField(max_length=128, default='')
     
+    class Meta:
+        verbose_name_plural = 'restaurants'
     def __str__(self): 
         return self.Name
 

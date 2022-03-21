@@ -26,6 +26,7 @@
     color:coral;
 }
 
+<<<<<<< HEAD
 .login-links {
     display: flex;
     justify-content: flex-end;
@@ -35,3 +36,5 @@
 .login-links a:hover{
     color: #198753
 }
+=======
+>>>>>>> b772e557a5cf634912a841dd4772517d85014f84
