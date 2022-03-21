@@ -107,6 +107,12 @@
         .navbar .nav .active a {
             color: coral;
         }
+        
+        .BG{
+        width: 1000px;
+        height: 500px;
+        background:url("{% static 'images/place.jpg' %}")
+        }
 
         .title a {
             color: coral;
@@ -151,12 +157,14 @@
         </div>
         <div>
             {% block header_block %}
+            <!-- Show the header -->
             <h1 class="header text-center mt-4"><strong>Student Eats</strong></h1>
             {% endblock %}
         </div>
 
 
         {% block navbar_block %}
+        <!-- implement the navi bar -->
         <div class="masthead">
             <div class="navbar">
                 <div class="navbar-inner">
@@ -164,9 +172,8 @@
                         <ul class="nav">
                             <li><a href="{% url 'studenteats:restaurant' %}">Restaurant Home</a></li>
                             <li><a href="{% url 'studenteats:recipe' %}">Recipe Home</a></li>
-                            <li class="active"><a href="{% url 'studenteats:forum' %}">Forum</a></li>
+                            <li><a href="{% url 'studenteats:forum' %}">Forum</a></li>
                             <li><a href="{% url 'studenteats:about' %}">About</a></li>
-                            <!--<li><a href="{% url 'studenteats:profile' %}">My Profile</a></li>-->
                         </ul>
                     </div>
                 </div>
