@@ -20,7 +20,7 @@ from django.utils.decorators import method_decorator
 from studenteats.forms import UserForm, UserProfileForm
 from django.http import HttpResponseRedirect
 from django.utils.decorators import method_decorator
-
+from datetime import datetime
 
 # Create your views here.
 def index(request):
@@ -251,13 +251,19 @@ def save_comments(request):
     if request.method == "POST":
         diss_id = request.session.get('diss_id')
         user_id = request.user.id
+        
+        diss=Discussion.objects.get(Discussion_ID=diss_id)
+
+        user=request.user
+
         rep_id = request.POST.get('rep_id')
         description = request.POST.get('description')
-        create_time = DateField()
+        created_Time=datetime.now()
         likes = 0.0
-        reply = Discussion_Replies(Description=description, User_ID=user_id,
-                                   Created_Time=create_time, Likes=likes, Post_ID=rep_id, Discussion_ID=diss_id)
-
+        reply = Discussion_Replies.objects.get_or_create(Description=description, User_ID=user,
+                                   Created_Time=created_Time, Likes=likes, Post_ID=rep_id, Discussion_ID=diss)
+        #reply.save()
+        
         return redirect(reverse('studenteats:forum'))
     else:
         return redirect(reverse('studenteats:forum'))

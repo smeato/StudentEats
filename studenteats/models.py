@@ -1,3 +1,4 @@
+from datetime import datetime
 from django.db import models
 from django.contrib.auth.models import User
 
@@ -74,8 +75,9 @@ class Discussion(models.Model):
 
 class Discussion_Replies(models.Model):
     Description=models.TextField(max_length=1000)
-    User_ID=models.ForeignKey(UserProfile,on_delete=models.CASCADE)
+    User_ID=models.ForeignKey(User,on_delete=models.CASCADE)
     Created_Time=models.DateTimeField()
+    
     Likes=models.IntegerField(default=0)
     Post_ID=models.IntegerField(default=0,unique=True)
     Discussion_ID=models.ForeignKey(Discussion, on_delete=models.CASCADE)

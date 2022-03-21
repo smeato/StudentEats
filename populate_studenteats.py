@@ -12,7 +12,7 @@ from studenteats.models import User,Recipe,Restaurant,Deals,Discussion,Discussio
 def populate():
     User_profiles = [
 
-    {       'User_ID':1 ,
+    {       'User_ID':1,
             'Name':'AliceA123',
             'Password':'123456',
             'Email': 'averagestudents@averagestudents.com',
