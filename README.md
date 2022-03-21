@@ -8,7 +8,7 @@ for quite an ambitious project this has been a great help.
 With Student Eats a user can: 
       Browse restaurants listed with student deals and view them on map. 
       Browse recipes submitted by other users and watch the latest beginner's guide to cooking video on the recipe homepage. 
-      Search for both restaurants and recipes from their pages. 
+      Search for both restaurants and recipes from their pages, view their listing and like/unlike. 
       View hot topics being discussed in the forum, or register for the ability to reply and join the conversation. 
       Register for an account and personalise your profile. 
       Users can view our About page to see who has built the website and their degrees. 
@@ -16,7 +16,6 @@ With Student Eats a user can:
       
 We anticipated that we may have been quite ambitious in the design of this project, however we have implemented the vast majority of what we set out to feature. 
 That being said, some features which are in more of a beta stage and would ideally receive more attention in future iterations are: 
-     Taking the like functionality beyond its beta stage and updating the like count. 
      Adding comment functionality to the restaurant and recipe pages. 
      Adding admin functionality like choosing (or being sponsored) by a restaurant of the week to fill that section. 
      Conduct user experience testing and improve the ease of use of the site. 
