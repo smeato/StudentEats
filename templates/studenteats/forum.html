@@ -8,7 +8,7 @@ Forum
 <link href="{% static 'custom/forum.css' %}" rel="stylesheet">
 <div class="container">
   <!-- Show the title -->
-      <div class="jumbotron BG rounded mx-auto" style="color:red">
+      <div class="jumbotron BG rounded mx-auto">
         <br/>
         <h1 class="p" id="jumbo-text">😆Discuss it！</h1>
         <p class="lead">You could say everything here.</br>A little Question may get thousands of Replies!</p>
@@ -18,7 +18,7 @@ Forum
       
       <div class = "row">
         <div class="dropdown">
-          <button class="btn btn-primary" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false" style="width: 150px;height: 50px; float:right; color:white ">
+          <button class="btn btn button" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false" style="width: 150px;height: 50px; float:right; color:white ">
             <h5 style="color:white">Order By</h5>
           </button>
           <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
@@ -37,9 +37,9 @@ Forum
             {% for Discussion in Discussions %}
             <div class="row">
               <div class="span4">
-                <h2>{{Discussion.Title}}</h2>
-                <p style="width: 1000px;height: 50px;">{{Discussion.Description}}</p>
-                <p><a class="btn btn-primary" href="{% url 'studenteats:discussion_detail' Discussion.Discussion_ID %}" style="color:white">View details &raquo;</a></p>
+                <h2 class="lead"><strong>{{Discussion.Title}}</strong></h2>
+                <p class="description">{{Discussion.Description}}</p>
+                <p><a class="btn button btn" href="{% url 'studenteats:discussion_detail' Discussion.Discussion_ID %}" style="color:white">View details &raquo;</a></p>
               </div>
             </div>
             <hr>
