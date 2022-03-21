@@ -64,14 +64,8 @@ Recipes
     <div class="card text-black" style="width: 18rem;">
         <img class="card-img-top" src="{{ MEDIA_URL }}recipe_images/test.jpeg" alt="Card image cap">
         <div class="card-body">
-<<<<<<< HEAD
             <h5 class="card-title">{{s.Title}}</h5>
                 <a class="btn btn-primary" id="view-recipe" href="{% url 'studenteats:show_recipes' s.id %}">View</a>
-=======
-          <h5 class="card-title text-success"><strong>{{s.Title}}</strong></h5>
-          <input type="hidden" id="url" data="{% url 'studenteats:forum' %}">
-          <a class="btn btn-primary" id="view-recipe" onclick="recipeClick()">View</a>
->>>>>>> b772e557a5cf634912a841dd4772517d85014f84
         </div>
     </div>
     {% endfor %}
