@@ -1,26 +1,23 @@
-
+from pdb import Restart
+from pyexpat.errors import messages
 from django.db.models import Q
-from django.http import JsonResponse
-from django.shortcuts import render, redirect
-from django.urls import reverse
-from django.db.models import Q
-from django.db.models import F
-from django.forms import DateField, DateTimeField
-from studenteats.models import AdminDetails, User, Recipe, Restaurant, Deals, Discussion, Discussion_Replies, Restaurant_Comments, Recipe_Comments
-from django.shortcuts import render, redirect, get_object_or_404
-from django.urls import reverse
+from studenteats.models import AdminDetails, User,Recipe,Restaurant,Deals,Discussion,Discussion_Replies,Restaurant_Comments,Recipe_Comments
+import datetime
+from email.policy import default
 from django.forms import DateField
-from studenteats.models import AdminDetails, UserProfile, Recipe, Restaurant, Deals, Discussion, Discussion_Replies, Restaurant_Comments, Recipe_Comments
+from django.urls import reverse
+from django.http import JsonResponse
+from django.shortcuts import render, redirect, get_object_or_404
+from studenteats.models import UserProfile
 from django.contrib.auth import authenticate, login, logout
 from django.http import HttpResponse
-from django.urls import reverse
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from django.views import View
 from django.utils.decorators import method_decorator
 from studenteats.forms import UserForm, UserProfileForm
 from django.http import HttpResponseRedirect
-from django.utils.decorators import method_decorator
+from django.contrib.messages import add_message
 
 
 # Create your views here.
@@ -155,9 +152,8 @@ def profile(request):
 
         if form.is_valid():
             form.save()
-            username = request.user.username
-            #message.success(request,f'{username},Your Profile is update.')
-            return redirect('/')
+            username=request.user.username
+            return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
         else:
             form = UserProfileForm(instance=request.user.profile)
 
@@ -220,6 +216,25 @@ def show_recipes(request, Recipe_id):
         Owner__id=recipe.Owner.id).count()
     return render(request, 'studenteats/show_recipes.html', context=context_dict)
 
+def search_restaurants(request):
+    if request.method == "POST":
+        if request.POST['searched'] != '':
+            searched = request.POST['searched']
+            restaurant = Restaurant.objects.filter(Q(Name__icontains=searched) |
+                                            Q(Cuisine__icontains=searched) |
+                                            Q(Tags__icontains=searched))
+            context_dict = {}
+            context_dict['searched'] = searched
+            context_dict['restaurants'] = list(restaurant.all())
+            return render(request, 'studenteats/search_restaurants.html', context_dict)
+    return restaurant(request)
+
+def show_restaurants(request, Restaurant_id):
+    context_dict = {}
+    restaurant = Restaurant.objects.filter(Restaurant_ID=Restaurant_id)[0]
+    context_dict['restaurant'] = restaurant
+    context_dict['count'] = Restaurant.objects.filter(Owner__id=restaurant.Owner.id).count()
+    return render(request, 'studenteats/show_restaurants.html', context=context_dict)
 
 def forum(request, state=0):
     Discussion_like = Discussion.objects.order_by('-Likes')[:3]

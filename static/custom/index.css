@@ -3,3 +3,8 @@
     height: 10px;
     object-fit: cover;
 }
+
+.button {
+    background-color: #E5890A !important;
+    color: white !important;
+}
